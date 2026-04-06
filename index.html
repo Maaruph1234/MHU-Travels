@@ -127,8 +127,11 @@ textarea{resize:vertical;min-height:110px}
    HERO
 ============================================ */
 .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--navy)}
-.hero-bg{position:absolute;inset:0;background:linear-gradient(125deg,rgba(7,17,29,.91) 0%,rgba(21,55,84,.55) 55%,rgba(7,17,29,.78) 100%),url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=80') center/cover no-repeat}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(125deg,rgba(7,17,29,.91) 0%,rgba(21,55,84,.55) 55%,rgba(7,17,29,.78) 100%),url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1800&q=80') center/cover no-repeat}
 .hero-line{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent 0%,var(--gold) 30%,var(--gold) 70%,transparent 100%);opacity:.5}
+/* Logo watermark */
+.hero-logo-watermark{position:absolute;bottom:48px;right:48px;z-index:1;opacity:0.10;pointer-events:none;user-select:none;}
+.hero-logo-watermark img{width:220px;height:auto;display:block;filter:brightness(10)}
 .hero-content{position:relative;z-index:1;padding:150px 0 90px;max-width:780px}
 .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);border-radius:2px;padding:7px 18px 7px 10px;margin-bottom:32px;font-size:12px;color:rgba(255,255,255,.82);letter-spacing:.06em}
 .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
@@ -383,6 +386,8 @@ textarea{resize:vertical;min-height:110px}
   .hero-stats{gap:24px}
   .hero-ctas{gap:10px}
   .footer-grid{grid-template-columns:1fr}
+  .hero-logo-watermark{bottom:24px;right:24px}
+  .hero-logo-watermark img{width:140px}
 }
 </style>
 </head>
@@ -433,7 +438,8 @@ textarea{resize:vertical;min-height:110px}
     <div class="nav-inner">
       <div class="logo" onclick="showPage('home')">
         <div class="logo-mark">
-    <img src="mhu.jpg" alt="MHU Logo" style="width: 100%; height: auto; display: block;">        </div>
+          <img src="mhu.jpg" alt="MHU Logo" style="width: 100%; height: auto; display: block;">
+        </div>
         <div>
           <span class="logo-name">MHU Travel & Tour</span>
           <span class="logo-tagline">Explore Beyond Limits</span>
@@ -477,6 +483,12 @@ textarea{resize:vertical;min-height:110px}
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-line"></div>
+
+    <!-- LOGO WATERMARK — bottom-right, non-intrusive -->
+    <div class="hero-logo-watermark">
+      <img src="mhu.jpg" alt=""/>
+    </div>
+
     <div class="container">
       <div class="hero-content">
         <div class="hero-badge">
@@ -962,7 +974,6 @@ textarea{resize:vertical;min-height:110px}
             <p class="team-role">Founder &amp; CEO &nbsp;&middot;&nbsp; <em style="color:var(--gold);font-style:normal">"Dollahead"</em></p>
             <p class="body-md" style="font-size:14px">Known widely as <strong>Dollahead</strong>, Muhammad Hadi founded MHU Travel &amp; Tour in 2025 with one clear mission — to make world-class travel accessible to every Nigerian. A certified travel consultant and IATA-trained professional, he brings a rare blend of hustle and industry expertise to every client relationship. From negotiating premium hotel rates to personally walking clients through visa applications, Muhammad is deeply hands-on. Under his leadership, MHU has grown from a one-man operation into one of Abuja's most trusted travel brands — and the cornerstone of the MHU Global Investment group.</p>
             <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:6px">
-              <!-- <span class="tag">IATA Certified</span> -->
               <span class="tag">Visa Specialist</span>
               <span class="tag">Hajj &amp; Umrah Expert</span>
               <span class="tag">Founder 2025</span>
@@ -1130,7 +1141,8 @@ textarea{resize:vertical;min-height:110px}
       <div class="footer-brand">
         <div class="logo" style="gap:11px">
           <div class="logo-mark" style="width:60px;height:60px">
- <img src="mhu.jpg" alt="MHU Logo" style="width: 100%; height: auto; display: block;">          </div>
+            <img src="mhu.jpg" alt="MHU Logo" style="width: 100%; height: auto; display: block;">
+          </div>
           <div>
             <span class="logo-name" style="font-size:1.18rem">MHU Travel &amp; Tour</span>
             <span class="logo-tagline">Explore Beyond Limits</span>
