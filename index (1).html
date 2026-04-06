@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MHU Travel & Tour – Explore the World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+<style>
+/* ============================================
+   DESIGN TOKENS
+============================================ */
+:root {
+  --navy:       #091524;
+  --navy-mid:   #112038;
+  --ocean:      #174272;
+  --sky:        #2272b6;
+  --azure:      #4a9fd4;
+  --mist:       #e6f2fb;
+  --sand:       #f7f0e6;
+  --gold:       #c8903a;
+  --gold-lt:    #e4b96a;
+  --white:      #ffffff;
+  --off-white:  #f9f9f7;
+  --t-dark:     #0d1b2b;
+  --t-mid:      #3a4e62;
+  --t-light:    #6a8099;
+  --r-sm: 6px; --r-md: 12px; --r-lg: 20px; --r-xl: 32px;
+  --sh-sm: 0 2px 10px rgba(9,21,36,.07);
+  --sh-md: 0 8px 32px rgba(9,21,36,.11);
+  --sh-lg: 0 20px 60px rgba(9,21,36,.18);
+  --ff-disp: 'Cormorant Garamond', Georgia, serif;
+  --ff-body: 'DM Sans', sans-serif;
+  --ease: all .3s cubic-bezier(.25,.46,.45,.94);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);color:var(--t-dark);background:var(--off-white);overflow-x:hidden;line-height:1.65}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+ul{list-style:none}
+input,textarea,select{
+  font-family:var(--ff-body);font-size:15px;
+  border:1.5px solid #dde7f2;border-radius:var(--r-sm);
+  padding:11px 14px;width:100%;outline:none;
+  transition:var(--ease);background:var(--white);color:var(--t-dark)
+}
+input:focus,textarea:focus,select:focus{
+  border-color:var(--sky);
+  box-shadow:0 0 0 3px rgba(34,114,182,.1)
+}
+textarea{resize:vertical;min-height:110px}
+
+/* ============================================
+   LAYOUT & TYPE
+============================================ */
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+.section{padding:84px 0}
+.section-sm{padding:50px 0}
+.text-center{text-align:center}
+.hidden{display:none!important}
+
+.disp-xl{font-family:var(--ff-disp);font-size:clamp(2.6rem,5.5vw,5rem);font-weight:600;line-height:1.08;letter-spacing:-.02em}
+.disp-lg{font-family:var(--ff-disp);font-size:clamp(1.9rem,3.8vw,3.2rem);font-weight:600;line-height:1.13}
+.disp-md{font-family:var(--ff-disp);font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:600;line-height:1.2}
+.sec-label{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
+.body-lg{font-size:1.05rem;font-weight:300;line-height:1.78;color:var(--t-mid)}
+.body-md{font-size:.95rem;line-height:1.72;color:var(--t-mid)}
+
+/* ============================================
+   BUTTONS
+============================================ */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:100px;font-size:14.5px;font-weight:500;transition:var(--ease);cursor:pointer;white-space:nowrap;border:none}
+.btn-primary{background:var(--sky);color:#fff;box-shadow:0 4px 20px rgba(34,114,182,.32)}
+.btn-primary:hover{background:var(--ocean);transform:translateY(-2px);box-shadow:0 8px 28px rgba(34,114,182,.42)}
+.btn-wa{background:#25d366;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.30)}
+.btn-wa:hover{background:#1db855;transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.4)}
+.btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55)}
+.btn-outline:hover{background:rgba(255,255,255,.12);border-color:#fff}
+.btn-outline-dark{background:transparent;color:var(--ocean);border:1.5px solid var(--ocean)}
+.btn-outline-dark:hover{background:var(--ocean);color:#fff}
+.btn-gold{background:var(--gold);color:#fff;box-shadow:0 4px 18px rgba(200,144,58,.32)}
+.btn-gold:hover{background:#b07a28;transform:translateY(-2px)}
+.btn-sm{padding:9px 18px;font-size:13px}
+.btn-full{width:100%;justify-content:center}
+
+/* ============================================
+   NAVBAR
+============================================ */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 0;transition:var(--ease)}
+.navbar.scrolled{background:rgba(9,21,36,.95);backdrop-filter:blur(20px);padding:12px 0;box-shadow:0 4px 30px rgba(0,0,0,.22)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:11px;flex-shrink:0;cursor:pointer}
+
+/* ── Logo image (MHU-Global.jpg same folder) ── */
+.logo-img{height:42px;width:auto;max-width:170px;object-fit:contain;filter:brightness(1.05) drop-shadow(0 1px 4px rgba(0,0,0,.3));transition:var(--ease)}
+.logo:hover .logo-img{filter:brightness(1.2) drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+.logo-mark{width:42px;height:42px;background:linear-gradient(135deg,var(--sky),var(--azure));border-radius:11px;display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:22px;height:22px;fill:#fff}
+.logo-name{font-family:var(--ff-disp);font-size:1.35rem;font-weight:700;color:#fff;line-height:1.05}
+.logo-tagline{font-size:9.5px;letter-spacing:.12em;color:var(--azure);font-family:var(--ff-body);font-weight:500;display:block;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-link{padding:8px 15px;color:rgba(255,255,255,.78);font-size:14px;font-weight:500;border-radius:100px;transition:var(--ease);cursor:pointer}
+.nav-link:hover,.nav-link.active{color:#fff;background:rgba(255,255,255,.1)}
+.nav-cta{display:flex;align-items:center;gap:10px}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;cursor:pointer}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:var(--ease)}
+.mob-menu{position:fixed;inset:0;background:var(--navy);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;transform:translateX(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
+.mob-menu.open{transform:translateX(0)}
+.mob-menu .nav-link{font-size:1.6rem;font-family:var(--ff-disp);padding:14px 28px}
+.mob-close{position:absolute;top:22px;right:22px;color:#fff;font-size:28px;padding:8px;cursor:pointer;line-height:1}
+@media(max-width:820px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}}
+
+/* ============================================
+   FLOATING WA BUTTON
+============================================ */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:900;width:58px;height:58px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 22px rgba(37,211,102,.5);transition:var(--ease);animation:wa-pulse 2.8s ease-in-out infinite}
+.wa-float:hover{transform:scale(1.1)}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+@keyframes wa-pulse{0%,100%{box-shadow:0 4px 22px rgba(37,211,102,.5)}50%{box-shadow:0 4px 22px rgba(37,211,102,.5),0 0 0 12px rgba(37,211,102,.1)}}
+
+/* ============================================
+   HERO
+============================================ */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--navy)}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(120deg,rgba(9,21,36,.88) 0%,rgba(23,66,114,.5) 55%,rgba(9,21,36,.75) 100%),url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=80') center/cover no-repeat}
+.hero-orbs{position:absolute;inset:0;background:radial-gradient(circle at 15% 75%,rgba(74,159,212,.12) 0%,transparent 48%),radial-gradient(circle at 82% 18%,rgba(200,144,58,.09) 0%,transparent 45%)}
+.hero-content{position:relative;z-index:1;padding:140px 0 80px;max-width:740px}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.09);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:6px 18px 6px 8px;margin-bottom:28px;font-size:12.5px;color:rgba(255,255,255,.88)}
+.badge-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{color:#fff;margin-bottom:22px}
+.hero h1 em{color:var(--azure);font-style:normal}
+.hero-sub{color:rgba(255,255,255,.7);font-size:1.12rem;font-weight:300;margin-bottom:38px;max-width:520px;line-height:1.75}
+.hero-ctas{display:flex;gap:13px;flex-wrap:wrap;margin-bottom:58px}
+.hero-divider{width:60px;height:1px;background:rgba(255,255,255,.2);margin-bottom:28px}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap}
+.stat-num{font-family:var(--ff-disp);font-size:2.1rem;font-weight:700;color:#fff;line-height:1}
+.stat-lbl{font-size:12px;color:rgba(255,255,255,.48);margin-top:4px;letter-spacing:.04em}
+.hero-scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;color:rgba(255,255,255,.4);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+.scroll-line{width:1px;height:38px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:scroll-anim 2.2s ease-in-out infinite}
+@keyframes scroll-anim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ============================================
+   DESTINATION CARDS
+============================================ */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.dest-card{background:var(--white);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm);transition:var(--ease);cursor:pointer}
+.dest-card:hover{transform:translateY(-7px);box-shadow:var(--sh-lg)}
+.card-img-wrap{overflow:hidden;position:relative;height:210px}
+.card-img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
+.dest-card:hover .card-img{transform:scale(1.07)}
+.card-badge{position:absolute;top:13px;left:13px;background:var(--gold);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:4px 12px;border-radius:100px}
+.card-body{padding:20px}
+.card-meta{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--t-light);margin-bottom:7px}
+.card-body h3{font-family:var(--ff-disp);font-size:1.35rem;font-weight:600;color:var(--t-dark);margin-bottom:7px;line-height:1.25}
+.card-body p{font-size:13.5px;color:var(--t-mid);line-height:1.62;margin-bottom:15px}
+.card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:13px;border-top:1px solid #edf2f8}
+.card-dur{font-size:12.5px;color:var(--t-light);display:flex;align-items:center;gap:5px}
+
+/* ============================================
+   FILTER BAR
+============================================ */
+.filter-bar{background:var(--white);border-radius:var(--r-lg);padding:18px 22px;box-shadow:var(--sh-sm);margin-bottom:36px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.filter-bar input,.filter-bar select{flex:1;min-width:150px;font-size:13.5px}
+.filter-search{position:relative;flex:2;min-width:200px}
+.filter-search input{padding-left:38px}
+.search-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--t-light);pointer-events:none}
+
+/* ============================================
+   WHY US
+============================================ */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
+.why-card{padding:26px;background:var(--white);border-radius:var(--r-lg);border:1.5px solid #edf3fa;transition:var(--ease)}
+.why-card:hover{border-color:var(--azure);transform:translateY(-4px);box-shadow:var(--sh-md)}
+.why-icon{width:50px;height:50px;background:var(--mist);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;margin-bottom:15px;font-size:22px}
+.why-card h4{font-size:1rem;font-weight:600;color:var(--t-dark);margin-bottom:7px}
+.why-card p{font-size:13.5px;color:var(--t-mid);line-height:1.65}
+
+/* ============================================
+   TESTIMONIALS
+============================================ */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
+.testi-card{background:var(--white);border-radius:var(--r-lg);padding:26px;box-shadow:var(--sh-sm);border:1.5px solid #edf3fa;position:relative}
+.testi-qq{font-size:52px;color:var(--mist);font-family:var(--ff-disp);position:absolute;top:14px;right:20px;line-height:1}
+.stars{color:var(--gold);font-size:13px;margin-bottom:10px;letter-spacing:2px}
+.testi-card p{font-size:14.5px;color:var(--t-mid);font-style:italic;line-height:1.72;margin-bottom:18px}
+.testi-author{display:flex;align-items:center;gap:11px}
+.testi-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--ocean),var(--azure));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;font-family:var(--ff-disp);flex-shrink:0}
+.testi-name{font-weight:600;font-size:13.5px;color:var(--t-dark)}
+.testi-loc{font-size:12px;color:var(--t-light)}
+
+/* ============================================
+   TOUR DETAIL PAGE
+============================================ */
+.tour-hero-section{min-height:62vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:var(--navy)}
+.tour-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(9,21,36,.92) 0%,rgba(9,21,36,.35) 60%,rgba(9,21,36,.2) 100%)}
+.tour-hero-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%}
+.tour-hero-content{position:relative;z-index:1;padding:36px 0 44px;color:#fff}
+.detail-grid{display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+@media(max-width:900px){.detail-grid{grid-template-columns:1fr}}
+.itinerary-item{padding:18px 0;border-bottom:1px solid #edf2f8}
+.itin-day{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sky);margin-bottom:3px}
+.itin-title{font-size:1rem;font-weight:600;margin-bottom:5px}
+.itin-desc{font-size:13.5px;color:var(--t-mid);line-height:1.65}
+.incl-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.incl-item,.excl-item{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;padding:6px 0}
+.incl-item::before{content:"✓";color:#22c55e;font-weight:700;flex-shrink:0;margin-top:1px}
+.excl-item::before{content:"✗";color:#ef4444;font-weight:700;flex-shrink:0;margin-top:1px}
+.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gal-img{height:145px;object-fit:cover;border-radius:var(--r-md);width:100%;cursor:pointer;transition:var(--ease)}
+.gal-img:hover{transform:scale(1.04);box-shadow:var(--sh-md)}
+.sidebar-card{background:var(--white);border-radius:var(--r-lg);padding:26px;box-shadow:var(--sh-md);border:1.5px solid #edf3fa;position:sticky;top:90px}
+.sidebar-card h3{font-family:var(--ff-disp);font-size:1.5rem;margin-bottom:7px}
+.sidebar-card p{font-size:13.5px;color:var(--t-mid);margin-bottom:18px;line-height:1.65}
+.sidebar-card .btn{width:100%;justify-content:center;margin-bottom:10px}
+
+/* ============================================
+   ABOUT PAGE
+============================================ */
+.about-hero-sec{padding:150px 0 72px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,var(--ocean) 100%);color:#fff}
+.team-card{background:var(--white);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-lg);max-width:360px}
+.team-photo{height:280px;background:linear-gradient(135deg,var(--ocean),var(--azure));display:flex;align-items:center;justify-content:center;font-family:var(--ff-disp);font-size:5rem;color:rgba(255,255,255,.35)}
+.team-body{padding:24px}
+.team-body h3{font-family:var(--ff-disp);font-size:1.7rem;margin-bottom:3px}
+.team-role{color:var(--sky);font-size:13.5px;font-weight:500;margin-bottom:13px}
+.mission-card{background:var(--white);border-radius:var(--r-lg);padding:30px;border-left:4px solid var(--sky);box-shadow:var(--sh-sm)}
+.mission-card h3{font-family:var(--ff-disp);font-size:1.45rem;margin-bottom:10px;color:var(--ocean)}
+.cred-badge{display:flex;align-items:center;gap:12px;background:var(--mist);border-radius:var(--r-md);padding:14px 18px}
+.cred-num{font-family:var(--ff-disp);font-size:1.8rem;font-weight:700;color:var(--ocean);line-height:1}
+.cred-text{font-size:13px;color:var(--t-mid)}
+
+/* ============================================
+   CONTACT PAGE
+============================================ */
+.contact-page-hero{padding:140px 0 50px;background:linear-gradient(135deg,var(--navy),var(--ocean));color:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:start}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
+.contact-form-card{background:var(--white);border-radius:var(--r-xl);padding:38px;box-shadow:var(--sh-lg)}
+.form-group{margin-bottom:17px}
+.form-label{display:block;font-size:12.5px;font-weight:600;color:var(--t-dark);margin-bottom:5px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:500px){.form-row{grid-template-columns:1fr}}
+.form-success{background:#e8f8ee;border:1.5px solid #82d4a4;border-radius:var(--r-md);padding:14px 18px;color:#1a6e3b;font-size:13.5px;display:none;margin-bottom:14px}
+.form-success.show{display:block}
+.sms-log{background:#0d1117;border-radius:var(--r-md);padding:14px 16px;font-family:'Courier New',monospace;font-size:11.5px;color:#58d973;line-height:1.8;margin-top:14px;display:none}
+.sms-log.show{display:block}
+.contact-info-item{display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-bottom:1px solid #edf2f8}
+.ci-icon{width:42px;height:42px;background:var(--mist);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:19px}
+.ci-text strong{display:block;font-weight:600;font-size:14px;margin-bottom:2px}
+.ci-text span{font-size:13.5px;color:var(--t-mid)}
+.wa-static-btn{display:flex;align-items:center;gap:12px;background:#e7faf0;border:1.5px solid #a3e6c0;border-radius:var(--r-md);padding:14px 18px;transition:var(--ease);cursor:pointer}
+.wa-static-btn:hover{background:#d0f4e2;border-color:#70d4a0}
+.wa-static-icon{width:40px;height:40px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wa-static-icon svg{width:22px;height:22px;fill:#fff}
+.wa-static-text strong{display:block;font-size:14px;font-weight:600;color:var(--t-dark)}
+.wa-static-text span{font-size:13px;color:var(--t-mid)}
+.map-embed{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-sm);margin-top:24px;height:220px;background:linear-gradient(135deg,var(--mist),#dbeaf8);display:flex;align-items:center;justify-content:center;color:var(--t-light);font-size:14px;border:1.5px solid #ddeaf6}
+
+/* ============================================
+   SECTIONS / BACKGROUNDS
+============================================ */
+.bg-navy{background:var(--navy)}
+.bg-navy .body-lg,.bg-navy .body-md{color:rgba(255,255,255,.65)}
+.bg-sand{background:var(--sand)}
+.bg-mist{background:var(--mist)}
+.bg-white{background:var(--white)}
+
+/* ============================================
+   QUICK INQUIRY SECTION
+============================================ */
+.quick-inquiry{background:linear-gradient(135deg,var(--navy) 0%,var(--ocean) 100%);padding:72px 0}
+.inquiry-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:800px){.inquiry-inner{grid-template-columns:1fr}}
+.inquiry-form{background:rgba(255,255,255,.06);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-xl);padding:32px}
+.inquiry-form input,.inquiry-form select{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+.inquiry-form input::placeholder{color:rgba(255,255,255,.4)}
+.inquiry-form .form-label{color:rgba(255,255,255,.8)}
+.inquiry-form input:focus,.inquiry-form select:focus{border-color:var(--azure);background:rgba(255,255,255,.12);box-shadow:0 0 0 3px rgba(74,159,212,.2)}
+.inquiry-form select option{background:var(--navy);color:#fff}
+
+/* ============================================
+   FOOTER
+============================================ */
+.footer{background:var(--navy);color:rgba(255,255,255,.62);padding:60px 0 28px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:44px}
+@media(max-width:750px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.footer-grid{grid-template-columns:1fr}}
+.footer h4{color:#fff;font-size:13.5px;font-weight:600;margin-bottom:15px;letter-spacing:.04em}
+.footer-link{display:block;font-size:13.5px;padding:3px 0;transition:var(--ease);color:rgba(255,255,255,.5)}
+.footer-link:hover{color:var(--azure);padding-left:5px;cursor:pointer}
+.footer-brand p{font-size:13.5px;line-height:1.72;margin-top:13px;max-width:270px}
+.social-wrap{display:flex;gap:9px;margin-top:18px}
+.soc-btn{width:35px;height:35px;border-radius:8px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:15px;transition:var(--ease);color:rgba(255,255,255,.6)}
+.soc-btn:hover{background:var(--sky);color:#fff}
+.footer-bottom{padding-top:22px;border-top:1px solid rgba(255,255,255,.09);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:12.5px}
+
+/* ============================================
+   PAGE ANIMATION
+============================================ */
+.page{animation:pgIn .38s ease}
+@keyframes pgIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.page-header{background:linear-gradient(135deg,var(--navy),var(--ocean));padding:120px 0 48px;color:#fff}
+.breadcrumb{display:flex;align-items:center;gap:7px;font-size:12.5px;color:rgba(255,255,255,.45);margin-bottom:10px}
+.breadcrumb span{cursor:pointer;transition:var(--ease)}
+.breadcrumb span:hover{color:#fff}
+
+/* ============================================
+   TAGS / CHIPS
+============================================ */
+.tag{display:inline-block;background:var(--mist);color:var(--ocean);font-size:12px;font-weight:500;padding:4px 12px;border-radius:100px;margin:3px}
+
+/* ============================================
+   DIVIDER
+============================================ */
+.hr-light{border:none;border-top:1px solid #edf2f8;margin:0}
+
+/* ============================================================
+   ENHANCEMENTS — Animated counters, marquee, wave, WA tooltip
+============================================================ */
+
+/* Animated stat counters */
+.stat-num[data-target] { transition: none; }
+
+/* Marquee trust bar */
+.marquee-bar { background:var(--navy-mid); padding:12px 0; overflow:hidden; border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06); }
+.marquee-track { display:flex; gap:0; animation:marquee-scroll 28s linear infinite; width:max-content; }
+.marquee-track:hover { animation-play-state:paused; }
+.marquee-item { display:flex; align-items:center; gap:8px; padding:0 32px; color:rgba(255,255,255,.55); font-size:13px; font-weight:500; white-space:nowrap; border-right:1px solid rgba(255,255,255,.1); }
+.marquee-item span { color:var(--gold); font-size:16px; }
+
+/* Marquee flags and colored service icons */
+.m-flag{font-size:20px;line-height:1;flex-shrink:0}
+.m-svc{font-size:17px;line-height:1;flex-shrink:0;
+  width:30px;height:30px;border-radius:7px;
+  display:inline-flex;align-items:center;justify-content:center}
+.ic-visa {background:rgba(59,130,246,.2)}
+.ic-hotel{background:rgba(168,85,247,.2)}
+.ic-flight{background:rgba(6,182,212,.2)}
+.ic-group{background:rgba(251,146,60,.2)}
+.ic-tour {background:rgba(244,63,94,.2)}
+.ic-honey{background:rgba(236,72,153,.2)}
+@keyframes marquee-scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* SVG Wave divider */
+.wave-divider { display:block; width:100%; overflow:hidden; line-height:0; }
+.wave-divider svg { display:block; width:100%; }
+
+/* WhatsApp tooltip */
+.wa-float { position:fixed; bottom:28px; right:28px; z-index:900; display:flex; align-items:center; gap:10px; }
+.wa-bubble { background:#25d366; border-radius:50%; width:58px; height:58px; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 22px rgba(37,211,102,.5); transition:var(--ease); animation:wa-pulse 2.8s ease-in-out infinite; flex-shrink:0; }
+.wa-bubble:hover { transform:scale(1.1); }
+.wa-bubble svg { width:30px; height:30px; fill:#fff; }
+.wa-tooltip { background:var(--navy); color:#fff; font-size:13px; font-weight:500; padding:8px 14px; border-radius:100px; white-space:nowrap; box-shadow:var(--sh-md); opacity:0; transform:translateX(10px); transition:var(--ease); pointer-events:none; }
+.wa-float:hover .wa-tooltip { opacity:1; transform:translateX(0); }
+
+/* Card hover overlay */
+.card-hover-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(9,21,36,.92) 0%,rgba(9,21,36,.2) 60%,transparent 100%); opacity:0; transition:opacity .4s ease; display:flex; align-items:flex-end; padding:18px; }
+.dest-card:hover .card-hover-overlay { opacity:1; }
+.card-hover-cta { color:#fff; font-size:13px; font-weight:500; display:flex; align-items:center; gap:7px; }
+
+/* Saudi Arabia special badge */
+.badge-sacred { background:linear-gradient(135deg,#1a6b2e,#25a244); color:#fff; }
+.card-badge-umrah { background:linear-gradient(135deg,#1a6b2e,#25a244); }
+.card-badge-hajj  { background:linear-gradient(135deg,#7a4a00,#c9903a); }
+
+/* Section progress bar on detail page */
+.progress-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(to right,var(--sky),var(--azure)); z-index:2000; transition:width .1s linear; width:0%; }
+
+  .card-grid{grid-template-columns:1fr}
+  .incl-grid{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-stats{gap:22px}
+  .hero-ctas{gap:10px}
+  .footer-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================
+     FLOATING WHATSAPP BUTTON with tooltip
+     Always visible on all pages
+========================================= -->
+<a class="wa-float" href="https://wa.me/15814263935?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank" aria-label="Chat on WhatsApp">
+  <div class="wa-tooltip">Chat with us! 👋</div>
+  <div class="wa-bubble">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </div>
+</a>
+
+<!-- Reading progress bar (visible on detail page) -->
+<div class="progress-bar" id="progress-bar"></div>
+
+<!-- =========================================
+     NAVBAR
+========================================= -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="logo" onclick="showPage('home')">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
+        <div>
+          <span class="logo-name">MHU Travel & Tour</span>
+          <span class="logo-tagline">Explore Beyond Limits</span>
+        </div>
+      </div>
+      <div class="nav-links">
+        <span class="nav-link active" id="nl-home"   onclick="showPage('home')">Home</span>
+        <span class="nav-link"        id="nl-tours"  onclick="showPage('tours')">Tours</span>
+        <span class="nav-link"        id="nl-about"  onclick="showPage('about')">About</span>
+        <span class="nav-link"        id="nl-contact"onclick="showPage('contact')">Contact</span>
+      </div>
+      <div class="nav-cta">
+        <a class="btn btn-wa btn-sm" href="https://wa.me/15814263935?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <div class="hamburger" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mob-menu" id="mob-menu">
+  <span class="mob-close" onclick="toggleMobile()">✕</span>
+  <span class="nav-link" onclick="showPage('home');toggleMobile()">Home</span>
+  <span class="nav-link" onclick="showPage('tours');toggleMobile()">Tours</span>
+  <span class="nav-link" onclick="showPage('about');toggleMobile()">About</span>
+  <span class="nav-link" onclick="showPage('contact');toggleMobile()">Contact</span>
+  <a class="btn btn-wa" style="margin-top:18px" href="https://wa.me/15814263935?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank">Chat on WhatsApp</a>
+</div>
+
+<!-- =========================================
+     HOME PAGE
+========================================= -->
+<div id="page-home" class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-orbs"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <div class="badge-dot"></div>
+          Award-Winning Travel Agency · Est. 2015
+        </div>
+        <h1 class="disp-xl">Your World Awaits — <br><em>Let's Explore It</em></h1>
+        <p class="hero-sub">From the golden dunes of Dubai to the storied streets of London, MHU Travel & Tour crafts bespoke journeys that turn your travel dreams into lifelong memories.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-wa" href="https://wa.me/15814263935?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Chat on WhatsApp
+          </a>
+          <button class="btn btn-outline" onclick="showPage('tours')">Plan Your Trip →</button>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stats">
+          <div><div class="stat-num">500+</div><div class="stat-lbl">Happy Travellers</div></div>
+          <div><div class="stat-num">40+</div><div class="stat-lbl">Destinations</div></div>
+          <div><div class="stat-num">2025</div><div class="stat-lbl">Est. in Abuja</div></div>
+          <div><div class="stat-num">98%</div><div class="stat-lbl">Satisfaction Rate</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- MARQUEE TRUST BAR -->
+  <div class="marquee-bar">
+    <div class="marquee-track">
+      <!-- DESTINATIONS with country flag emoji -->
+      <div class="marquee-item"><span class="m-flag">🇸🇦</span> Umrah – Saudi Arabia</div>
+      <div class="marquee-item"><span class="m-flag">🇸🇦</span> Hajj Packages</div>
+      <div class="marquee-item"><span class="m-flag">🇦🇪</span> Dubai, UAE</div>
+      <div class="marquee-item"><span class="m-flag">🇬🇧</span> United Kingdom</div>
+      <div class="marquee-item"><span class="m-flag">🇨🇦</span> Canada</div>
+      <div class="marquee-item"><span class="m-flag">🇹🇷</span> Turkey</div>
+      <div class="marquee-item"><span class="m-flag">🇲🇻</span> Maldives</div>
+      <div class="marquee-item"><span class="m-flag">🇿🇦</span> South Africa</div>
+      <div class="marquee-item"><span class="m-flag">🇲🇾</span> Malaysia</div>
+      <!-- SERVICES with colored icon chips -->
+      <div class="marquee-item"><span class="m-svc ic-visa">🛂</span> Visa Assistance</div>
+      <div class="marquee-item"><span class="m-svc ic-hotel">🏨</span> Hotel Bookings</div>
+      <div class="marquee-item"><span class="m-svc ic-flight">✈️</span> Flight Bookings</div>
+      <div class="marquee-item"><span class="m-svc ic-group">👨‍👩‍👧</span> Group Tours</div>
+      <div class="marquee-item"><span class="m-svc ic-tour">📍</span> 40+ Destinations</div>
+      <div class="marquee-item"><span class="m-svc ic-honey">💑</span> Honeymoon Packages</div>
+      <!-- Duplicate for seamless loop -->
+      <div class="marquee-item"><span class="m-flag">🇸🇦</span> Umrah – Saudi Arabia</div>
+      <div class="marquee-item"><span class="m-flag">🇸🇦</span> Hajj Packages</div>
+      <div class="marquee-item"><span class="m-flag">🇦🇪</span> Dubai, UAE</div>
+      <div class="marquee-item"><span class="m-flag">🇬🇧</span> United Kingdom</div>
+      <div class="marquee-item"><span class="m-flag">🇨🇦</span> Canada</div>
+      <div class="marquee-item"><span class="m-flag">🇹🇷</span> Turkey</div>
+      <div class="marquee-item"><span class="m-flag">🇲🇻</span> Maldives</div>
+      <div class="marquee-item"><span class="m-flag">🇿🇦</span> South Africa</div>
+      <div class="marquee-item"><span class="m-flag">🇲🇾</span> Malaysia</div>
+      <div class="marquee-item"><span class="m-svc ic-visa">🛂</span> Visa Assistance</div>
+      <div class="marquee-item"><span class="m-svc ic-hotel">🏨</span> Hotel Bookings</div>
+      <div class="marquee-item"><span class="m-svc ic-flight">✈️</span> Flight Bookings</div>
+      <div class="marquee-item"><span class="m-svc ic-group">👨‍👩‍👧</span> Group Tours</div>
+      <div class="marquee-item"><span class="m-svc ic-tour">📍</span> 40+ Destinations</div>
+      <div class="marquee-item"><span class="m-svc ic-honey">💑</span> Honeymoon Packages</div>
+    </div>
+    </div>
+  <!-- FEATURED  <!-- FEATURED DESTINATIONS -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:48px">
+        <span class="sec-label">Where Will You Go?</span>
+        <h2 class="disp-lg" style="margin-bottom:14px">Featured Destinations</h2>
+        <p class="body-lg" style="max-width:520px;margin:0 auto">Handpicked experiences across the globe, each thoughtfully curated by our travel experts.</p>
+      </div>
+      <div class="card-grid" id="home-dest-grid"></div>
+      <div class="text-center" style="margin-top:40px">
+        <button class="btn btn-outline-dark" onclick="showPage('tours')">Explore All Tours →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="section bg-sand">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:48px">
+        <span class="sec-label">Why MHU Travel & Tour</span>
+        <h2 class="disp-lg" style="margin-bottom:14px">Travel with Confidence</h2>
+        <p class="body-lg" style="max-width:500px;margin:0 auto">We go beyond booking — we create experiences you'll tell stories about for years.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">🌍</div>
+          <h4>Global Destinations</h4>
+          <p>Access to 40+ curated destinations across Europe, the Middle East, Asia, and the Americas.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">✈️</div>
+          <h4>End-to-End Service</h4>
+          <p>From visa processing and flight booking to hotels and guided tours — we handle everything.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🏅</div>
+          <h4>Certified & Trusted</h4>
+          <p>Licensed travel agency with 9+ years of excellence and thousands of satisfied clients.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">💬</div>
+          <h4>24/7 Support</h4>
+          <p>Our team is always a WhatsApp message away — before, during, and after your journey.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">👨‍👩‍👧</div>
+          <h4>Group & Family Tours</h4>
+          <p>Special packages crafted for families, honeymoon couples, corporate groups and more.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🔒</div>
+          <h4>Secure Bookings</h4>
+          <p>All your travel documents and payments are handled with the highest level of security and care.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK INQUIRY -->
+  <section class="quick-inquiry">
+    <div class="container">
+      <div class="inquiry-inner">
+        <div>
+          <span class="sec-label" style="color:var(--gold-lt)">Get a Free Quote</span>
+          <h2 class="disp-lg" style="color:#fff;margin-bottom:18px">Plan Your Perfect Trip Today</h2>
+          <p class="body-lg" style="color:rgba(255,255,255,.65);margin-bottom:30px">Tell us where you'd like to go and we'll put together a personalised travel package just for you — no obligations.</p>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.75);font-size:14px">✓ No hidden charges &nbsp;·&nbsp; ✓ Expert travel advice &nbsp;·&nbsp; ✓ Quick response</div>
+          </div>
+        </div>
+        <div class="inquiry-form">
+          <h3 style="font-family:var(--ff-disp);font-size:1.5rem;color:#fff;margin-bottom:20px">Quick Inquiry</h3>
+          <div id="inq-success" class="form-success" style="background:rgba(40,200,100,.1);border-color:rgba(40,200,100,.4);color:#7df5b2">✓ Your inquiry has been submitted! We'll be in touch shortly.</div>
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="inq-name" placeholder="Your full name"/>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" id="inq-phone" placeholder="+1 (581) 426-3935"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Destination</label>
+              <select id="inq-dest">
+                <option value="">Select destination</option>
+                <option>Umrah Package – Saudi Arabia</option>
+                <option>Hajj Package – Saudi Arabia</option>
+                <option>Dubai, UAE</option>
+                <option>United Kingdom</option>
+                <option>Canada</option>
+                <option>Turkey</option>
+                <option>Maldives</option>
+                <option>South Africa</option>
+                <option>Malaysia</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-gold btn-full" onclick="submitInquiry()">Send Inquiry →</button>
+          <div id="inq-sms-log" class="sms-log"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:48px">
+        <span class="sec-label">Client Stories</span>
+        <h2 class="disp-lg" style="margin-bottom:14px">What Our Travellers Say</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-qq">"</div>
+          <div class="stars">★★★★★</div>
+          <p>MHU Travel made our Dubai honeymoon absolutely magical. Every detail was perfectly arranged — the hotel, transfers, desert safari. We didn't worry about a thing!</p>
+          <div class="testi-author">
+            <div class="testi-avatar">AA</div>
+            <div><div class="testi-name">Amina Abubakar</div><div class="testi-loc">📍 Abuja, Nigeria</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-qq">"</div>
+          <div class="stars">★★★★★</div>
+          <p>Our family trip to Turkey was seamless from start to finish. The visa assistance alone saved us so much stress. Highly recommend MHU to anyone planning abroad.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">JO</div>
+            <div><div class="testi-name">James Okonkwo</div><div class="testi-loc">📍 Lagos, Nigeria</div></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-qq">"</div>
+          <div class="stars">★★★★★</div>
+          <p>I booked my UK study trip through MHU and the professionalism was outstanding. They answered every question, handled my documents and I got my visa on time!</p>
+          <div class="testi-author">
+            <div class="testi-avatar">FK</div>
+            <div><div class="testi-name">Fatima Kabir</div><div class="testi-loc">📍 Kano, Nigeria</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-home -->
+
+<!-- =========================================
+     TOURS PAGE
+========================================= -->
+<div id="page-tours" class="page hidden">
+
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <span onclick="showPage('home')">Home</span>
+        <span style="opacity:.4">/</span>
+        <span style="color:#fff">Tours & Packages</span>
+      </div>
+      <h1 class="disp-lg" style="margin-bottom:10px">All Tours & Packages</h1>
+      <p class="body-md" style="color:rgba(255,255,255,.65);max-width:480px">Browse our full collection of handcrafted travel experiences. Request details to get a personalised quote.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <!-- FILTER BAR -->
+      <div class="filter-bar">
+        <div class="filter-search">
+          <svg class="search-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="filter-search" placeholder="Search destinations…" oninput="applyFilters()"/>
+        </div>
+        <select id="filter-location" onchange="applyFilters()">
+          <option value="">All Locations</option>
+          <option>Saudi Arabia</option>
+          <option>Dubai</option>
+          <option>UK</option>
+          <option>Canada</option>
+          <option>Turkey</option>
+          <option>Maldives</option>
+          <option>South Africa</option>
+          <option>Malaysia</option>
+        </select>
+        <select id="filter-type" onchange="applyFilters()">
+          <option value="">All Types</option>
+          <option>Pilgrimage</option>
+          <option>Luxury</option>
+          <option>Budget</option>
+          <option>Family</option>
+          <option>Honeymoon</option>
+        </select>
+        <select id="filter-duration" onchange="applyFilters()">
+          <option value="">Any Duration</option>
+          <option>1-4 Days</option>
+          <option>5-7 Days</option>
+          <option>8-14 Days</option>
+          <option>15+ Days</option>
+        </select>
+        <button class="btn btn-outline-dark btn-sm" onclick="clearFilters()">Clear</button>
+      </div>
+
+      <!-- TOUR GRID -->
+      <div class="card-grid" id="tours-grid"></div>
+      <p id="no-results" class="hidden text-center" style="color:var(--t-light);padding:40px 0;font-size:16px">No tours match your filters. <span style="color:var(--sky);cursor:pointer" onclick="clearFilters()">Clear filters</span></p>
+    </div>
+  </section>
+
+</div><!-- /page-tours -->
+
+<!-- =========================================
+     TOUR DETAIL PAGE
+========================================= -->
+<div id="page-detail" class="page hidden">
+
+  <div class="tour-hero-section" id="detail-hero">
+    <div class="tour-hero-overlay"></div>
+    <img class="tour-hero-img" id="detail-hero-img" src="" alt=""/>
+    <div class="container">
+      <div class="tour-hero-content">
+        <div class="breadcrumb">
+          <span onclick="showPage('home')">Home</span>
+          <span style="opacity:.4">/</span>
+          <span onclick="showPage('tours')" style="cursor:pointer">Tours</span>
+          <span style="opacity:.4">/</span>
+          <span id="detail-bc" style="color:#fff">Tour</span>
+        </div>
+        <div id="detail-type-badge" class="tag" style="background:var(--gold);color:#fff;margin-bottom:12px"></div>
+        <h1 class="disp-lg" id="detail-title" style="margin-bottom:8px"></h1>
+        <p style="color:rgba(255,255,255,.7);font-size:15px" id="detail-meta"></p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="detail-grid">
+
+        <!-- LEFT COLUMN -->
+        <div>
+
+          <!-- OVERVIEW -->
+          <div style="margin-bottom:36px">
+            <h2 class="disp-md" style="margin-bottom:14px">Tour Overview</h2>
+            <p class="body-lg" id="detail-overview"></p>
+          </div>
+
+          <hr class="hr-light" style="margin:28px 0"/>
+
+          <!-- ITINERARY -->
+          <div style="margin-bottom:36px">
+            <h2 class="disp-md" style="margin-bottom:20px">Day-by-Day Itinerary</h2>
+            <div id="detail-itinerary"></div>
+          </div>
+
+          <hr class="hr-light" style="margin:28px 0"/>
+
+          <!-- INCLUDED / EXCLUDED -->
+          <div style="margin-bottom:36px">
+            <h2 class="disp-md" style="margin-bottom:20px">What's Included</h2>
+            <div class="incl-grid" id="detail-included"></div>
+            <h2 class="disp-md" style="margin:24px 0 16px">Not Included</h2>
+            <div class="incl-grid" id="detail-excluded"></div>
+          </div>
+
+          <hr class="hr-light" style="margin:28px 0"/>
+
+          <!-- GALLERY -->
+          <div>
+            <h2 class="disp-md" style="margin-bottom:18px">Photo Gallery</h2>
+            <div class="gal-grid" id="detail-gallery"></div>
+          </div>
+
+        </div>
+
+        <!-- SIDEBAR -->
+        <div>
+          <div class="sidebar-card">
+            <h3 id="sb-title"></h3>
+            <p id="sb-desc">Interested in this tour? Contact us for a personalised quote tailored to your budget and schedule.</p>
+            <a id="sb-wa-btn" class="btn btn-wa btn-full" href="#" target="_blank">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Chat on WhatsApp
+            </a>
+            <button class="btn btn-outline-dark btn-full" onclick="showPage('contact')">Request a Quote</button>
+            <hr class="hr-light" style="margin:18px 0"/>
+            <div style="font-size:13px;color:var(--t-light);text-align:center;line-height:1.6">
+              📞 Call us: <strong style="color:var(--t-dark)">+1 (581) 426-3935</strong><br>
+              🕐 Mon–Sat, 8am – 8pm
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-detail -->
+
+<!-- =========================================
+     ABOUT PAGE
+========================================= -->
+<div id="page-about" class="page hidden">
+
+  <div class="about-hero-sec">
+    <div class="container">
+      <div class="breadcrumb">
+        <span onclick="showPage('home')">Home</span>
+        <span style="opacity:.4">/</span>
+        <span style="color:#fff">About Us</span>
+      </div>
+      <h1 class="disp-xl" style="max-width:600px;margin-bottom:18px">Passionate About <em style="color:var(--azure);font-style:normal">Exceptional Travel</em></h1>
+      <p class="body-lg" style="max-width:560px;color:rgba(255,255,255,.68)">MHU Travel & Tour was born from a deep love of exploration and a mission to make world-class travel accessible to every Nigerian.</p>
+    </div>
+  </div>
+
+  <!-- OUR STORY -->
+  <section class="section bg-white">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center">
+        <div>
+          <span class="sec-label">Our Story</span>
+          <h2 class="disp-lg" style="margin-bottom:18px">Born in 2025, Built for the World</h2>
+          <p class="body-md" style="margin-bottom:16px">Founded in 2025 in Abuja by Muhammad Hadi — popularly known as <strong>Dollahead</strong> — MHU Travel & Tour was built from the ground up with a single obsession: making premium travel experiences accessible to every Nigerian. What started with a bold vision and a WhatsApp number has quickly grown into one of Abuja's most talked-about travel brands.</p>
+          <p class="body-md" style="margin-bottom:28px">We understand the local traveller's unique challenges: visa guidance, documentation, budget planning, and the assurance that someone experienced is managing every detail. Whether it's a honeymoon in the Maldives or a sacred Umrah pilgrimage, MHU handles it all.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div class="cred-badge"><div class="cred-num">Est.</div><div class="cred-text">2025 · Abuja</div></div>
+            <div class="cred-badge"><div class="cred-num">40+</div><div class="cred-text">Destinations</div></div>
+            <div class="cred-badge"><div class="cred-num">500+</div><div class="cred-text">Happy Clients</div></div>
+            <div class="cred-badge"><div class="cred-num">98%</div><div class="cred-text">Satisfaction Rate</div></div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(135deg,var(--mist),var(--sand));border-radius:var(--r-xl);height:400px;display:flex;align-items:center;justify-content:center;font-size:80px;">🌍</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="section bg-sand">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:44px">
+        <span class="sec-label">What Drives Us</span>
+        <h2 class="disp-lg">Mission & Vision</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:860px;margin:0 auto">
+        <div class="mission-card">
+          <h3>Our Mission</h3>
+          <p class="body-md">To deliver seamless, personalised travel experiences that exceed expectations — handling every detail so our clients can focus on the joy of exploration.</p>
+        </div>
+        <div class="mission-card" style="border-left-color:var(--gold)">
+          <h3 style="color:var(--gold)">Our Vision</h3>
+          <p class="body-md">To become the most trusted travel partner in West Africa, enabling more Nigerians to explore the world confidently and affordably.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CEO SECTION -->
+  <section class="section bg-white">
+    <div class="container">
+      <div class="text-center" style="margin-bottom:48px">
+        <span class="sec-label">Leadership</span>
+        <h2 class="disp-lg">Meet Our Founder & CEO</h2>
+      </div>
+      <div style="display:flex;justify-content:center">
+        <div class="team-card">
+          <div class="team-photo">✈</div>
+          <div class="team-body">
+            <h3>Muhammad Hadi</h3>
+            <p class="team-role">Founder & CEO &nbsp;·&nbsp; <em style="color:var(--gold);font-style:normal">"Dollahead"</em></p>
+            <p class="body-md" style="font-size:14px">Known widely as <strong>Dollahead</strong>, Muhammad Hadi founded MHU Travel & Tour in 2025 with one clear mission — to make world-class travel accessible to every Nigerian. A certified travel consultant and IATA-trained professional, he brings a rare blend of street-smart hustle and industry expertise to every client relationship. From negotiating premium hotel rates to personally walking clients through the visa process, Muhammad is deeply hands-on. Under his leadership, MHU has grown from a one-man operation into one of Abuja's most trusted travel brands.</p>
+            <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:6px">
+              <span class="tag">IATA Certified</span>
+              <span class="tag">Visa Specialist</span>
+              <span class="tag">Hajj & Umrah Expert</span>
+              <span class="tag">Founder 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREDIBILITY -->
+  <section class="section bg-navy">
+    <div class="container text-center">
+      <span class="sec-label" style="color:var(--gold-lt)">Why Trust Us</span>
+      <h2 class="disp-lg" style="color:#fff;margin-bottom:16px">Built on Trust & Expertise</h2>
+      <p class="body-lg" style="max-width:500px;margin:0 auto 44px">Every trip we organise carries the weight of our reputation. Here's what makes MHU Travel & Tour your safest travel choice.</p>
+      <div class="why-grid">
+        <div class="why-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)">
+          <div class="why-icon" style="background:rgba(255,255,255,.07)">📜</div>
+          <h4 style="color:#fff">Licensed Agency</h4>
+          <p style="color:rgba(255,255,255,.6)">Fully registered and licensed by the Nigerian Tourism Development Corporation (NTDC).</p>
+        </div>
+        <div class="why-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)">
+          <div class="why-icon" style="background:rgba(255,255,255,.07)">🤝</div>
+          <h4 style="color:#fff">Trusted Partners</h4>
+          <p style="color:rgba(255,255,255,.6)">Partnered with leading airlines, hotel chains, and tour operators for premium rates and service.</p>
+        </div>
+        <div class="why-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)">
+          <div class="why-icon" style="background:rgba(255,255,255,.07)">🎓</div>
+          <h4 style="color:#fff">Expert Team</h4>
+          <p style="color:rgba(255,255,255,.6)">All our travel consultants are IATA-trained and hold deep knowledge of their specialist destinations.</p>
+        </div>
+        <div class="why-card" style="background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)">
+          <div class="why-icon" style="background:rgba(255,255,255,.07)">⭐</div>
+          <h4 style="color:#fff">Award Recognised</h4>
+          <p style="color:rgba(255,255,255,.6)">Winner of the Nigeria Travel Awards for Best Outbound Travel Agency 2022 & 2023.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-about -->
+
+<!-- =========================================
+     CONTACT PAGE
+========================================= -->
+<div id="page-contact" class="page hidden">
+
+  <div class="contact-page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <span onclick="showPage('home')">Home</span>
+        <span style="opacity:.4">/</span>
+        <span style="color:#fff">Contact Us</span>
+      </div>
+      <h1 class="disp-lg" style="margin-bottom:12px">Let's Plan Your Journey</h1>
+      <p class="body-md" style="color:rgba(255,255,255,.65);max-width:440px">Fill out the form below or reach us instantly on WhatsApp. We respond within 2 hours on business days.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- CONTACT FORM -->
+        <div class="contact-form-card">
+          <h2 class="disp-md" style="margin-bottom:6px">Send Us a Message</h2>
+          <p class="body-md" style="margin-bottom:24px">We'll get back to you within 2 hours on business days.</p>
+
+          <div id="cf-success" class="form-success">
+            ✅ Message sent! We'll contact you shortly. Check your phone for an SMS confirmation.
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name *</label>
+              <input type="text" id="cf-fname" placeholder="First name"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name *</label>
+              <input type="text" id="cf-lname" placeholder="Last name"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Phone Number *</label>
+              <input type="tel" id="cf-phone" placeholder="+1 (581) 426-3935"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" id="cf-email" placeholder="you@email.com"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Destination of Interest *</label>
+            <select id="cf-destination">
+              <option value="">Select a destination…</option>
+              <option>Umrah Package – Saudi Arabia</option>
+              <option>Hajj Package – Saudi Arabia</option>
+              <option>Dubai, UAE</option>
+              <option>United Kingdom</option>
+              <option>Canada</option>
+              <option>Turkey</option>
+              <option>Maldives</option>
+              <option>South Africa</option>
+              <option>Malaysia</option>
+              <option>Other (specify in message)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea id="cf-message" placeholder="Tell us about your travel plans, dates, number of travellers…"></textarea>
+          </div>
+          <button class="btn btn-primary btn-full" onclick="submitContactForm()" style="font-size:15px;padding:14px 26px;">
+            Send Message & Notify Me via SMS
+          </button>
+          <!-- Termii SMS log output -->
+          <div id="cf-sms-log" class="sms-log"></div>
+        </div>
+
+        <!-- CONTACT INFO -->
+        <div>
+          <h2 class="disp-md" style="margin-bottom:24px">Get in Touch</h2>
+
+          <!-- WhatsApp Static Button -->
+          <a class="wa-static-btn" href="https://wa.me/15814263935?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank" style="margin-bottom:24px;display:flex">
+            <div class="wa-static-icon">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <div class="wa-static-text">
+              <strong>Chat on WhatsApp Now</strong>
+              <span>Instant replies · +1 (581) 426-3935</span>
+            </div>
+          </a>
+
+          <div class="contact-info-item">
+            <div class="ci-icon">📍</div>
+            <div class="ci-text">
+              <strong>Office Address</strong>
+              <span>12 Adetokunbo Ademola Crescent, Wuse 2, Abuja, FCT, Nigeria</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">📞</div>
+            <div class="ci-text">
+              <strong>Phone Numbers</strong>
+              <span>+1 (581) 426-3935 &nbsp;|&nbsp; +1 (581) 426-3936</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">✉️</div>
+            <div class="ci-text">
+              <strong>Email Address</strong>
+              <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="721b1c141d321f1a0706001304171e061d07005c111d1f">[email&#160;protected]</a></span>
+            </div>
+          </div>
+          <div class="contact-info-item" style="border:none">
+            <div class="ci-icon">🕐</div>
+            <div class="ci-text">
+              <strong>Business Hours</strong>
+              <span>Monday – Saturday: 8:00am – 8:00pm<br>Sundays: 10:00am – 4:00pm</span>
+            </div>
+          </div>
+
+          <!-- Map embed placeholder -->
+          <div class="map-embed">
+            <span>📌 Wuse 2, Abuja — Google Maps</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page-contact -->
+
+<!-- =========================================
+     FOOTER (shown on all pages)
+========================================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo" style="gap:10px">
+          <div class="logo-mark" style="width:38px;height:38px">
+            <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:#fff"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div>
+            <span class="logo-name" style="font-size:1.15rem">MHU Travel & Tour</span>
+            <span class="logo-tagline">Explore Beyond Limits</span>
+          </div>
+        </div>
+        <p>Your trusted travel partner for over 9 years. Crafting unforgettable journeys to destinations across the globe from the heart of Abuja.</p>
+        <div class="social-wrap">
+          <a class="soc-btn" href="#" title="Facebook">f</a>
+          <a class="soc-btn" href="#" title="Instagram">📷</a>
+          <a class="soc-btn" href="#" title="Twitter/X">𝕏</a>
+          <a class="soc-btn" href="https://wa.me/15814263935" target="_blank" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <span class="footer-link" onclick="showPage('home')">Home</span>
+        <span class="footer-link" onclick="showPage('tours')">Tours & Packages</span>
+        <span class="footer-link" onclick="showPage('about')">About Us</span>
+        <span class="footer-link" onclick="showPage('contact')">Contact Us</span>
+      </div>
+      <div>
+        <h4>Destinations</h4>
+        <span class="footer-link" onclick="showPage('tours')">Umrah – Saudi Arabia</span>
+        <span class="footer-link" onclick="showPage('tours')">Hajj – Saudi Arabia</span>
+        <span class="footer-link" onclick="showPage('tours')">Dubai, UAE</span>
+        <span class="footer-link" onclick="showPage('tours')">United Kingdom</span>
+        <span class="footer-link" onclick="showPage('tours')">Canada</span>
+        <span class="footer-link" onclick="showPage('tours')">Turkey</span>
+        <span class="footer-link" onclick="showPage('tours')">Maldives</span>
+        <span class="footer-link" onclick="showPage('tours')">South Africa</span>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <span class="footer-link">+1 (581) 426-3935</span>
+        <span class="footer-link"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6f060109002f02071a1b1d0e190a031b001a1d410c0002">[email&#160;protected]</a></span>
+        <span class="footer-link">Wuse 2, Abuja, Nigeria</span>
+        <div style="margin-top:16px">
+          <a class="btn btn-wa btn-sm" href="https://wa.me/15814263935?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp Us
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 MHU Travel & Tour. All rights reserved.</span>
+      <span>Licensed by NTDC · Abuja, Nigeria</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ============================================================
+   DATA — Tour packages (no prices per business rules)
+============================================================ */
+const TOURS = [
+  /* ── SAUDI ARABIA PILGRIMAGE PACKAGES (always first & second) ── */
+  {
+    id: 100,
+    title: "Umrah Package – Sacred Journey to Makkah",
+    location: "Saudi Arabia",
+    type: "Pilgrimage",
+    duration: "10 days, 9 nights",
+    durationDays: 10,
+    shortDesc: "Fulfil your spiritual obligation with our fully guided Umrah package — Makkah, Madinah, visa, and all essentials handled by our team.",
+    img: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80",
+    badgeClass: "card-badge-umrah",
+    gallery: [
+      "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400&q=70",
+      "https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=400&q=70",
+      "https://images.unsplash.com/photo-1519817650390-64a93db51149?w=400&q=70",
+      "https://images.unsplash.com/photo-1569360936347-5c2e0e7f04b6?w=400&q=70",
+      "https://images.unsplash.com/photo-1604881991720-f91add269bed?w=400&q=70",
+      "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=400&q=70"
+    ],
+    overview: "Embark on a spiritually transformative journey to the two holiest cities in Islam — Makkah Al-Mukarramah and Madinah Al-Munawwarah. Our Umrah package is meticulously curated to ensure a seamless, focused, and spiritually enriching experience from the moment you depart Nigeria to the moment you return.",
+    itinerary: [
+      { day: "Day 1", title: "Departure from Abuja/Lagos", desc: "Group assembly at airport, pre-flight briefing. Ihram donned at Miqat before departure. Flight to Madinah." },
+      { day: "Day 2–4", title: "Madinah — City of the Prophet ﷺ", desc: "Arrival in Madinah. Check-in at hotel near Masjid an-Nabawi. Five daily prayers in the Prophet's Mosque, Ziyarah (visits) to Quba Mosque, Masjid al-Qiblatayn, Uhud Mountain, and Al-Baqi cemetery." },
+      { day: "Day 5", title: "Travel to Makkah", desc: "Guided bus transfer to Makkah. Check-in to hotel near Masjid al-Haram. Evening orientation and first Tawaf." },
+      { day: "Day 6–8", title: "Makkah — Performance of Umrah", desc: "Tawaf (circumambulation of the Kaabah), Sa'i between Safa and Marwa, Taqsir/Halq. Additional prayers and Tawaf at Masjid al-Haram. Visits to Cave of Hira, Cave of Thawr, and Mina." },
+      { day: "Day 9", title: "Makkah Ziyarah & Shopping", desc: "Historical site visits, Abraj Al-Bait, shopping for gifts and attar. Farewell Tawaf." },
+      { day: "Day 10", title: "Departure", desc: "Transfer to Jeddah or Madinah airport. Return flight to Nigeria, spiritually renewed." }
+    ],
+    included: [
+      "Return flights (Nigeria–Saudi Arabia)",
+      "Umrah visa processing",
+      "4-star hotel in Madinah (3 nights, near Nabawi Mosque)",
+      "4-star hotel in Makkah (4 nights, near Haram)",
+      "Madinah–Makkah air-conditioned bus",
+      "Experienced Islamic scholar guide",
+      "All airport & inter-city transfers",
+      "Ihram garments (men)",
+      "Ziyarah tours (Madinah & Makkah)",
+      "24/7 group support"
+    ],
+    excluded: [
+      "Personal spending money",
+      "Meals (except noted)",
+      "International travel insurance",
+      "Vaccinations / health requirements",
+      "Personal shopping & gifts",
+      "Upgrade to 5-star hotel (on request)"
+    ],
+    tags: ["Saudi Arabia", "Pilgrimage"]
+  },
+  {
+    id: 101,
+    title: "Hajj Package – The Fifth Pillar",
+    location: "Saudi Arabia",
+    type: "Pilgrimage",
+    duration: "21 days, 20 nights",
+    durationDays: 21,
+    shortDesc: "Answer the divine call with our fully managed Hajj package — a sacred journey of a lifetime, handled with care from Nigeria to the holy lands.",
+    img: "https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=600&q=80",
+    badgeClass: "card-badge-hajj",
+    gallery: [
+      "https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=400&q=70",
+      "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400&q=70",
+      "https://images.unsplash.com/photo-1519817650390-64a93db51149?w=400&q=70",
+      "https://images.unsplash.com/photo-1569360936347-5c2e0e7f04b6?w=400&q=70",
+      "https://images.unsplash.com/photo-1604881991720-f91add269bed?w=400&q=70",
+      "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=400&q=70"
+    ],
+    overview: "The Hajj is the most profound spiritual journey a Muslim can undertake. MHU Travel & Tour's Hajj package is designed to remove every worldly burden so you can focus entirely on your worship. From the moment you register with us to the day you return home as a Hajji, our experienced team — including a resident Islamic scholar — guides every step.",
+    itinerary: [
+      { day: "Day 1–2", title: "Departure & Arrival in Madinah", desc: "Departure from Nigeria. Ihram at Miqat. Arrival in Madinah for pre-Hajj spiritual preparation." },
+      { day: "Day 3–7", title: "Madinah Ziyarah", desc: "Daily prayers in Masjid an-Nabawi, visits to historic Islamic sites: Quba Mosque, Masjid al-Qiblatayn, Uhud, Al-Baqi, and more. Lectures by resident scholar." },
+      { day: "Day 8", title: "Travel to Makkah – Tawaf al-Qudum", desc: "Bus transfer to Makkah. Check-in, Tawaf of Arrival, Sa'i. Orientation for Hajj rites." },
+      { day: "Day 9–12", title: "Makkah Preparation", desc: "Prayers at Masjid al-Haram, Hajj preparation lectures, visits to Jabal Nour (Cave of Hira) and Jabal Thawr." },
+      { day: "Day 13", title: "8th Dhul Hijjah – Mina", desc: "Travel to Mina. Overnight stay in air-conditioned tents. Five prayers in Mina." },
+      { day: "Day 14", title: "9th Dhul Hijjah – Day of Arafah", desc: "The heart of Hajj. Stand on the plains of Arafat from Dhuhr to sunset in supplication and remembrance. Proceed to Muzdalifah after Maghrib. Collect pebbles." },
+      { day: "Day 15", title: "10th Dhul Hijjah – Eid & Jamarat", desc: "Rami al-Jamarat (stoning of the devil), Qurbani (sacrifice), Halq (shaving), Tawaf al-Ifadah, Sa'i. Eid celebrations with fellow Hujjaj." },
+      { day: "Day 16–18", title: "11th–13th Dhul Hijjah – Tashreeq Days", desc: "Remaining Rami at Jamarat. Return to Makkah accommodation. Rest, worship, and additional Tawaf." },
+      { day: "Day 19–20", title: "Makkah Wrap-Up & Shopping", desc: "Farewell Tawaf (Tawaf al-Wada), final prayers, Zam Zam water collection, shopping for family." },
+      { day: "Day 21", title: "Return to Nigeria", desc: "Transfer to Jeddah airport. Return flight. Arrive home as a Hajji, bi-idhnillah." }
+    ],
+    included: [
+      "Return flights (Nigeria–Saudi Arabia)",
+      "Official Hajj visa processing",
+      "Hotel in Madinah (5 nights, near Nabawi Mosque)",
+      "Hotel in Makkah (8 nights, near Haram)",
+      "Air-conditioned tents in Mina (Tashreeq days)",
+      "Arafat & Muzdalifah arrangements",
+      "Resident Islamic scholar throughout",
+      "All ground transfers (AC coaches)",
+      "Ihram garments for men",
+      "Zam Zam water (5 litres per pilgrim)",
+      "Qurbani (sacrifice) arrangement",
+      "24/7 dedicated support team"
+    ],
+    excluded: [
+      "Personal spending money",
+      "Most meals (breakfast at hotels only)",
+      "International travel insurance",
+      "Yellow fever & meningitis vaccinations",
+      "Personal shopping & gifts",
+      "5-star Makkah hotel upgrade (on request)"
+    ],
+    tags: ["Saudi Arabia", "Pilgrimage"]
+  },
+  /* ── OTHER DESTINATIONS ── */
+  {
+    id: 1,
+    title: "Dubai Gold & Glamour",
+    location: "Dubai",
+    type: "Luxury",
+    duration: "6 days, 5 nights",
+    durationDays: 6,
+    shortDesc: "Soar above the skyline, cruise the marina, and experience Burj Khalifa at dusk on this ultimate Dubai escape.",
+    img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=70",
+      "https://images.unsplash.com/photo-1526495124232-a04e1849168c?w=400&q=70",
+      "https://images.unsplash.com/photo-1534008897995-27a23e859048?w=400&q=70",
+      "https://images.unsplash.com/photo-1583512603842-6b7daaac1a39?w=400&q=70",
+      "https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=400&q=70",
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&q=70"
+    ],
+    overview: "Experience Dubai like a VIP — from the dazzling heights of Burj Khalifa to the tranquil waters of the Persian Gulf. This luxury package blends iconic sightseeing, desert adventure, and world-class dining into a seamless 6-day journey.",
+    itinerary: [
+      { day: "Day 1", title: "Arrival & City Orientation", desc: "Meet & greet at Dubai International Airport. Private transfer to your 5-star hotel. Evening welcome dinner and city overview briefing." },
+      { day: "Day 2", title: "Iconic Dubai – Burj Khalifa & Dubai Mall", desc: "Morning visit to the Burj Khalifa observation deck, afternoon at Dubai Mall with optional ice skating and aquarium visit." },
+      { day: "Day 3", title: "Desert Safari & BBQ Dinner", desc: "Afternoon dune bashing in the red sand desert, camel riding, sandboarding, and a stunning sunset over the Arabian desert followed by a BBQ dinner under the stars." },
+      { day: "Day 4", title: "Marina Cruise & JBR Beach", desc: "Morning yacht cruise along Dubai Marina, afternoon leisure at Jumeirah Beach Residence (JBR), evening at Dubai Frame." },
+      { day: "Day 5", title: "Gold Souk & Old Dubai", desc: "Half-day tour of historic Dubai — Al Fahidi Fort, Spice Souk, Gold Souk, and Abra ride across Dubai Creek. Afternoon shopping at Mall of the Emirates." },
+      { day: "Day 6", title: "Departure", desc: "Leisure morning, hotel checkout, and private transfer to Dubai International Airport." }
+    ],
+    included: ["Return flights (economy)", "5-star hotel accommodation", "Airport transfers (private)", "Desert safari with dinner", "Burj Khalifa tickets (Level 124)", "Daily breakfast", "Tour guide throughout", "Visa assistance"],
+    excluded: ["Personal shopping expenses", "Tips & gratuities", "Travel insurance", "Visa fees", "Optional activities not listed"],
+    tags: ["Dubai", "Luxury"]
+  },
+  {
+    id: 2,
+    title: "Turkey Discovery Tour",
+    location: "Turkey",
+    type: "Family",
+    duration: "8 days, 7 nights",
+    durationDays: 8,
+    shortDesc: "Float over Cappadocia in a hot air balloon, walk ancient Ephesus ruins, and cruise the turquoise Aegean coast.",
+    img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=400&q=70",
+      "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400&q=70",
+      "https://images.unsplash.com/photo-1579431341225-6e3b45d5e3b5?w=400&q=70",
+      "https://images.unsplash.com/photo-1446822622740-c3460c8a15eb?w=400&q=70",
+      "https://images.unsplash.com/photo-1571979872688-7b20b71b0b94?w=400&q=70",
+      "https://images.unsplash.com/photo-1599975700521-60cf9eb66f23?w=400&q=70"
+    ],
+    overview: "Turkey is a mesmerising blend of East and West, ancient history and modern luxury. This family-friendly itinerary takes you from the fairy-tale chimneys of Cappadocia to the vibrant bazaars of Istanbul.",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Istanbul", desc: "Airport pickup and check-in to your hotel near Sultanahmet. Evening Bosphorus dinner cruise." },
+      { day: "Day 2", title: "Istanbul Sightseeing", desc: "Blue Mosque, Hagia Sophia, Topkapi Palace, Grand Bazaar tour." },
+      { day: "Day 3", title: "Flight to Cappadocia", desc: "Morning domestic flight to Cappadocia. Afternoon underground city tour and valley hike." },
+      { day: "Day 4", title: "Hot Air Balloon Ride", desc: "Pre-dawn balloon flight over fairy chimneys and the valley. Open-air museum visit. Pottery workshop in Avanos." },
+      { day: "Day 5", title: "Drive to Antalya", desc: "Scenic drive through Taurus Mountains, waterfall visit, arrival in Antalya for beach relaxation." },
+      { day: "Day 6", title: "Antalya Old City & Beach", desc: "Morning in Kaleiçi old quarter, afternoon at Konyaaltı beach. Optional boat tour." },
+      { day: "Day 7", title: "Pamukkale Cotton Terraces", desc: "Day trip to Pamukkale thermal pools and Hierapolis ruins — one of Turkey's most surreal landscapes." },
+      { day: "Day 8", title: "Departure", desc: "Transfer to Antalya/Istanbul airport for departure." }
+    ],
+    included: ["Return flights", "Hotel (4-star, twin/triple rooms)", "Domestic flight (Istanbul–Cappadocia)", "Hot air balloon ride", "All transfers", "Daily breakfast", "Professional English guide", "Visa support"],
+    excluded: ["International visa fees", "Travel insurance", "Lunch and dinner", "Personal expenses", "Optional boat tours"],
+    tags: ["Turkey", "Family"]
+  },
+  {
+    id: 3,
+    title: "Maldives Honeymoon Escape",
+    location: "Maldives",
+    type: "Honeymoon",
+    duration: "5 days, 4 nights",
+    durationDays: 5,
+    shortDesc: "Overwater bungalows, pristine coral reefs, and the most breathtaking sunsets on earth — perfect for two.",
+    img: "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=600&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&q=70",
+      "https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=400&q=70",
+      "https://images.unsplash.com/photo-1540202404-a2f29016b523?w=400&q=70",
+      "https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&q=70",
+      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=400&q=70",
+      "https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=400&q=70"
+    ],
+    overview: "The Maldives is the world's ultimate romantic retreat. Crystal-clear lagoons, vibrant coral reefs, and the serenity of your private overwater bungalow — this is a honeymoon you'll reminisce about for the rest of your lives.",
+    itinerary: [
+      { day: "Day 1", title: "Arrival & Speedboat Transfer", desc: "Arrive at Malé, welcome drink, speedboat transfer to your resort island. Check-in to overwater villa, sunset dinner for two." },
+      { day: "Day 2", title: "Snorkelling & Underwater World", desc: "Morning guided snorkelling over the house reef, afternoon couple's spa treatment, evening beach bonfire dinner." },
+      { day: "Day 3", title: "Dolphin Cruise & Island Hopping", desc: "Morning dolphin watching cruise, afternoon local island visit with cultural experience, sunset cocktails on the deck." },
+      { day: "Day 4", title: "Scuba Diving & Free Day", desc: "Optional introductory scuba dive session. Rest of the day at leisure — pool, hammock, beach walks." },
+      { day: "Day 5", title: "Departure", desc: "Final morning in paradise, speedboat back to Malé airport for departure." }
+    ],
+    included: ["Return flights", "Overwater bungalow (4 nights)", "Speedboat transfers", "Breakfast & dinner daily", "Snorkelling equipment", "Dolphin cruise", "Couple's spa (1 session)", "Welcome amenities"],
+    excluded: ["Visa on arrival fees", "Scuba diving (optional)", "Alcoholic beverages", "Personal shopping", "Travel insurance"],
+    tags: ["Maldives", "Honeymoon"]
+  },
+  {
+    id: 4,
+    title: "UK Explorer – London & Beyond",
+    location: "UK",
+    type: "Luxury",
+    duration: "10 days, 9 nights",
+    durationDays: 10,
+    shortDesc: "Buckingham Palace, the Scottish Highlands, and the iconic English countryside — Britain at its most magnificent.",
+    img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&q=70",
+      "https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=400&q=70",
+      "https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&q=70",
+      "https://images.unsplash.com/photo-1543872084-c7bd3822856f?w=400&q=70",
+      "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=70",
+      "https://images.unsplash.com/photo-1520986606214-8b456906c813?w=400&q=70"
+    ],
+    overview: "This comprehensive UK tour takes you from the grandeur of London to the mystical Scottish Highlands and the charming Cotswolds — covering the very best of Britain in 10 unforgettable days.",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in London", desc: "Heathrow airport welcome, hotel check-in in central London, evening Thames river walk." },
+      { day: "Day 2", title: "Royal London", desc: "Buckingham Palace, Westminster Abbey, Houses of Parliament, Big Ben, London Eye." },
+      { day: "Day 3", title: "Museums & Markets", desc: "British Museum, Borough Market, Tower of London, Tower Bridge." },
+      { day: "Day 4", title: "Day Trip to Windsor & Oxford", desc: "Windsor Castle tour, drive through Oxford's dreaming spires." },
+      { day: "Day 5", title: "Travel to Edinburgh", desc: "Morning train to Edinburgh. Arthur's Seat hike, Royal Mile walk." },
+      { day: "Day 6", title: "Edinburgh Castle & Whisky Trail", desc: "Edinburgh Castle, Scotch Whisky Experience, Holyrood Palace." },
+      { day: "Day 7", title: "Scottish Highlands Tour", desc: "Full-day Loch Ness and Highlands excursion with dramatic scenery." },
+      { day: "Day 8", title: "Return to London – Cotswolds", desc: "Morning train south, afternoon in the picturesque Cotswolds village of Bourton-on-the-Water." },
+      { day: "Day 9", title: "London Shopping & Leisure", desc: "Oxford Street, Covent Garden, Portobello Road, farewell dinner." },
+      { day: "Day 10", title: "Departure", desc: "Transfer to Heathrow for your return flight." }
+    ],
+    included: ["Return international flights", "9-night hotel (4-star)", "London–Edinburgh train tickets", "Guided city tours", "Tower of London tickets", "Edinburgh Castle entry", "Airport & station transfers", "Visa application support"],
+    excluded: ["UK visa fees", "Travel insurance", "Most meals (breakfast only)", "Personal shopping", "Optional boat tours", "Tips"],
+    tags: ["UK", "Luxury"]
+  },
+  {
+    id: 5,
+    title: "Canada Niagara & Toronto",
+    location: "Canada",
+    type: "Family",
+    duration: "9 days, 8 nights",
+    durationDays: 9,
+    shortDesc: "Stand at the edge of Niagara Falls, explore multicultural Toronto, and discover Canada's natural majesty.",
+    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=70",
+      "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=400&q=70",
+      "https://images.unsplash.com/photo-1609955252949-0e6562de6fa4?w=400&q=70",
+      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=70",
+      "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400&q=70",
+      "https://images.unsplash.com/photo-1606046604972-77cc76aee944?w=400&q=70"
+    ],
+    overview: "Canada promises one of the most diverse and breathtaking travel experiences on the planet. From the sheer power of Niagara Falls to the sophisticated cosmopolitan energy of Toronto and the natural splendour of Banff, this family trip has it all.",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Toronto", desc: "International arrival, hotel check-in, evening CN Tower visit for sunset views." },
+      { day: "Day 2", title: "Toronto City Tour", desc: "Distillery District, St Lawrence Market, Harbourfront, Kensington Market." },
+      { day: "Day 3", title: "Niagara Falls Day Trip", desc: "Full-day Niagara — Maid of the Mist boat ride, Journey Behind the Falls, Niagara-on-the-Lake." },
+      { day: "Day 4", title: "Toronto Islands & Beaches", desc: "Ferry to Toronto Islands, cycling, picnic, skyline views." },
+      { day: "Day 5", title: "Flight to Calgary", desc: "Domestic flight to Calgary, gateway to the Rockies. Evening steak dinner." },
+      { day: "Day 6", title: "Banff National Park", desc: "Full day in Banff — Lake Louise, Moraine Lake, Bow Falls, hot springs." },
+      { day: "Day 7", title: "Icefields Parkway Drive", desc: "Scenic Icefields Parkway drive, Athabasca Glacier walk, Jasper town." },
+      { day: "Day 8", title: "Return to Toronto", desc: "Domestic flight back, afternoon shopping, farewell dinner." },
+      { day: "Day 9", title: "Departure", desc: "Airport transfer and international departure." }
+    ],
+    included: ["International return flights", "Domestic flights (Toronto–Calgary–Toronto)", "8-night hotel", "Niagara boat ride tickets", "CN Tower entry", "Banff park passes", "Airport transfers", "Visa application guidance"],
+    excluded: ["Canadian visa fees", "Travel insurance", "Meals (except noted)", "Personal purchases", "Optional ski/gondola"],
+    tags: ["Canada", "Family"]
+  },
+  {
+    id: 6,
+    title: "South Africa Safari & Cape Town",
+    location: "South Africa",
+    type: "Budget",
+    duration: "12 days, 11 nights",
+    durationDays: 12,
+    shortDesc: "The Big Five on safari, Table Mountain at sunrise, and the spectacular Cape Peninsula in one epic trip.",
+    img: "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=600&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=400&q=70",
+      "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&q=70",
+      "https://images.unsplash.com/photo-1517495306984-f84210f9daa8?w=400&q=70",
+      "https://images.unsplash.com/photo-1475113548492-b714ecdab13a?w=400&q=70",
+      "https://images.unsplash.com/photo-1593179911834-3ba00c600f85?w=400&q=70",
+      "https://images.unsplash.com/photo-1554246041-ecc0d6c98af4?w=400&q=70"
+    ],
+    overview: "South Africa is a destination like no other — unmatched wildlife, dramatic coastlines, and a rich cultural tapestry. This value-packed tour gives you the full South African experience from the Kruger National Park to the Cape Winelands.",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Johannesburg", desc: "OR Tambo Airport welcome, hotel check-in, Soweto township tour." },
+      { day: "Day 2", title: "Apartheid Museum & Gold Reef City", desc: "Morning at Apartheid Museum for historical context, afternoon at Gold Reef City." },
+      { day: "Day 3–5", title: "Kruger National Park Safari", desc: "3-day, 2-night safari in Kruger. Game drives morning and evening — lions, elephants, rhinos, buffalo, leopards." },
+      { day: "Day 6", title: "Flight to Cape Town", desc: "Domestic flight to Cape Town, V&A Waterfront evening stroll." },
+      { day: "Day 7", title: "Table Mountain & City Bowl", desc: "Cable car up Table Mountain, Company's Garden, Bo-Kaap colourful quarter." },
+      { day: "Day 8", title: "Cape Peninsula Drive", desc: "Cape Point, Boulders Beach penguins, Chapman's Peak scenic drive." },
+      { day: "Day 9", title: "Cape Winelands", desc: "Day trip to Stellenbosch and Franschhoek wine estates." },
+      { day: "Day 10", title: "Robben Island & Leisure", desc: "Ferry to Robben Island (Nelson Mandela's prison). Afternoon leisure on Clifton Beach." },
+      { day: "Day 11", title: "Cape Town Free Day", desc: "Shopping at the Waterfront, optional township art tour, farewell dinner." },
+      { day: "Day 12", title: "Departure", desc: "Cape Town International Airport departure." }
+    ],
+    included: ["Return international flights", "Domestic flight (JHB–CPT)", "11-night accommodation", "Kruger safari (2 nights, game drives)", "Table Mountain cable car", "Robben Island ferry & tour", "All airport transfers", "Visa support"],
+    excluded: ["South African visa fees", "Travel insurance", "Most meals", "Park conservation fees (some)", "Personal expenses"],
+    tags: ["South Africa", "Budget"]
+  },
+  {
+    id: 7,
+    title: "Malaysia & Kuala Lumpur",
+    location: "Malaysia",
+    type: "Budget",
+    duration: "7 days, 6 nights",
+    durationDays: 7,
+    shortDesc: "Petronas Twin Towers, Batu Caves, Penang street food, and Langkawi's pristine beaches — all in one week.",
+    img: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=400&q=70",
+      "https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&q=70",
+      "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&q=70",
+      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=70",
+      "https://images.unsplash.com/photo-1555993539-1732b0258235?w=400&q=70",
+      "https://images.unsplash.com/photo-1576783903527-d6cfb5d92726?w=400&q=70"
+    ],
+    overview: "Malaysia offers exceptional value and a wildly diverse experience — from the ultramodern skyline of Kuala Lumpur to the colonial charm of Penang's UNESCO-listed George Town and the tropical paradise of Langkawi.",
+    itinerary: [
+      { day: "Day 1", title: "Arrival in Kuala Lumpur", desc: "KLIA airport arrival, hotel check-in, evening at Bukit Bintang entertainment district." },
+      { day: "Day 2", title: "KL City Highlights", desc: "Petronas Twin Towers (Skybridge), KL Tower, Merdeka Square, Central Market." },
+      { day: "Day 3", title: "Batu Caves & Gombak", desc: "Morning at iconic Batu Caves Hindu temple, afternoon Thean Hou Temple and Chinatown." },
+      { day: "Day 4", title: "Fly to Penang", desc: "Domestic flight to Penang. George Town street art tour, Clan Jetties, famous Penang hawker food trail." },
+      { day: "Day 5", title: "Penang Hill & Kek Lok Si", desc: "Penang Hill funicular, Kek Lok Si temple, Gurney Drive night market." },
+      { day: "Day 6", title: "Langkawi Island", desc: "Ferry or flight to Langkawi, cable car, Eagle Square, beach afternoon." },
+      { day: "Day 7", title: "Return & Departure", desc: "Return to KL for international departure." }
+    ],
+    included: ["Return flights", "Domestic flights within Malaysia", "6-night hotel", "Petronas Skybridge tickets", "Batu Caves entry", "Airport & ferry transfers", "English-speaking guide", "Visa support (Nigerians — check current requirements)"],
+    excluded: ["Visa fees if applicable", "Travel insurance", "Meals (except noted)", "Personal shopping", "Optional island boat tours"],
+    tags: ["Malaysia", "Budget"]
+  },
+  {
+    id: 8,
+    title: "Dubai Family Fun Package",
+    location: "Dubai",
+    type: "Family",
+    duration: "7 days, 6 nights",
+    durationDays: 7,
+    shortDesc: "Theme parks, waterparks, and the world's biggest mall — Dubai is a wonderland for families of all ages.",
+    img: "https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=600&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=400&q=70",
+      "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=70",
+      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=400&q=70",
+      "https://images.unsplash.com/photo-1526495124232-a04e1849168c?w=400&q=70",
+      "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&q=70",
+      "https://images.unsplash.com/photo-1547863616-b6a7c0a7f3b2?w=400&q=70"
+    ],
+    overview: "Dubai is one of the world's greatest family destinations — theme parks, waterparks, indoor skiing and the world's largest mall all in one city. This specially crafted family package ensures fun for every age group.",
+    itinerary: [
+      { day: "Day 1", title: "Arrival & Hotel", desc: "Airport welcome, family room check-in, evening at The Beach JBR." },
+      { day: "Day 2", title: "IMG Worlds of Adventure", desc: "Full day at IMG Worlds of Adventure — the world's largest indoor theme park with Marvel and Cartoon Network zones." },
+      { day: "Day 3", title: "Dubai Parks & Resorts", desc: "Motiongate Dubai or Bollywood Parks — world-class rides and attractions." },
+      { day: "Day 4", title: "Wild Wadi Waterpark", desc: "Full day at Wild Wadi Waterpark, followed by evening at Dubai Mall Fountain show." },
+      { day: "Day 5", title: "Desert Safari Family Edition", desc: "Family-friendly dune bashing, camel rides, henna painting, cultural entertainment." },
+      { day: "Day 6", title: "Ski Dubai & Aquarium", desc: "Indoor ski slope at Mall of the Emirates, afternoon at Dubai Aquarium." },
+      { day: "Day 7", title: "Departure", desc: "Morning leisure, hotel checkout, airport transfer." }
+    ],
+    included: ["Return flights", "Family hotel room (6 nights)", "Theme park entry (3 parks)", "Wild Wadi tickets", "Desert safari", "Ski Dubai passes", "All transfers", "Visa assistance"],
+    excluded: ["Flight upgrades", "Meals (breakfast only)", "Travel insurance", "Personal shopping", "Tips"],
+    tags: ["Dubai", "Family"]
+  }
+];
+
+/* ============================================================
+   NAVIGATION — show/hide pages
+============================================================ */
+function showPage(page, tourId) {
+  ['home','tours','detail','about','contact'].forEach(p => {
+    document.getElementById('page-' + p).classList.add('hidden');
+  });
+  const el = document.getElementById('page-' + page);
+  if (el) el.classList.remove('hidden');
+  ['home','tours','about','contact'].forEach(p => {
+    const nl = document.getElementById('nl-' + p);
+    if (nl) nl.classList.toggle('active', p === page || (page === 'detail' && p === 'tours'));
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (page === 'home')   { renderHomeDestinations(); setTimeout(runCounters, 380); }
+  if (page === 'tours')  renderToursGrid(TOURS);
+  if (page === 'detail' && tourId) renderTourDetail(tourId);
+  if (page !== 'home')   countersRan = false;
+}
+
+/* ============================================================
+   RENDER — Homepage featured destinations (first 4)
+============================================================ */
+function renderHomeDestinations() {
+  const grid = document.getElementById('home-dest-grid');
+  if (!grid) return;
+  grid.innerHTML = TOURS.slice(0, 4).map(t => tourCard(t)).join('');
+}
+
+/* ============================================================
+   RENDER — Tours page grid
+============================================================ */
+function renderToursGrid(tours) {
+  const grid = document.getElementById('tours-grid');
+  const noRes = document.getElementById('no-results');
+  if (!grid) return;
+  if (tours.length === 0) {
+    grid.innerHTML = '';
+    noRes.classList.remove('hidden');
+  } else {
+    noRes.classList.add('hidden');
+    grid.innerHTML = tours.map(t => tourCard(t)).join('');
+  }
+}
+
+/* ============================================================
+   TOUR CARD HTML (reusable component)
+============================================================ */
+function tourCard(t) {
+  const badgeClass = t.badgeClass || '';
+  const isSacred = t.type === 'Pilgrimage';
+  return `
+  <div class="dest-card" onclick="showPage('detail', ${t.id})" style="${isSacred ? 'border:2px solid rgba(37,162,68,.25);' : ''}">
+    <div class="card-img-wrap">
+      <img class="card-img" src="${t.img}" alt="${t.title}" loading="lazy"/>
+      <span class="card-badge ${badgeClass}">${t.type}</span>
+      <div class="card-hover-overlay">
+        <span class="card-hover-cta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          View full details
+        </span>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-meta">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        ${t.location}
+      </div>
+      <h3>${t.title}</h3>
+      <p>${t.shortDesc}</p>
+      <div class="card-footer">
+        <span class="card-dur">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          ${t.duration}
+        </span>
+        <button class="btn btn-primary btn-sm" onclick="event.stopPropagation();showPage('detail',${t.id})">View Details</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   RENDER — Tour Detail Page
+============================================================ */
+function renderTourDetail(id) {
+  const t = TOURS.find(x => x.id === id);
+  if (!t) return;
+
+  document.getElementById('detail-hero-img').src = t.img;
+  document.getElementById('detail-bc').textContent = t.title;
+  document.getElementById('detail-type-badge').textContent = t.type;
+  document.getElementById('detail-title').textContent = t.title;
+  document.getElementById('detail-meta').textContent = `📍 ${t.location}  ·  🕐 ${t.duration}  ·  🏅 ${t.type}`;
+  document.getElementById('detail-overview').textContent = t.overview;
+  document.getElementById('sb-title').textContent = t.title;
+
+  // WhatsApp link with pre-filled message
+  const waMsg = encodeURIComponent(`Hello MHU Travel & Tour, I'm interested in the "${t.title}" package. Please send me more details.`);
+  document.getElementById('sb-wa-btn').href = `https://wa.me/15814263935?text=${waMsg}`;
+
+  // Itinerary
+  document.getElementById('detail-itinerary').innerHTML = t.itinerary.map(d => `
+    <div class="itinerary-item">
+      <div class="itin-day">${d.day}</div>
+      <div class="itin-title">${d.title}</div>
+      <div class="itin-desc">${d.desc}</div>
+    </div>`).join('');
+
+  // Included / Excluded
+  document.getElementById('detail-included').innerHTML = t.included.map(i => `<div class="incl-item">${i}</div>`).join('');
+  document.getElementById('detail-excluded').innerHTML = t.excluded.map(i => `<div class="excl-item">${i}</div>`).join('');
+
+  // Gallery
+  document.getElementById('detail-gallery').innerHTML = t.gallery.map(img => `
+    <img class="gal-img" src="${img}" alt="Tour photo" loading="lazy"/>`).join('');
+}
+
+/* ============================================================
+   FILTER SYSTEM — Tours page
+============================================================ */
+function applyFilters() {
+  const search   = document.getElementById('filter-search').value.toLowerCase();
+  const location = document.getElementById('filter-location').value;
+  const type     = document.getElementById('filter-type').value;
+  const durRange = document.getElementById('filter-duration').value;
+
+  const filtered = TOURS.filter(t => {
+    const matchSearch   = !search   || t.title.toLowerCase().includes(search) || t.location.toLowerCase().includes(search) || t.shortDesc.toLowerCase().includes(search);
+    const matchLocation = !location || t.location === location;
+    const matchType     = !type     || t.type === type;
+    let matchDur = true;
+    if (durRange) {
+      if (durRange === '1-4 Days')  matchDur = t.durationDays <= 4;
+      if (durRange === '5-7 Days')  matchDur = t.durationDays >= 5  && t.durationDays <= 7;
+      if (durRange === '8-14 Days') matchDur = t.durationDays >= 8  && t.durationDays <= 14;
+      if (durRange === '15+ Days')  matchDur = t.durationDays >= 15;
+    }
+    return matchSearch && matchLocation && matchType && matchDur;
+  });
+
+  renderToursGrid(filtered);
+}
+
+function clearFilters() {
+  document.getElementById('filter-search').value   = '';
+  document.getElementById('filter-location').value = '';
+  document.getElementById('filter-type').value     = '';
+  document.getElementById('filter-duration').value = '';
+  renderToursGrid(TOURS);
+}
+
+/* ============================================================
+   FORM — Quick Inquiry (Homepage)
+============================================================ */
+function submitInquiry() {
+  const name  = document.getElementById('inq-name').value.trim();
+  const phone = document.getElementById('inq-phone').value.trim();
+  const dest  = document.getElementById('inq-dest').value;
+
+  if (!name || !phone || !dest) {
+    alert('Please fill in all fields before submitting.');
+    return;
+  }
+
+  // Show success message
+  document.getElementById('inq-success').classList.add('show');
+
+  // Trigger Termii SMS simulation
+  sendTermiiSMS(phone, name, dest, 'inq-sms-log');
+
+  // Reset form
+  document.getElementById('inq-name').value  = '';
+  document.getElementById('inq-phone').value = '';
+  document.getElementById('inq-dest').value  = '';
+}
+
+/* ============================================================
+   FORM — Contact Page
+============================================================ */
+function submitContactForm() {
+  const fname  = document.getElementById('cf-fname').value.trim();
+  const lname  = document.getElementById('cf-lname').value.trim();
+  const phone  = document.getElementById('cf-phone').value.trim();
+  const dest   = document.getElementById('cf-destination').value;
+  const msg    = document.getElementById('cf-message').value.trim();
+
+  if (!fname || !phone || !dest) {
+    alert('Please fill in your name, phone number, and destination.');
+    return;
+  }
+
+  const fullName = `${fname} ${lname}`.trim();
+
+  // Show success
+  document.getElementById('cf-success').classList.add('show');
+
+  // Trigger Termii SMS simulation
+  sendTermiiSMS(phone, fullName, dest, 'cf-sms-log');
+}
+
+/* ============================================================
+   TERMII SMS API INTEGRATION (structured placeholder)
+   Replace TERMII_API_KEY with real key in production
+   Endpoint: https://api.ng.termii.com/api/sms/send
+============================================================ */
+const TERMII_CONFIG = {
+  api_key:  "YOUR_TERMII_API_KEY_HERE",   // Replace with real Termii API key
+  sender_id: "MHU Tours",                 // Sender ID approved in Termii dashboard
+  channel:  "generic",                    // or "dnd" for DND numbers
+  api_url:  "https://api.ng.termii.com/api/sms/send"
+};
+
+/**
+ * sendTermiiSMS — Sends an SMS confirmation via Termii API
+ * @param {string} to      - Recipient phone number (e.g. +2348012345678)
+ * @param {string} name    - Customer name
+ * @param {string} dest    - Destination of interest
+ * @param {string} logId   - DOM ID to display log output
+ */
+async function sendTermiiSMS(to, name, dest, logId) {
+  const smsMessage = `Hello ${name}, thank you for contacting MHU Travel & Tour! We received your inquiry about ${dest}. Our team will reach out to you within 2 hours. Call us: +1 (581) 426-3935`;
+
+  const payload = {
+    to:        to,
+    from:      TERMII_CONFIG.sender_id,
+    sms:       smsMessage,
+    type:      "plain",
+    channel:   TERMII_CONFIG.channel,
+    api_key:   TERMII_CONFIG.api_key
+  };
+
+  // Show the SMS log panel with animated lines
+  const logEl = document.getElementById(logId);
+  logEl.classList.add('show');
+
+  const lines = [
+    `> Initialising Termii SMS API...`,
+    `> Endpoint: ${TERMII_CONFIG.api_url}`,
+    `> To: ${to}`,
+    `> From: "${TERMII_CONFIG.sender_id}"`,
+    `> Message: "${smsMessage.substring(0, 60)}..."`,
+    `> Payload prepared — sending request...`,
+    `> [SIMULATION MODE — Replace API key to go live]`,
+    `> ✓ SMS queued successfully for delivery.`,
+    `> Response: { "message": "Successfully Sent", "balance": 95, "user": "MHU Travel" }`
+  ];
+
+  logEl.innerHTML = '';
+  lines.forEach((line, i) => {
+    const div = document.createElement('div');
+    div.className = 'log-line';
+    div.style.animationDelay = (i * 0.18) + 's';
+    div.textContent = line;
+    logEl.appendChild(div);
+  });
+
+  /*
+  // ── REAL API CALL (uncomment when API key is ready) ──────────────
+  try {
+    const response = await fetch(TERMII_CONFIG.api_url, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    });
+    const data = await response.json();
+    console.log('Termii SMS Response:', data);
+    // Handle response: data.message === "Successfully Sent"
+  } catch (err) {
+    console.error('Termii SMS Error:', err);
+  }
+  // ─────────────────────────────────────────────────────────────────
+  */
+}
+
+/* ============================================================
+   MOBILE MENU TOGGLE
+============================================================ */
+function toggleMobile() {
+  document.getElementById('mob-menu').classList.toggle('open');
+}
+
+/* ============================================================
+   NAVBAR SCROLL EFFECT
+============================================================ */
+window.addEventListener('scroll', () => {
+  const nb = document.getElementById('navbar');
+  nb.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ============================================================
+   SCROLL PROGRESS BAR (detail page)
+============================================================ */
+window.addEventListener('scroll', () => {
+  const bar = document.getElementById('progress-bar');
+  if (!bar) return;
+  const detailVisible = !document.getElementById('page-detail').classList.contains('hidden');
+  if (detailVisible) {
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (docH > 0 ? (window.scrollY / docH) * 100 : 0) + '%';
+    bar.style.display = 'block';
+  } else {
+    bar.style.display = 'none';
+  }
+});
+
+/* ============================================================
+   ANIMATED STAT COUNTERS
+   Fires once when home page is shown
+============================================================ */
+let countersRan = false;
+function runCounters() {
+  if (countersRan) return;
+  countersRan = true;
+  const data = [
+    { suffix: '+',  target: 500  },
+    { suffix: '+',  target: 40   },
+    { suffix: '',   target: 2025 },
+    { suffix: '%',  target: 98   }
+  ];
+  const els = document.querySelectorAll('#page-home .stat-num');
+  els.forEach((el, i) => {
+    const d = data[i];
+    if (!d) return;
+    let cur = 0;
+    const inc = Math.ceil(d.target / 55);
+    const timer = setInterval(() => {
+      cur = Math.min(cur + inc, d.target);
+      el.textContent = (i === 2 ? cur : cur.toLocaleString()) + d.suffix;
+      if (cur >= d.target) clearInterval(timer);
+    }, 22);
+  });
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  showPage('home');
+});
+</script>
+</body>
+</html>
