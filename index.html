@@ -7,33 +7,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-/* ============================================
-   DESIGN TOKENS
-============================================ */
 :root {
-  --navy:       #07111d;
-  --navy-mid:   #0e1e2f;
-  --ocean:      #153754;
-  --sky:        #1d6fab;
-  --azure:      #3d8fc9;
-  --mist:       #e4f1f9;
-  --sand:       #f7f2eb;
-  --gold:       #b8812e;
-  --gold-lt:    #d4a85a;
-  --gold-glow:  rgba(184,129,46,.18);
-  --white:      #ffffff;
-  --off-white:  #f8f8f6;
-  --t-dark:     #0c1824;
-  --t-mid:      #3a4d61;
-  --t-light:    #7a93a8;
-  --r-sm: 5px; --r-md: 10px; --r-lg: 18px; --r-xl: 28px;
-  --sh-sm: 0 2px 12px rgba(7,17,29,.06);
-  --sh-md: 0 8px 36px rgba(7,17,29,.10);
-  --sh-lg: 0 24px 64px rgba(7,17,29,.16);
-  --ff-disp: 'Cormorant Garamond', Georgia, serif;
-  --ff-body: 'Outfit', sans-serif;
-  --ease: all .3s cubic-bezier(.25,.46,.45,.94);
-  --ease-out: cubic-bezier(.16,1,.3,1);
+  --navy:#07111d;--navy-mid:#0e1e2f;--ocean:#153754;--sky:#1d6fab;--azure:#3d8fc9;
+  --mist:#e4f1f9;--sand:#f7f2eb;--gold:#b8812e;--gold-lt:#d4a85a;--gold-glow:rgba(184,129,46,.18);
+  --white:#ffffff;--off-white:#f8f8f6;--t-dark:#0c1824;--t-mid:#3a4d61;--t-light:#7a93a8;
+  --r-sm:5px;--r-md:10px;--r-lg:18px;--r-xl:28px;
+  --sh-sm:0 2px 12px rgba(7,17,29,.06);--sh-md:0 8px 36px rgba(7,17,29,.10);--sh-lg:0 24px 64px rgba(7,17,29,.16);
+  --ff-disp:'Cormorant Garamond',Georgia,serif;--ff-body:'Outfit',sans-serif;
+  --ease:all .3s cubic-bezier(.25,.46,.45,.94);--ease-out:cubic-bezier(.16,1,.3,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -42,27 +23,13 @@ img{max-width:100%;display:block}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
 ul{list-style:none}
-input,textarea,select{
-  font-family:var(--ff-body);font-size:14.5px;
-  border:1.5px solid #d8e6f0;border-radius:var(--r-sm);
-  padding:12px 15px;width:100%;outline:none;
-  transition:var(--ease);background:var(--white);color:var(--t-dark)
-}
-input:focus,textarea:focus,select:focus{
-  border-color:var(--sky);
-  box-shadow:0 0 0 3px rgba(29,111,171,.08)
-}
+input,textarea,select{font-family:var(--ff-body);font-size:14.5px;border:1.5px solid #d8e6f0;border-radius:var(--r-sm);padding:12px 15px;width:100%;outline:none;transition:var(--ease);background:var(--white);color:var(--t-dark)}
+input:focus,textarea:focus,select:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(29,111,171,.08)}
 textarea{resize:vertical;min-height:110px}
 
-/* ============================================
-   LAYOUT & TYPE
-============================================ */
 .container{max-width:1180px;margin:0 auto;padding:0 28px}
-.section{padding:88px 0}
-.section-sm{padding:50px 0}
-.text-center{text-align:center}
-.hidden{display:none!important}
-
+.section{padding:88px 0}.section-sm{padding:50px 0}
+.text-center{text-align:center}.hidden{display:none!important}
 .disp-xl{font-family:var(--ff-disp);font-size:clamp(2.8rem,5.5vw,5.2rem);font-weight:600;line-height:1.06;letter-spacing:-.01em}
 .disp-lg{font-family:var(--ff-disp);font-size:clamp(2rem,3.8vw,3.4rem);font-weight:600;line-height:1.12}
 .disp-md{font-family:var(--ff-disp);font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:600;line-height:1.2}
@@ -70,9 +37,6 @@ textarea{resize:vertical;min-height:110px}
 .body-lg{font-size:1.05rem;font-weight:300;line-height:1.82;color:var(--t-mid)}
 .body-md{font-size:.93rem;line-height:1.75;color:var(--t-mid)}
 
-/* ============================================
-   BUTTONS
-============================================ */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;border-radius:3px;font-size:13.5px;font-weight:500;letter-spacing:.04em;transition:var(--ease);cursor:pointer;white-space:nowrap;border:none}
 .btn-primary{background:var(--sky);color:#fff;box-shadow:0 4px 20px rgba(29,111,171,.28)}
 .btn-primary:hover{background:var(--ocean);transform:translateY(-1px);box-shadow:0 8px 32px rgba(29,111,171,.36)}
@@ -87,14 +51,12 @@ textarea{resize:vertical;min-height:110px}
 .btn-sm{padding:9px 18px;font-size:12.5px}
 .btn-full{width:100%;justify-content:center}
 
-/* ============================================
-   NAVBAR
-============================================ */
+/* NAVBAR */
 .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:var(--ease)}
 .navbar.scrolled{background:rgba(7,17,29,.96);backdrop-filter:blur(24px);padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .logo{display:flex;align-items:center;gap:13px;flex-shrink:0;cursor:pointer}
-.logo-mark{width:60px;height:60px;border-radius:10px;flex-shrink: 0;display:flex;align-items:center;justify-content:center}
+.logo-mark{width:60px;height:60px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .logo-mark svg{width:22px;height:22px;fill:#fff}
 .logo-name{font-family:var(--ff-disp);font-size:1.4rem;font-weight:700;color:#fff;line-height:1.05;letter-spacing:.01em}
 .logo-tagline{font-size:9px;letter-spacing:.18em;color:var(--gold-lt);font-family:var(--ff-body);font-weight:500;display:block;text-transform:uppercase;margin-top:1px}
@@ -113,24 +75,45 @@ textarea{resize:vertical;min-height:110px}
 .mob-close{position:absolute;top:24px;right:24px;color:rgba(255,255,255,.6);font-size:24px;padding:8px;cursor:pointer;line-height:1}
 @media(max-width:820px){.nav-links,.nav-cta{display:none}.hamburger{display:flex}}
 
-/* ============================================
-   FLOATING WA BUTTON
-============================================ */
+/* FLOATING WA */
 .wa-float{position:fixed;bottom:28px;right:28px;z-index:900;display:flex;align-items:center;gap:10px}
-.wa-bubble{background:#1fa855;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(31,168,85,.45);transition:var(--ease);flex-shrink:0}
+.wa-bubble{background:#1fa855;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(31,168,85,.45);transition:var(--ease);flex-shrink:0;cursor:pointer}
 .wa-bubble:hover{transform:scale(1.08)}
 .wa-bubble svg{width:28px;height:28px;fill:#fff}
 .wa-tooltip{background:var(--navy);color:#fff;font-size:12.5px;font-weight:500;padding:8px 16px;border-radius:3px;white-space:nowrap;box-shadow:var(--sh-md);opacity:0;transform:translateX(10px);transition:var(--ease);pointer-events:none}
 .wa-float:hover .wa-tooltip{opacity:1;transform:translateX(0)}
 
 /* ============================================
-   HERO
+   WHATSAPP PRE-CHAT MODAL
 ============================================ */
+.wa-modal-overlay{position:fixed;inset:0;background:rgba(7,17,29,.72);backdrop-filter:blur(6px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.wa-modal-overlay.open{opacity:1;pointer-events:all}
+.wa-modal{background:var(--white);border-radius:var(--r-xl);max-width:480px;width:100%;box-shadow:0 32px 80px rgba(7,17,29,.28);transform:translateY(20px) scale(0.97);transition:transform .35s cubic-bezier(.16,1,.3,1),opacity .35s ease;overflow:hidden}
+.wa-modal-overlay.open .wa-modal{transform:translateY(0) scale(1)}
+.wa-modal-header{background:linear-gradient(135deg,#0e521e,#1fa855);padding:28px 32px 24px;position:relative}
+.wa-modal-header-icon{width:52px;height:52px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.wa-modal-header-icon svg{width:28px;height:28px;fill:#fff}
+.wa-modal-header h3{font-family:var(--ff-disp);font-size:1.7rem;font-weight:600;color:#fff;margin-bottom:6px;line-height:1.15}
+.wa-modal-header p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
+.wa-modal-close{position:absolute;top:18px;right:20px;width:32px;height:32px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:16px;line-height:1;transition:var(--ease);border:none}
+.wa-modal-close:hover{background:rgba(255,255,255,.28)}
+.wa-modal-body{padding:28px 32px 32px}
+.wa-modal-body .form-group{margin-bottom:16px}
+.wa-modal-body .form-label{display:block;font-size:11px;font-weight:600;color:var(--t-dark);margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase}
+.wa-modal-body input,.wa-modal-body select,.wa-modal-body textarea{font-size:14px;border:1.5px solid #d8e6f0;border-radius:var(--r-sm);padding:11px 14px;width:100%;outline:none;transition:var(--ease);background:var(--white);color:var(--t-dark)}
+.wa-modal-body input:focus,.wa-modal-body select:focus,.wa-modal-body textarea:focus{border-color:#1fa855;box-shadow:0 0 0 3px rgba(31,168,85,.1)}
+.wa-modal-body textarea{resize:vertical;min-height:88px;font-family:var(--ff-body)}
+.wa-send-btn{background:#1fa855;color:#fff;border:none;border-radius:var(--r-sm);padding:14px 24px;font-size:14.5px;font-weight:500;font-family:var(--ff-body);letter-spacing:.03em;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;transition:var(--ease);box-shadow:0 4px 18px rgba(31,168,85,.28)}
+.wa-send-btn:hover{background:#178042;transform:translateY(-1px);box-shadow:0 8px 28px rgba(31,168,85,.36)}
+.wa-send-btn svg{width:18px;height:18px;fill:#fff;flex-shrink:0}
+.wa-modal-note{text-align:center;font-size:11.5px;color:var(--t-light);margin-top:12px;line-height:1.55}
+.wa-modal-note strong{color:var(--t-mid)}
+
+/* HERO */
 .hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--navy)}
 .hero-bg{position:absolute;inset:0;background:linear-gradient(125deg,rgba(7,17,29,.91) 0%,rgba(21,55,84,.55) 55%,rgba(7,17,29,.78) 100%),url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1800&q=80') center/cover no-repeat}
 .hero-line{position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent 0%,var(--gold) 30%,var(--gold) 70%,transparent 100%);opacity:.5}
-/* Logo watermark */
-.hero-logo-watermark{position:absolute;bottom:48px;right:48px;z-index:1;opacity:0.10;pointer-events:none;user-select:none;}
+.hero-logo-watermark{position:absolute;bottom:48px;right:48px;z-index:1;opacity:0.10;pointer-events:none;user-select:none}
 .hero-logo-watermark img{width:220px;height:auto;display:block;filter:brightness(10)}
 .hero-content{position:relative;z-index:1;padding:150px 0 90px;max-width:780px}
 .hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);border-radius:2px;padding:7px 18px 7px 10px;margin-bottom:32px;font-size:12px;color:rgba(255,255,255,.82);letter-spacing:.06em}
@@ -144,9 +127,7 @@ textarea{resize:vertical;min-height:110px}
 .stat-num{font-family:var(--ff-disp);font-size:2.2rem;font-weight:700;color:#fff;line-height:1}
 .stat-lbl{font-size:11px;color:rgba(255,255,255,.42);margin-top:5px;letter-spacing:.08em;text-transform:uppercase}
 
-/* ============================================
-   MARQUEE TRUST BAR
-============================================ */
+/* MARQUEE */
 .marquee-bar{background:var(--navy-mid);padding:13px 0;overflow:hidden;border-top:1px solid rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.05)}
 .marquee-track{display:flex;gap:0;animation:marquee-scroll 32s linear infinite;width:max-content}
 .marquee-track:hover{animation-play-state:paused}
@@ -154,9 +135,7 @@ textarea{resize:vertical;min-height:110px}
 .marquee-item svg{flex-shrink:0;opacity:.7}
 @keyframes marquee-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ============================================
-   DESTINATION CARDS
-============================================ */
+/* DESTINATION CARDS */
 .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
 .dest-card{background:var(--white);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-sm);transition:var(--ease);cursor:pointer}
 .dest-card:hover{transform:translateY(-6px);box-shadow:var(--sh-lg)}
@@ -174,18 +153,14 @@ textarea{resize:vertical;min-height:110px}
 .card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid #edf2f8}
 .card-dur{font-size:12px;color:var(--t-light);display:flex;align-items:center;gap:6px}
 
-/* ============================================
-   FILTER BAR
-============================================ */
+/* FILTER BAR */
 .filter-bar{background:var(--white);border-radius:var(--r-md);padding:18px 22px;box-shadow:var(--sh-sm);margin-bottom:36px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;border:1px solid #edf2f8}
 .filter-bar input,.filter-bar select{flex:1;min-width:150px;font-size:13px}
 .filter-search{position:relative;flex:2;min-width:200px}
 .filter-search input{padding-left:40px}
 .search-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--t-light);pointer-events:none}
 
-/* ============================================
-   WHY US
-============================================ */
+/* WHY US */
 .why-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:22px}
 .why-card{padding:28px;background:var(--white);border-radius:var(--r-md);border:1px solid #edf3f8;transition:var(--ease)}
 .why-card:hover{border-color:var(--azure);transform:translateY(-3px);box-shadow:var(--sh-md)}
@@ -194,9 +169,7 @@ textarea{resize:vertical;min-height:110px}
 .why-card h4{font-size:.97rem;font-weight:600;color:var(--t-dark);margin-bottom:8px;letter-spacing:.01em}
 .why-card p{font-size:13.5px;color:var(--t-mid);line-height:1.68}
 
-/* ============================================
-   TESTIMONIALS
-============================================ */
+/* TESTIMONIALS */
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
 .testi-card{background:var(--white);border-radius:var(--r-md);padding:28px;box-shadow:var(--sh-sm);border:1px solid #edf3f8;position:relative}
 .testi-qq{font-family:var(--ff-disp);font-size:4rem;color:var(--mist);position:absolute;top:16px;right:22px;line-height:1;font-style:italic}
@@ -208,9 +181,7 @@ textarea{resize:vertical;min-height:110px}
 .testi-name{font-weight:600;font-size:13.5px;color:var(--t-dark)}
 .testi-loc{font-size:11.5px;color:var(--t-light);margin-top:2px}
 
-/* ============================================
-   TOUR DETAIL PAGE
-============================================ */
+/* TOUR DETAIL */
 .tour-hero-section{min-height:62vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;background:var(--navy)}
 .tour-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,17,29,.94) 0%,rgba(7,17,29,.3) 60%,rgba(7,17,29,.15) 100%)}
 .tour-hero-img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%}
@@ -234,9 +205,7 @@ textarea{resize:vertical;min-height:110px}
 .sidebar-info{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--t-mid)}
 .sidebar-info svg{width:15px;height:15px;flex-shrink:0;stroke:var(--t-light);fill:none;stroke-width:1.7}
 
-/* ============================================
-   ABOUT PAGE
-============================================ */
+/* ABOUT */
 .about-hero-sec{padding:155px 0 80px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,var(--ocean) 100%);color:#fff;position:relative;overflow:hidden}
 .about-hero-sec::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--gold),transparent)}
 .team-card{background:var(--white);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-lg);max-width:380px}
@@ -251,9 +220,7 @@ textarea{resize:vertical;min-height:110px}
 .cred-num{font-family:var(--ff-disp);font-size:1.85rem;font-weight:700;color:var(--ocean);line-height:1}
 .cred-text{font-size:12.5px;color:var(--t-mid);line-height:1.4}
 
-/* ============================================
-   CONTACT PAGE
-============================================ */
+/* CONTACT */
 .contact-page-hero{padding:145px 0 55px;background:linear-gradient(135deg,var(--navy),var(--ocean));color:#fff;position:relative;overflow:hidden}
 .contact-page-hero::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--gold),transparent)}
 .contact-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
@@ -281,17 +248,9 @@ textarea{resize:vertical;min-height:110px}
 .map-embed{border-radius:var(--r-md);overflow:hidden;box-shadow:var(--sh-sm);margin-top:24px;height:220px;background:linear-gradient(135deg,var(--mist),#d4e8f5);display:flex;align-items:center;justify-content:center;color:var(--t-light);font-size:13.5px;border:1px solid #cde4f3;flex-direction:column;gap:10px}
 .map-embed svg{width:28px;height:28px;stroke:var(--azure);fill:none;stroke-width:1.5}
 
-/* ============================================
-   BACKGROUNDS
-============================================ */
-.bg-navy{background:var(--navy)}
-.bg-sand{background:var(--sand)}
-.bg-mist{background:var(--mist)}
-.bg-white{background:var(--white)}
+.bg-navy{background:var(--navy)}.bg-sand{background:var(--sand)}.bg-mist{background:var(--mist)}.bg-white{background:var(--white)}
 
-/* ============================================
-   QUICK INQUIRY SECTION
-============================================ */
+/* QUICK INQUIRY */
 .quick-inquiry{background:linear-gradient(135deg,var(--navy) 0%,var(--ocean) 100%);padding:80px 0;position:relative;overflow:hidden}
 .quick-inquiry::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--gold),transparent)}
 .inquiry-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
@@ -306,9 +265,7 @@ textarea{resize:vertical;min-height:110px}
 .check-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.68);font-size:13.5px}
 .check-item svg{width:16px;height:16px;flex-shrink:0;stroke:var(--gold-lt);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-/* ============================================
-   ECOSYSTEM / SISTER COMPANIES SECTION
-============================================ */
+/* ECOSYSTEM */
 .ecosystem-section{background:var(--navy);padding:96px 0;position:relative;overflow:hidden}
 .ecosystem-section::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--gold),transparent)}
 .eco-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;margin-top:56px;border-radius:var(--r-md);overflow:hidden}
@@ -328,9 +285,7 @@ textarea{resize:vertical;min-height:110px}
 .eco-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .eco-parent-label{position:absolute;top:20px;right:20px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,129,46,.35);padding:4px 10px;border-radius:2px}
 
-/* ============================================
-   FOOTER
-============================================ */
+/* FOOTER */
 .footer{background:var(--navy);color:rgba(255,255,255,.5);padding:64px 0 28px;border-top:1px solid rgba(255,255,255,.06)}
 .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
 @media(max-width:750px){.footer-grid{grid-template-columns:1fr 1fr}}
@@ -345,9 +300,6 @@ textarea{resize:vertical;min-height:110px}
 .soc-btn svg{width:16px;height:16px;fill:currentColor}
 .footer-bottom{padding-top:22px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:11.5px;color:rgba(255,255,255,.25);letter-spacing:.04em}
 
-/* ============================================
-   PAGE ANIMATION
-============================================ */
 .page{animation:pgIn .4s ease}
 @keyframes pgIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .page-header{background:linear-gradient(135deg,var(--navy),var(--ocean));padding:125px 0 52px;color:#fff;position:relative;overflow:hidden}
@@ -356,44 +308,16 @@ textarea{resize:vertical;min-height:110px}
 .breadcrumb span{cursor:pointer;transition:var(--ease)}
 .breadcrumb span:hover{color:rgba(255,255,255,.8)}
 .breadcrumb .sep{opacity:.3}
-
-/* ============================================
-   TAGS / CHIPS
-============================================ */
 .tag{display:inline-block;background:var(--mist);color:var(--ocean);font-size:11.5px;font-weight:500;padding:4px 12px;border-radius:2px;margin:3px;letter-spacing:.03em}
-
-/* ============================================
-   DIVIDER
-============================================ */
 .hr-light{border:none;border-top:1px solid #edf2f8;margin:0}
-
-/* ============================================
-   READING PROGRESS BAR
-============================================ */
 .progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--gold),var(--azure));z-index:2000;transition:width .1s linear;width:0%;display:none}
-
-/* Pilgrimage card borders */
 .card-badge-umrah{background:linear-gradient(135deg,#1a6b2e,#25a244)}
 .card-badge-hajj{background:linear-gradient(135deg,#7a4a00,var(--gold))}
-
-/* ============================================
-   RESPONSIVE
-============================================ */
-@media(max-width:600px){
-  .card-grid{grid-template-columns:1fr}
-  .incl-grid{grid-template-columns:1fr}
-  .gal-grid{grid-template-columns:repeat(2,1fr)}
-  .hero-stats{gap:24px}
-  .hero-ctas{gap:10px}
-  .footer-grid{grid-template-columns:1fr}
-  .hero-logo-watermark{bottom:24px;right:24px}
-  .hero-logo-watermark img{width:140px}
-}
+@media(max-width:600px){.card-grid{grid-template-columns:1fr}.incl-grid{grid-template-columns:1fr}.gal-grid{grid-template-columns:repeat(2,1fr)}.hero-stats{gap:24px}.hero-ctas{gap:10px}.footer-grid{grid-template-columns:1fr}.hero-logo-watermark{bottom:24px;right:24px}.hero-logo-watermark img{width:140px}}
 </style>
 </head>
 <body>
 
-<!-- SVG ICON DEFS (reusable) -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
   <symbol id="ico-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
   <symbol id="ico-plane" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></symbol>
@@ -414,20 +338,66 @@ textarea{resize:vertical;min-height:110px}
   <symbol id="ico-trending" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
   <symbol id="ico-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
   <symbol id="ico-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
-  <!-- Social icons -->
   <symbol id="ico-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
   <symbol id="ico-instagram" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></symbol>
   <symbol id="ico-twitter" viewBox="0 0 24 24"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></symbol>
   <symbol id="ico-whatsapp" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></symbol>
 </svg>
 
+<!-- ============================================
+     WHATSAPP PRE-CHAT MODAL
+============================================ -->
+<div class="wa-modal-overlay" id="wa-modal-overlay" onclick="closeWAModal(event)">
+  <div class="wa-modal" role="dialog" aria-modal="true" aria-label="WhatsApp Enquiry">
+    <div class="wa-modal-header">
+      <button class="wa-modal-close" onclick="closeWAModalDirect()" aria-label="Close">&#10005;</button>
+      <div class="wa-modal-header-icon">
+        <svg viewBox="0 0 24 24"><use href="#ico-whatsapp"/></svg>
+      </div>
+      <h3>Chat with Us on WhatsApp</h3>
+      <p>Tell us a bit about your trip so we can give you the best help right away.</p>
+    </div>
+    <div class="wa-modal-body">
+      <div class="form-group">
+        <label class="form-label" for="wam-name">Your Name</label>
+        <input type="text" id="wam-name" placeholder="e.g. Fatima Aliyu" autocomplete="name"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="wam-dest">Destination / Package</label>
+        <select id="wam-dest">
+          <option value="">— Select a destination —</option>
+          <option>Umrah Package – Saudi Arabia</option>
+          <option>Hajj Package – Saudi Arabia</option>
+          <option>Dubai, UAE</option>
+          <option>United Kingdom</option>
+          <option>Canada</option>
+          <option>Turkey</option>
+          <option>Maldives</option>
+          <option>South Africa</option>
+          <option>Malaysia</option>
+          <option>Other / Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="wam-msg">What do you need help with?</label>
+        <textarea id="wam-msg" placeholder="e.g. I want to travel in July with my family of 4. Please send package prices and what's included."></textarea>
+      </div>
+      <button class="wa-send-btn" onclick="launchWhatsApp()">
+        <svg viewBox="0 0 24 24"><use href="#ico-whatsapp"/></svg>
+        Open WhatsApp Chat
+      </button>
+      <p class="wa-modal-note">You'll be taken to WhatsApp with your message <strong>already typed</strong>. Just hit send!</p>
+    </div>
+  </div>
+</div>
+
 <!-- FLOATING WHATSAPP -->
-<a class="wa-float" href="https://wa.me/15814263935?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank" aria-label="Chat on WhatsApp">
+<div class="wa-float" aria-label="Chat on WhatsApp">
   <div class="wa-tooltip">Chat with us</div>
-  <div class="wa-bubble">
+  <div class="wa-bubble" onclick="openWAModal()" role="button" tabindex="0" aria-label="Open WhatsApp chat">
     <svg width="28" height="28"><use href="#ico-whatsapp"/></svg>
   </div>
-</a>
+</div>
 
 <!-- PROGRESS BAR -->
 <div class="progress-bar" id="progress-bar"></div>
@@ -438,7 +408,7 @@ textarea{resize:vertical;min-height:110px}
     <div class="nav-inner">
       <div class="logo" onclick="showPage('home')">
         <div class="logo-mark">
-          <img src="mhu.jpg" alt="MHU Logo" style="width: 100%; height: auto; display: block;">
+          <img src="mhu.jpg" alt="MHU Logo" style="width:100%;height:auto;display:block;">
         </div>
         <div>
           <span class="logo-name">MHU Travel & Tour</span>
@@ -446,16 +416,16 @@ textarea{resize:vertical;min-height:110px}
         </div>
       </div>
       <div class="nav-links">
-        <span class="nav-link active" id="nl-home"    onclick="showPage('home')">Home</span>
-        <span class="nav-link"        id="nl-tours"   onclick="showPage('tours')">Tours</span>
-        <span class="nav-link"        id="nl-about"   onclick="showPage('about')">About</span>
-        <span class="nav-link"        id="nl-contact" onclick="showPage('contact')">Contact</span>
+        <span class="nav-link active" id="nl-home" onclick="showPage('home')">Home</span>
+        <span class="nav-link" id="nl-tours" onclick="showPage('tours')">Tours</span>
+        <span class="nav-link" id="nl-about" onclick="showPage('about')">About</span>
+        <span class="nav-link" id="nl-contact" onclick="showPage('contact')">Contact</span>
       </div>
       <div class="nav-cta">
-        <a class="btn btn-wa btn-sm" href="https://wa.me/15814263935?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank">
+        <button class="btn btn-wa btn-sm" onclick="openWAModal()">
           <svg width="15" height="15"><use href="#ico-whatsapp"/></svg>
           WhatsApp
-        </a>
+        </button>
       </div>
       <div class="hamburger" onclick="toggleMobile()">
         <span></span><span></span><span></span>
@@ -471,7 +441,7 @@ textarea{resize:vertical;min-height:110px}
   <span class="nav-link" onclick="showPage('tours');toggleMobile()">Tours</span>
   <span class="nav-link" onclick="showPage('about');toggleMobile()">About</span>
   <span class="nav-link" onclick="showPage('contact');toggleMobile()">Contact</span>
-  <a class="btn btn-wa" style="margin-top:20px" href="https://wa.me/15814263935?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank">Chat on WhatsApp</a>
+  <button class="btn btn-wa" style="margin-top:20px" onclick="toggleMobile();openWAModal()">Chat on WhatsApp</button>
 </div>
 
 <!-- =========================================
@@ -479,16 +449,12 @@ textarea{resize:vertical;min-height:110px}
 ========================================= -->
 <div id="page-home" class="page">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-line"></div>
-
-    <!-- LOGO WATERMARK — bottom-right, non-intrusive -->
     <div class="hero-logo-watermark">
       <img src="mhu.jpg" alt=""/>
     </div>
-
     <div class="container">
       <div class="hero-content">
         <div class="hero-badge">
@@ -498,10 +464,10 @@ textarea{resize:vertical;min-height:110px}
         <h1 class="disp-xl">Your World Awaits —<br><em>Let's Explore It</em></h1>
         <p class="hero-sub">From the golden dunes of Dubai to the storied streets of London, MHU Travel &amp; Tour crafts bespoke journeys that turn your travel dreams into lifelong memories.</p>
         <div class="hero-ctas">
-          <a class="btn btn-wa" href="https://wa.me/2348000000000?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank">
+          <button class="btn btn-wa" onclick="openWAModal()">
             <svg width="17" height="17"><use href="#ico-whatsapp"/></svg>
             Chat on WhatsApp
-          </a>
+          </button>
           <button class="btn btn-outline" onclick="showPage('tours')">
             Plan Your Trip
             <svg width="14" height="14"><use href="#ico-arrow-right"/></svg>
@@ -518,7 +484,7 @@ textarea{resize:vertical;min-height:110px}
     </div>
   </section>
 
-  <!-- MARQUEE TRUST BAR -->
+  <!-- MARQUEE -->
   <div class="marquee-bar">
     <div class="marquee-track" id="marquee-track">
       <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-globe"/></svg> Umrah – Saudi Arabia</div>
@@ -533,7 +499,6 @@ textarea{resize:vertical;min-height:110px}
       <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-plane"/></svg> Visa Assistance</div>
       <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-building"/></svg> Hotel Bookings</div>
       <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-globe"/></svg> 40+ Destinations</div>
-      <!-- Duplicate for seamless loop -->
       <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-globe"/></svg> Umrah – Saudi Arabia</div>
       <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-map-pin"/></svg> Dubai, UAE</div>
       <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-globe"/></svg> United Kingdom</div>
@@ -576,36 +541,12 @@ textarea{resize:vertical;min-height:110px}
         <p class="body-lg" style="max-width:480px;margin:0 auto">We go beyond booking — we create experiences you'll tell stories about for years.</p>
       </div>
       <div class="why-grid">
-        <div class="why-card">
-          <div class="why-icon"><svg><use href="#ico-globe"/></svg></div>
-          <h4>Global Destinations</h4>
-          <p>Access to 40+ curated destinations across Europe, the Middle East, Asia, and the Americas.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon"><svg><use href="#ico-plane"/></svg></div>
-          <h4>End-to-End Service</h4>
-          <p>From visa processing and flight booking to hotels and guided tours — we handle everything.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon"><svg><use href="#ico-medal"/></svg></div>
-          <h4>Certified &amp; Trusted</h4>
-          <p>Licensed travel agency with years of excellence and thousands of satisfied clients.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon"><svg><use href="#ico-message"/></svg></div>
-          <h4>24/7 Support</h4>
-          <p>Our team is always a WhatsApp message away — before, during, and after your journey.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon"><svg><use href="#ico-users"/></svg></div>
-          <h4>Group &amp; Family Tours</h4>
-          <p>Special packages crafted for families, honeymoon couples, corporate groups and more.</p>
-        </div>
-        <div class="why-card">
-          <div class="why-icon"><svg><use href="#ico-lock"/></svg></div>
-          <h4>Secure Bookings</h4>
-          <p>All your travel documents and payments are handled with the highest level of security and care.</p>
-        </div>
+        <div class="why-card"><div class="why-icon"><svg><use href="#ico-globe"/></svg></div><h4>Global Destinations</h4><p>Access to 40+ curated destinations across Europe, the Middle East, Asia, and the Americas.</p></div>
+        <div class="why-card"><div class="why-icon"><svg><use href="#ico-plane"/></svg></div><h4>End-to-End Service</h4><p>From visa processing and flight booking to hotels and guided tours — we handle everything.</p></div>
+        <div class="why-card"><div class="why-icon"><svg><use href="#ico-medal"/></svg></div><h4>Certified &amp; Trusted</h4><p>Licensed travel agency with years of excellence and thousands of satisfied clients.</p></div>
+        <div class="why-card"><div class="why-icon"><svg><use href="#ico-message"/></svg></div><h4>24/7 Support</h4><p>Our team is always a WhatsApp message away — before, during, and after your journey.</p></div>
+        <div class="why-card"><div class="why-icon"><svg><use href="#ico-users"/></svg></div><h4>Group &amp; Family Tours</h4><p>Special packages crafted for families, honeymoon couples, corporate groups and more.</p></div>
+        <div class="why-card"><div class="why-icon"><svg><use href="#ico-lock"/></svg></div><h4>Secure Bookings</h4><p>All your travel documents and payments are handled with the highest level of security and care.</p></div>
       </div>
     </div>
   </section>
@@ -672,50 +613,28 @@ textarea{resize:vertical;min-height:110px}
         <p class="body-lg" style="color:rgba(255,255,255,.5);max-width:540px;margin:0 auto">MHU Travel &amp; Tour is part of a growing family of businesses built to serve Nigerians with excellence across multiple industries.</p>
       </div>
       <div class="eco-grid">
-
-        <!-- Parent Company -->
         <div class="eco-card eco-parent">
           <div class="eco-parent-label">Parent Group</div>
-          <div class="eco-icon">
-            <svg><use href="#ico-trending"/></svg>
-          </div>
+          <div class="eco-icon"><svg><use href="#ico-trending"/></svg></div>
           <span class="eco-tag">Holding Company</span>
           <h3>MHU Global Investment</h3>
           <p>The parent company of all MHU ventures — a diversified investment group driving growth across travel, automotive, real estate, and emerging opportunities in Nigeria and beyond.</p>
-          <span class="eco-link">
-            Learn More
-            <svg><use href="#ico-arrow-right"/></svg>
-          </span>
+          <span class="eco-link">Learn More <svg><use href="#ico-arrow-right"/></svg></span>
         </div>
-
-        <!-- Travel -->
         <div class="eco-card" style="border-bottom:2px solid rgba(29,111,171,.3)">
-          <div class="eco-icon" style="background:rgba(29,111,171,.1);border-color:rgba(29,111,171,.25)">
-            <svg style="stroke:var(--azure)"><use href="#ico-plane"/></svg>
-          </div>
+          <div class="eco-icon" style="background:rgba(29,111,171,.1);border-color:rgba(29,111,171,.25)"><svg style="stroke:var(--azure)"><use href="#ico-plane"/></svg></div>
           <span class="eco-tag" style="color:var(--azure)">You Are Here</span>
           <h3>MHU Travel &amp; Tour</h3>
           <p>Premium outbound travel, Hajj &amp; Umrah packages, visa assistance, hotel bookings, and bespoke group tours to 40+ destinations worldwide.</p>
-          <span class="eco-link" style="color:var(--azure)">
-            Explore Tours
-            <svg><use href="#ico-arrow-right"/></svg>
-          </span>
+          <span class="eco-link" style="color:var(--azure)" onclick="showPage('tours')">Explore Tours <svg><use href="#ico-arrow-right"/></svg></span>
         </div>
-
-        <!-- Automobiles -->
         <div class="eco-card">
-          <div class="eco-icon">
-            <svg><use href="#ico-car"/></svg>
-          </div>
+          <div class="eco-icon"><svg><use href="#ico-car"/></svg></div>
           <span class="eco-tag">Coming Soon</span>
           <h3>MHU Automobiles</h3>
           <p>Nigeria's premier car bidding and import platform — connecting buyers to quality foreign-used and brand-new vehicles with full transparency, documentation, and delivery support.</p>
-          <span class="eco-link">
-            Join Waitlist
-            <svg><use href="#ico-arrow-right"/></svg>
-          </span>
+          <span class="eco-link">Join Waitlist <svg><use href="#ico-arrow-right"/></svg></span>
         </div>
-
       </div>
     </div>
   </section>
@@ -728,44 +647,14 @@ textarea{resize:vertical;min-height:110px}
         <h2 class="disp-lg" style="margin-bottom:14px">What Our Travellers Say</h2>
       </div>
       <div class="testi-grid">
-        <div class="testi-card">
-          <div class="testi-qq">&ldquo;</div>
-          <div class="stars">
-            <svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg>
-          </div>
-          <p>MHU Travel made our Dubai honeymoon absolutely magical. Every detail was perfectly arranged — the hotel, transfers, desert safari. We didn't worry about a thing!</p>
-          <div class="testi-author">
-            <div class="testi-avatar">AS</div>
-            <div><div class="testi-name">Amina Sunusi</div><div class="testi-loc">Abuja, Nigeria</div></div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-qq">&ldquo;</div>
-          <div class="stars">
-            <svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg>
-          </div>
-          <p>Our family trip to Turkey was seamless from start to finish. The visa assistance alone saved us so much stress. Highly recommend MHU to anyone planning abroad.</p>
-          <div class="testi-author">
-            <div class="testi-avatar">MT</div>
-            <div><div class="testi-name">Michael Tobi</div><div class="testi-loc">Lagos, Nigeria</div></div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-qq">&ldquo;</div>
-          <div class="stars">
-            <svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg>
-          </div>
-          <p>I booked my UK study trip through MHU and the professionalism was outstanding. They answered every question, handled my documents and I got my visa on time!</p>
-          <div class="testi-author">
-            <div class="testi-avatar">ZA</div>
-            <div><div class="testi-name">Zahra Abubakar</div><div class="testi-loc">Kano, Nigeria</div></div>
-          </div>
-        </div>
+        <div class="testi-card"><div class="testi-qq">&ldquo;</div><div class="stars"><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg></div><p>MHU Travel made our Dubai honeymoon absolutely magical. Every detail was perfectly arranged — the hotel, transfers, desert safari. We didn't worry about a thing!</p><div class="testi-author"><div class="testi-avatar">AS</div><div><div class="testi-name">Amina Sunusi</div><div class="testi-loc">Abuja, Nigeria</div></div></div></div>
+        <div class="testi-card"><div class="testi-qq">&ldquo;</div><div class="stars"><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg></div><p>Our family trip to Turkey was seamless from start to finish. The visa assistance alone saved us so much stress. Highly recommend MHU to anyone planning abroad.</p><div class="testi-author"><div class="testi-avatar">MT</div><div><div class="testi-name">Michael Tobi</div><div class="testi-loc">Lagos, Nigeria</div></div></div></div>
+        <div class="testi-card"><div class="testi-qq">&ldquo;</div><div class="stars"><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg><svg><use href="#ico-star"/></svg></div><p>I booked my UK study trip through MHU and the professionalism was outstanding. They answered every question, handled my documents and I got my visa on time!</p><div class="testi-author"><div class="testi-avatar">ZA</div><div><div class="testi-name">Zahra Abubakar</div><div class="testi-loc">Kano, Nigeria</div></div></div></div>
       </div>
     </div>
   </section>
 
-</div><!-- /page-home -->
+</div>
 
 <!-- =========================================
      TOURS PAGE
@@ -773,11 +662,7 @@ textarea{resize:vertical;min-height:110px}
 <div id="page-tours" class="page hidden">
   <div class="page-header">
     <div class="container">
-      <div class="breadcrumb">
-        <span onclick="showPage('home')">Home</span>
-        <span class="sep">/</span>
-        <span style="color:#fff">Tours &amp; Packages</span>
-      </div>
+      <div class="breadcrumb"><span onclick="showPage('home')">Home</span><span class="sep">/</span><span style="color:#fff">Tours &amp; Packages</span></div>
       <h1 class="disp-lg" style="margin-bottom:12px">All Tours &amp; Packages</h1>
       <p class="body-md" style="color:rgba(255,255,255,.58);max-width:480px">Browse our full collection of handcrafted travel experiences. Request details to get a personalised quote.</p>
     </div>
@@ -791,29 +676,19 @@ textarea{resize:vertical;min-height:110px}
         </div>
         <select id="filter-location" onchange="applyFilters()">
           <option value="">All Locations</option>
-          <option>Saudi Arabia</option>
-          <option>Dubai</option>
-          <option>UK</option>
-          <option>Canada</option>
-          <option>Turkey</option>
-          <option>Maldives</option>
-          <option>South Africa</option>
-          <option>Malaysia</option>
+          <option>Saudi Arabia</option><option>Dubai</option><option>UK</option>
+          <option>Canada</option><option>Turkey</option><option>Maldives</option>
+          <option>South Africa</option><option>Malaysia</option>
         </select>
         <select id="filter-type" onchange="applyFilters()">
           <option value="">All Types</option>
-          <option>Pilgrimage</option>
-          <option>Luxury</option>
-          <option>Budget</option>
-          <option>Family</option>
-          <option>Honeymoon</option>
+          <option>Pilgrimage</option><option>Luxury</option><option>Budget</option>
+          <option>Family</option><option>Honeymoon</option>
         </select>
         <select id="filter-duration" onchange="applyFilters()">
           <option value="">Any Duration</option>
-          <option>1-4 Days</option>
-          <option>5-7 Days</option>
-          <option>8-14 Days</option>
-          <option>15+ Days</option>
+          <option>1-4 Days</option><option>5-7 Days</option>
+          <option>8-14 Days</option><option>15+ Days</option>
         </select>
         <button class="btn btn-outline-dark btn-sm" onclick="clearFilters()">Clear</button>
       </div>
@@ -832,13 +707,7 @@ textarea{resize:vertical;min-height:110px}
     <img class="tour-hero-img" id="detail-hero-img" src="" alt=""/>
     <div class="container">
       <div class="tour-hero-content">
-        <div class="breadcrumb">
-          <span onclick="showPage('home')">Home</span>
-          <span class="sep">/</span>
-          <span onclick="showPage('tours')" style="cursor:pointer">Tours</span>
-          <span class="sep">/</span>
-          <span id="detail-bc" style="color:#fff">Tour</span>
-        </div>
+        <div class="breadcrumb"><span onclick="showPage('home')">Home</span><span class="sep">/</span><span onclick="showPage('tours')" style="cursor:pointer">Tours</span><span class="sep">/</span><span id="detail-bc" style="color:#fff">Tour</span></div>
         <div id="detail-type-badge" class="tag" style="background:var(--gold);color:#fff;margin-bottom:14px"></div>
         <h1 class="disp-lg" id="detail-title" style="margin-bottom:10px"></h1>
         <p style="color:rgba(255,255,255,.62);font-size:14px;letter-spacing:.04em" id="detail-meta"></p>
@@ -849,15 +718,9 @@ textarea{resize:vertical;min-height:110px}
     <div class="container">
       <div class="detail-grid">
         <div>
-          <div style="margin-bottom:38px">
-            <h2 class="disp-md" style="margin-bottom:16px">Tour Overview</h2>
-            <p class="body-lg" id="detail-overview"></p>
-          </div>
+          <div style="margin-bottom:38px"><h2 class="disp-md" style="margin-bottom:16px">Tour Overview</h2><p class="body-lg" id="detail-overview"></p></div>
           <hr class="hr-light" style="margin:30px 0"/>
-          <div style="margin-bottom:38px">
-            <h2 class="disp-md" style="margin-bottom:22px">Day-by-Day Itinerary</h2>
-            <div id="detail-itinerary"></div>
-          </div>
+          <div style="margin-bottom:38px"><h2 class="disp-md" style="margin-bottom:22px">Day-by-Day Itinerary</h2><div id="detail-itinerary"></div></div>
           <hr class="hr-light" style="margin:30px 0"/>
           <div style="margin-bottom:38px">
             <h2 class="disp-md" style="margin-bottom:22px">What's Included</h2>
@@ -866,30 +729,21 @@ textarea{resize:vertical;min-height:110px}
             <div class="incl-grid" id="detail-excluded"></div>
           </div>
           <hr class="hr-light" style="margin:30px 0"/>
-          <div>
-            <h2 class="disp-md" style="margin-bottom:20px">Photo Gallery</h2>
-            <div class="gal-grid" id="detail-gallery"></div>
-          </div>
+          <div><h2 class="disp-md" style="margin-bottom:20px">Photo Gallery</h2><div class="gal-grid" id="detail-gallery"></div></div>
         </div>
         <div>
           <div class="sidebar-card">
             <h3 id="sb-title"></h3>
             <p id="sb-desc">Interested in this tour? Contact us for a personalised quote tailored to your budget and schedule.</p>
-            <a id="sb-wa-btn" class="btn btn-wa btn-full" href="#" target="_blank">
+            <button id="sb-wa-btn" class="btn btn-wa btn-full" onclick="openWAModalForTour()">
               <svg width="16" height="16"><use href="#ico-whatsapp"/></svg>
               Chat on WhatsApp
-            </a>
+            </button>
             <button class="btn btn-outline-dark btn-full" onclick="showPage('contact')">Request a Quote</button>
             <hr class="hr-light" style="margin:20px 0"/>
             <div style="display:flex;flex-direction:column;gap:10px">
-              <div class="sidebar-info">
-                <svg><use href="#ico-phone"/></svg>
-                <span>+1 581 426 3935</span>
-              </div>
-              <div class="sidebar-info">
-                <svg><use href="#ico-clock"/></svg>
-                <span>Mon–Sat, 8am – 8pm</span>
-              </div>
+              <div class="sidebar-info"><svg><use href="#ico-phone"/></svg><span>+1 581 426 3935</span></div>
+              <div class="sidebar-info"><svg><use href="#ico-clock"/></svg><span>Mon–Sat, 8am – 8pm</span></div>
             </div>
           </div>
         </div>
@@ -904,17 +758,12 @@ textarea{resize:vertical;min-height:110px}
 <div id="page-about" class="page hidden">
   <div class="about-hero-sec">
     <div class="container">
-      <div class="breadcrumb">
-        <span onclick="showPage('home')">Home</span>
-        <span class="sep">/</span>
-        <span style="color:#fff">About Us</span>
-      </div>
+      <div class="breadcrumb"><span onclick="showPage('home')">Home</span><span class="sep">/</span><span style="color:#fff">About Us</span></div>
       <h1 class="disp-xl" style="max-width:620px;margin-bottom:20px">Passionate About <em style="color:var(--azure);font-style:italic">Exceptional Travel</em></h1>
       <p class="body-lg" style="max-width:560px;color:rgba(255,255,255,.6)">MHU Travel &amp; Tour was born from a deep love of exploration and a mission to make world-class travel accessible to every Nigerian.</p>
     </div>
   </div>
 
-  <!-- OUR STORY -->
   <section class="section bg-white">
     <div class="container">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:68px;align-items:center">
@@ -937,46 +786,28 @@ textarea{resize:vertical;min-height:110px}
     </div>
   </section>
 
-  <!-- MISSION & VISION -->
   <section class="section bg-sand">
     <div class="container">
-      <div class="text-center" style="margin-bottom:48px">
-        <span class="sec-label">What Drives Us</span>
-        <h2 class="disp-lg">Mission &amp; Vision</h2>
-      </div>
+      <div class="text-center" style="margin-bottom:48px"><span class="sec-label">What Drives Us</span><h2 class="disp-lg">Mission &amp; Vision</h2></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:860px;margin:0 auto">
-        <div class="mission-card">
-          <h3>Our Mission</h3>
-          <p class="body-md">To deliver seamless, personalised travel experiences that exceed expectations — handling every detail so our clients can focus on the joy of exploration.</p>
-        </div>
-        <div class="mission-card" style="border-left-color:var(--gold)">
-          <h3 style="color:var(--gold)">Our Vision</h3>
-          <p class="body-md">To become the most trusted travel partner in West Africa, enabling more Nigerians to explore the world confidently and affordably.</p>
-        </div>
+        <div class="mission-card"><h3>Our Mission</h3><p class="body-md">To deliver seamless, personalised travel experiences that exceed expectations — handling every detail so our clients can focus on the joy of exploration.</p></div>
+        <div class="mission-card" style="border-left-color:var(--gold)"><h3 style="color:var(--gold)">Our Vision</h3><p class="body-md">To become the most trusted travel partner in West Africa, enabling more Nigerians to explore the world confidently and affordably.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- CEO SECTION -->
   <section class="section bg-white">
     <div class="container">
-      <div class="text-center" style="margin-bottom:52px">
-        <span class="sec-label">Leadership</span>
-        <h2 class="disp-lg">Meet Our Founder &amp; CEO</h2>
-      </div>
+      <div class="text-center" style="margin-bottom:52px"><span class="sec-label">Leadership</span><h2 class="disp-lg">Meet Our Founder &amp; CEO</h2></div>
       <div style="display:flex;justify-content:center">
         <div class="team-card">
-          <div class="team-photo">
-            <svg width="80" height="80" stroke="rgba(255,255,255,.35)" fill="none" stroke-width="1.2"><use href="#ico-users"/></svg>
-          </div>
+          <div class="team-photo"><svg width="80" height="80" stroke="rgba(255,255,255,.35)" fill="none" stroke-width="1.2"><use href="#ico-users"/></svg></div>
           <div class="team-body">
             <h3>Muhammad Hadi</h3>
             <p class="team-role">Founder &amp; CEO &nbsp;&middot;&nbsp; <em style="color:var(--gold);font-style:normal">"Dollahead"</em></p>
-            <p class="body-md" style="font-size:14px">Known widely as <strong>Dollahead</strong>, Muhammad Hadi founded MHU Travel &amp; Tour in 2025 with one clear mission — to make world-class travel accessible to every Nigerian. A certified travel consultant and IATA-trained professional, he brings a rare blend of hustle and industry expertise to every client relationship. From negotiating premium hotel rates to personally walking clients through visa applications, Muhammad is deeply hands-on. Under his leadership, MHU has grown from a one-man operation into one of Abuja's most trusted travel brands — and the cornerstone of the MHU Global Investment group.</p>
+            <p class="body-md" style="font-size:14px">Known widely as <strong>Dollahead</strong>, Muhammad Hadi founded MHU Travel &amp; Tour in 2025 with one clear mission — to make world-class travel accessible to every Nigerian. A certified travel consultant and IATA-trained professional, he brings a rare blend of hustle and industry expertise to every client relationship.</p>
             <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:6px">
-              <span class="tag">Visa Specialist</span>
-              <span class="tag">Hajj &amp; Umrah Expert</span>
-              <span class="tag">Founder 2025</span>
+              <span class="tag">Visa Specialist</span><span class="tag">Hajj &amp; Umrah Expert</span><span class="tag">Founder 2025</span>
             </div>
           </div>
         </div>
@@ -984,33 +815,16 @@ textarea{resize:vertical;min-height:110px}
     </div>
   </section>
 
-  <!-- CREDIBILITY -->
   <section class="section bg-navy">
     <div class="container text-center">
       <span class="sec-label" style="color:var(--gold-lt)">Why Trust Us</span>
       <h2 class="disp-lg" style="color:#fff;margin-bottom:18px">Built on Trust &amp; Expertise</h2>
-      <p class="body-lg" style="max-width:500px;margin:0 auto 48px;color:rgba(255,255,255,.5)">Every trip we organise carries the weight of our reputation. Here's what makes MHU Travel &amp; Tour your safest travel choice.</p>
+      <p class="body-lg" style="max-width:500px;margin:0 auto 48px;color:rgba(255,255,255,.5)">Every trip we organise carries the weight of our reputation.</p>
       <div class="why-grid">
-        <div class="why-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)">
-          <div class="why-icon" style="background:rgba(255,255,255,.06)"><svg style="stroke:var(--azure)"><use href="#ico-shield"/></svg></div>
-          <h4 style="color:#fff">Licensed Agency</h4>
-          <p style="color:rgba(255,255,255,.5)">Fully registered and licensed by the Nigerian Tourism Development Corporation (NTDC).</p>
-        </div>
-        <div class="why-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)">
-          <div class="why-icon" style="background:rgba(255,255,255,.06)"><svg style="stroke:var(--azure)"><use href="#ico-users"/></svg></div>
-          <h4 style="color:#fff">Trusted Partners</h4>
-          <p style="color:rgba(255,255,255,.5)">Partnered with leading airlines, hotel chains, and tour operators for premium rates and service.</p>
-        </div>
-        <div class="why-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)">
-          <div class="why-icon" style="background:rgba(255,255,255,.06)"><svg style="stroke:var(--azure)"><use href="#ico-medal"/></svg></div>
-          <h4 style="color:#fff">Expert Team</h4>
-          <p style="color:rgba(255,255,255,.5)">All our travel consultants are IATA-trained and hold deep knowledge of their specialist destinations.</p>
-        </div>
-        <div class="why-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)">
-          <div class="why-icon" style="background:rgba(255,255,255,.06)"><svg style="stroke:var(--azure)"><use href="#ico-star"/></svg></div>
-          <h4 style="color:#fff">Award Recognised</h4>
-          <p style="color:rgba(255,255,255,.5)">Winner of the Nigeria Travel Awards for Best Outbound Travel Agency 2025</p>
-        </div>
+        <div class="why-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)"><div class="why-icon" style="background:rgba(255,255,255,.06)"><svg style="stroke:var(--azure)"><use href="#ico-shield"/></svg></div><h4 style="color:#fff">Licensed Agency</h4><p style="color:rgba(255,255,255,.5)">Fully registered and licensed by the Nigerian Tourism Development Corporation (NTDC).</p></div>
+        <div class="why-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)"><div class="why-icon" style="background:rgba(255,255,255,.06)"><svg style="stroke:var(--azure)"><use href="#ico-users"/></svg></div><h4 style="color:#fff">Trusted Partners</h4><p style="color:rgba(255,255,255,.5)">Partnered with leading airlines, hotel chains, and tour operators for premium rates and service.</p></div>
+        <div class="why-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)"><div class="why-icon" style="background:rgba(255,255,255,.06)"><svg style="stroke:var(--azure)"><use href="#ico-medal"/></svg></div><h4 style="color:#fff">Expert Team</h4><p style="color:rgba(255,255,255,.5)">All our travel consultants are IATA-trained and hold deep knowledge of their specialist destinations.</p></div>
+        <div class="why-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.09)"><div class="why-icon" style="background:rgba(255,255,255,.06)"><svg style="stroke:var(--azure)"><use href="#ico-star"/></svg></div><h4 style="color:#fff">Award Recognised</h4><p style="color:rgba(255,255,255,.5)">Winner of the Nigeria Travel Awards for Best Outbound Travel Agency 2025.</p></div>
       </div>
     </div>
   </section>
@@ -1022,11 +836,7 @@ textarea{resize:vertical;min-height:110px}
 <div id="page-contact" class="page hidden">
   <div class="contact-page-hero">
     <div class="container">
-      <div class="breadcrumb">
-        <span onclick="showPage('home')">Home</span>
-        <span class="sep">/</span>
-        <span style="color:#fff">Contact Us</span>
-      </div>
+      <div class="breadcrumb"><span onclick="showPage('home')">Home</span><span class="sep">/</span><span style="color:#fff">Contact Us</span></div>
       <h1 class="disp-lg" style="margin-bottom:14px">Let's Plan Your Journey</h1>
       <p class="body-md" style="color:rgba(255,255,255,.58);max-width:440px">Fill out the form below or reach us instantly on WhatsApp. We respond within 30 minutes on business days.</p>
     </div>
@@ -1039,95 +849,41 @@ textarea{resize:vertical;min-height:110px}
           <p class="body-md" style="margin-bottom:26px">We'll get back to you within 30 minutes on business days.</p>
           <div id="cf-success" class="form-success">Message sent. We'll contact you shortly.</div>
           <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">First Name</label>
-              <input type="text" id="cf-fname" placeholder="First name"/>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Last Name</label>
-              <input type="text" id="cf-lname" placeholder="Last name"/>
-            </div>
+            <div class="form-group"><label class="form-label">First Name</label><input type="text" id="cf-fname" placeholder="First name"/></div>
+            <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="cf-lname" placeholder="Last name"/></div>
           </div>
           <div class="form-row">
-            <div class="form-group">
-              <label class="form-label">Phone Number</label>
-              <input type="tel" id="cf-phone" placeholder="+234 800 000 0000"/>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Email Address</label>
-              <input type="email" id="cf-email" placeholder="your@email.com"/>
-            </div>
+            <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="cf-phone" placeholder="+234 800 000 0000"/></div>
+            <div class="form-group"><label class="form-label">Email Address</label><input type="email" id="cf-email" placeholder="your@email.com"/></div>
           </div>
           <div class="form-group">
             <label class="form-label">Destination of Interest</label>
             <select id="cf-destination">
               <option value="">Select a destination…</option>
-              <option>Umrah Package – Saudi Arabia</option>
-              <option>Hajj Package – Saudi Arabia</option>
-              <option>Dubai, UAE</option>
-              <option>United Kingdom</option>
-              <option>Canada</option>
-              <option>Turkey</option>
-              <option>Maldives</option>
-              <option>South Africa</option>
-              <option>Malaysia</option>
-              <option>Other (specify in message)</option>
+              <option>Umrah Package – Saudi Arabia</option><option>Hajj Package – Saudi Arabia</option>
+              <option>Dubai, UAE</option><option>United Kingdom</option><option>Canada</option>
+              <option>Turkey</option><option>Maldives</option><option>South Africa</option>
+              <option>Malaysia</option><option>Other (specify in message)</option>
             </select>
           </div>
-          <div class="form-group">
-            <label class="form-label">Message</label>
-            <textarea id="cf-message" placeholder="Tell us about your travel plans, dates, number of travellers…"></textarea>
-          </div>
+          <div class="form-group"><label class="form-label">Message</label><textarea id="cf-message" placeholder="Tell us about your travel plans, dates, number of travellers…"></textarea></div>
           <button class="btn btn-primary btn-full" onclick="submitContactForm()" style="font-size:14.5px;padding:14px 26px;">
             Send Message
             <svg width="14" height="14" stroke="white" fill="none" stroke-width="2"><use href="#ico-arrow-right"/></svg>
           </button>
           <div id="cf-sms-log" class="sms-log"></div>
         </div>
-
         <div>
           <h2 class="disp-md" style="margin-bottom:26px">Get in Touch</h2>
-          <a class="wa-static-btn" href="https://wa.me/15814263935?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank" style="margin-bottom:26px;display:flex">
-            <div class="wa-static-icon">
-              <svg viewBox="0 0 24 24" width="22" height="22"><use href="#ico-whatsapp"/></svg>
-            </div>
-            <div class="wa-static-text">
-              <strong>Chat on WhatsApp Now</strong>
-              <span>Instant replies · +1 581 426 3935</span>
-            </div>
-          </a>
-          <div class="contact-info-item">
-            <div class="ci-icon"><svg><use href="#ico-map-pin"/></svg></div>
-            <div class="ci-text">
-              <strong>Office Address</strong>
-              <span>12 Adetokunbo Ademola Crescent, Wuse 2, Abuja, FCT, Nigeria</span>
-            </div>
+          <div class="wa-static-btn" onclick="openWAModal()" style="margin-bottom:26px;display:flex;cursor:pointer">
+            <div class="wa-static-icon"><svg viewBox="0 0 24 24" width="22" height="22"><use href="#ico-whatsapp"/></svg></div>
+            <div class="wa-static-text"><strong>Chat on WhatsApp Now</strong><span>Instant replies · +1 581 426 3935</span></div>
           </div>
-          <div class="contact-info-item">
-            <div class="ci-icon"><svg><use href="#ico-phone"/></svg></div>
-            <div class="ci-text">
-              <strong>Phone Numbers</strong>
-              <span>+234 800 000 0000 &nbsp;&middot;&nbsp; +234 800 000 0001</span>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="ci-icon"><svg><use href="#ico-mail"/></svg></div>
-            <div class="ci-text">
-              <strong>Email Address</strong>
-              <span>info@mhutravels.com</span>
-            </div>
-          </div>
-          <div class="contact-info-item" style="border:none">
-            <div class="ci-icon"><svg><use href="#ico-clock"/></svg></div>
-            <div class="ci-text">
-              <strong>Business Hours</strong>
-              <span>Monday – Saturday: 8:00am – 8:00pm<br>Sundays: 10:00am – 4:00pm</span>
-            </div>
-          </div>
-          <div class="map-embed">
-            <svg><use href="#ico-map-pin"/></svg>
-            <span>Wuse 2, Abuja</span>
-          </div>
+          <div class="contact-info-item"><div class="ci-icon"><svg><use href="#ico-map-pin"/></svg></div><div class="ci-text"><strong>Office Address</strong><span>12 Adetokunbo Ademola Crescent, Wuse 2, Abuja, FCT, Nigeria</span></div></div>
+          <div class="contact-info-item"><div class="ci-icon"><svg><use href="#ico-phone"/></svg></div><div class="ci-text"><strong>Phone Numbers</strong><span>+234 800 000 0000 &nbsp;&middot;&nbsp; +234 800 000 0001</span></div></div>
+          <div class="contact-info-item"><div class="ci-icon"><svg><use href="#ico-mail"/></svg></div><div class="ci-text"><strong>Email Address</strong><span>info@mhutravels.com</span></div></div>
+          <div class="contact-info-item" style="border:none"><div class="ci-icon"><svg><use href="#ico-clock"/></svg></div><div class="ci-text"><strong>Business Hours</strong><span>Monday – Saturday: 8:00am – 8:00pm<br>Sundays: 10:00am – 4:00pm</span></div></div>
+          <div class="map-embed"><svg><use href="#ico-map-pin"/></svg><span>Wuse 2, Abuja</span></div>
         </div>
       </div>
     </div>
@@ -1140,28 +896,15 @@ textarea{resize:vertical;min-height:110px}
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo" style="gap:11px">
-          <div class="logo-mark" style="width:60px;height:60px">
-            <img src="mhu.jpg" alt="MHU Logo" style="width: 100%; height: auto; display: block;">
-          </div>
-          <div>
-            <span class="logo-name" style="font-size:1.18rem">MHU Travel &amp; Tour</span>
-            <span class="logo-tagline">Explore Beyond Limits</span>
-          </div>
+          <div class="logo-mark" style="width:60px;height:60px"><img src="mhu.jpg" alt="MHU Logo" style="width:100%;height:auto;display:block;"></div>
+          <div><span class="logo-name" style="font-size:1.18rem">MHU Travel &amp; Tour</span><span class="logo-tagline">Explore Beyond Limits</span></div>
         </div>
         <p>Your trusted travel partner. Crafting unforgettable journeys to destinations across the globe from the heart of Abuja. A proud member of MHU Global Investment.</p>
         <div class="social-wrap">
-          <a class="soc-btn" href="#" title="Facebook" aria-label="Facebook">
-            <svg width="16" height="16"><use href="#ico-facebook"/></svg>
-          </a>
-          <a class="soc-btn" href="#" title="Instagram" aria-label="Instagram">
-            <svg width="16" height="16"><use href="#ico-instagram"/></svg>
-          </a>
-          <a class="soc-btn" href="#" title="Twitter / X" aria-label="Twitter">
-            <svg width="16" height="16"><use href="#ico-twitter"/></svg>
-          </a>
-          <a class="soc-btn" href="https://wa.me/15814263935" target="_blank" title="WhatsApp" aria-label="WhatsApp">
-            <svg width="16" height="16"><use href="#ico-whatsapp"/></svg>
-          </a>
+          <a class="soc-btn" href="#" title="Facebook"><svg width="16" height="16"><use href="#ico-facebook"/></svg></a>
+          <a class="soc-btn" href="#" title="Instagram"><svg width="16" height="16"><use href="#ico-instagram"/></svg></a>
+          <a class="soc-btn" href="#" title="Twitter"><svg width="16" height="16"><use href="#ico-twitter"/></svg></a>
+          <div class="soc-btn" onclick="openWAModal()" title="WhatsApp" style="cursor:pointer"><svg width="16" height="16"><use href="#ico-whatsapp"/></svg></div>
         </div>
       </div>
       <div>
@@ -1188,10 +931,10 @@ textarea{resize:vertical;min-height:110px}
         <span class="footer-link">MHU Travel &amp; Tour</span>
         <span class="footer-link">MHU Automobiles</span>
         <div style="margin-top:18px">
-          <a class="btn btn-wa btn-sm" href="https://wa.me/15814263935?text=Hello%2C%20I%27m%20interested%20in%20your%20travel%20packages" target="_blank">
+          <button class="btn btn-wa btn-sm" onclick="openWAModal()">
             <svg width="14" height="14"><use href="#ico-whatsapp"/></svg>
             WhatsApp Us
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -1218,6 +961,104 @@ const TOURS = [
   {id:8,title:"Dubai Family Fun Package",location:"Dubai",type:"Family",duration:"7 days, 6 nights",durationDays:7,shortDesc:"Theme parks, waterparks, and the world's biggest mall — Dubai is a wonderland for families of all ages.",img:"https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=600&q=80",gallery:["https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=400&q=70","https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=70","https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=400&q=70","https://images.unsplash.com/photo-1526495124232-a04e1849168c?w=400&q=70","https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&q=70","https://images.unsplash.com/photo-1547863616-b6a7c0a7f3b2?w=400&q=70"],overview:"Dubai is one of the world's greatest family destinations — theme parks, waterparks, indoor skiing and the world's largest mall all in one city. This specially crafted family package ensures fun for every age group.",itinerary:[{day:"Day 1",title:"Arrival & Hotel",desc:"Airport welcome, family room check-in, evening at The Beach JBR."},{day:"Day 2",title:"IMG Worlds of Adventure",desc:"Full day at IMG Worlds of Adventure — the world's largest indoor theme park."},{day:"Day 3",title:"Dubai Parks & Resorts",desc:"Motiongate Dubai or Bollywood Parks."},{day:"Day 4",title:"Wild Wadi Waterpark",desc:"Full day at Wild Wadi Waterpark, evening at Dubai Mall Fountain show."},{day:"Day 5",title:"Desert Safari Family Edition",desc:"Family-friendly dune bashing, camel rides, henna painting, cultural entertainment."},{day:"Day 6",title:"Ski Dubai & Aquarium",desc:"Indoor ski slope at Mall of the Emirates, afternoon at Dubai Aquarium."},{day:"Day 7",title:"Departure",desc:"Morning leisure, hotel checkout, airport transfer."}],included:["Return flights","Family hotel room (6 nights)","Theme park entry (3 parks)","Wild Wadi tickets","Desert safari","Ski Dubai passes","All transfers","Visa assistance"],excluded:["Flight upgrades","Meals (breakfast only)","Travel insurance","Personal shopping"],tags:["Dubai","Family"]}
 ];
 
+const WA_NUMBER = '15814263935';
+
+/* ============================================================
+   WHATSAPP MODAL — CORE LOGIC
+============================================================ */
+let _currentTourContext = null;
+
+function openWAModal(presetDest, presetMsg) {
+  const overlay = document.getElementById('wa-modal-overlay');
+  // Pre-fill destination if provided
+  if (presetDest) {
+    const sel = document.getElementById('wam-dest');
+    for (let i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === presetDest || sel.options[i].text === presetDest) {
+        sel.selectedIndex = i;
+        break;
+      }
+    }
+  }
+  // Pre-fill message if provided
+  if (presetMsg) {
+    document.getElementById('wam-msg').value = presetMsg;
+  }
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('wam-name').focus(), 300);
+}
+
+function openWAModalForTour() {
+  // Called from the tour detail sidebar — pre-fill with current tour context
+  if (_currentTourContext) {
+    const t = _currentTourContext;
+    openWAModal(
+      t.title,
+      'Hi! I\'m interested in the "' + t.title + '" (' + t.duration + '). Please send me full pricing and availability details.'
+    );
+  } else {
+    openWAModal();
+  }
+}
+
+function closeWAModalDirect() {
+  const overlay = document.getElementById('wa-modal-overlay');
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeWAModal(e) {
+  // Only close if clicking the overlay background itself
+  if (e.target === document.getElementById('wa-modal-overlay')) {
+    closeWAModalDirect();
+  }
+}
+
+// Close on Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeWAModalDirect();
+});
+
+function launchWhatsApp() {
+  const name = document.getElementById('wam-name').value.trim();
+  const dest = document.getElementById('wam-dest').value.trim();
+  const msg  = document.getElementById('wam-msg').value.trim();
+
+  if (!name) {
+    document.getElementById('wam-name').focus();
+    document.getElementById('wam-name').style.borderColor = '#e04040';
+    setTimeout(() => document.getElementById('wam-name').style.borderColor = '', 2000);
+    return;
+  }
+  if (!dest) {
+    document.getElementById('wam-dest').focus();
+    document.getElementById('wam-dest').style.borderColor = '#e04040';
+    setTimeout(() => document.getElementById('wam-dest').style.borderColor = '', 2000);
+    return;
+  }
+
+  // Compose the full pre-filled WhatsApp message
+  let fullMsg = 'Hello MHU Travel & Tour!\n\n';
+  fullMsg += 'My name is *' + name + '*.\n';
+  fullMsg += 'I am interested in: *' + dest + '*.\n';
+  if (msg) {
+    fullMsg += '\n' + msg;
+  }
+  fullMsg += '\n\nKindly send me more details and pricing. Thank you!';
+
+  const waURL = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(fullMsg);
+
+  // Clear + close modal
+  document.getElementById('wam-name').value = '';
+  document.getElementById('wam-dest').selectedIndex = 0;
+  document.getElementById('wam-msg').value = '';
+  _currentTourContext = null;
+  closeWAModalDirect();
+
+  window.open(waURL, '_blank');
+}
+
 /* ============================================================
    NAVIGATION
 ============================================================ */
@@ -1238,7 +1079,7 @@ function showPage(page, tourId) {
 }
 
 /* ============================================================
-   RENDER HOME DESTINATIONS
+   RENDER
 ============================================================ */
 function renderHomeDestinations() {
   const grid = document.getElementById('home-dest-grid');
@@ -1290,6 +1131,7 @@ function tourCard(t) {
 function renderTourDetail(id) {
   const t = TOURS.find(x => x.id === id);
   if (!t) return;
+  _currentTourContext = t; // store for WA modal pre-fill
   document.getElementById('detail-hero-img').src = t.img;
   document.getElementById('detail-bc').textContent = t.title;
   document.getElementById('detail-type-badge').textContent = t.type;
@@ -1297,8 +1139,6 @@ function renderTourDetail(id) {
   document.getElementById('detail-meta').textContent = t.location + '  ·  ' + t.duration + '  ·  ' + t.type;
   document.getElementById('detail-overview').textContent = t.overview;
   document.getElementById('sb-title').textContent = t.title;
-  const waMsg = encodeURIComponent('Hello MHU Travel & Tour, I\'m interested in the "' + t.title + '" package. Please send me more details.');
-  document.getElementById('sb-wa-btn').href = 'https://wa.me/2348000000000?text=' + waMsg;
   document.getElementById('detail-itinerary').innerHTML = t.itinerary.map(d => `
     <div class="itinerary-item">
       <div class="itin-day">${d.day}</div>
@@ -1373,7 +1213,7 @@ function submitContactForm() {
 }
 
 /* ============================================================
-   TERMII SMS (placeholder)
+   TERMII SMS
 ============================================================ */
 const TERMII_CONFIG = { api_key:"YOUR_TERMII_API_KEY_HERE", sender_id:"MHU Tours", channel:"generic", api_url:"https://api.ng.termii.com/api/sms/send" };
 
