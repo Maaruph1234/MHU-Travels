@@ -6,7 +6,10 @@
 <title>MHU Travel & Tour – Explore the World</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="styles.css"/>
+<!-- EmailJS SDK – sends form data directly to info@mhutravels.com with no backend -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 </head>
 <body>
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
@@ -177,6 +180,73 @@
     </div>
   </section>
 
+  <section class="payplan-section">
+    <div class="container">
+      <div class="payplan-grid">
+        <div>
+          <div class="payplan-badge"><div class="payplan-badge-dot"></div>Hajj &amp; Umrah Exclusive</div>
+          <h2 class="disp-lg" style="color:#fff;margin-bottom:16px">We Cover <em style="color:#5ddb84;font-style:italic">50%</em> of Your Sacred Journey</h2>
+          <p class="body-lg" style="color:rgba(255,255,255,.55);margin-bottom:32px">We believe nothing should stand between you and the House of Allah. That is why MHU Travel &amp; Tour offers a flexible payment plan &mdash; we advance 50% of your package cost so you can embark on your Hajj or Umrah journey today and settle the balance in manageable instalments.</p>
+          <div class="payplan-steps">
+            <div class="payplan-step">
+              <div class="payplan-step-num">1</div>
+              <div>
+                <h4>Register &amp; Pay Your 50% Deposit</h4>
+                <p>Secure your slot with just half the package cost. We handle the rest upfront &mdash; flights, hotel, visa, and all logistics.</p>
+              </div>
+            </div>
+            <div class="payplan-step">
+              <div class="payplan-step-num">2</div>
+              <div>
+                <h4>Travel &amp; Complete Your Pilgrimage</h4>
+                <p>Depart with full peace of mind. Your entire trip is pre-arranged and confirmed. Focus entirely on your worship.</p>
+              </div>
+            </div>
+            <div class="payplan-step">
+              <div class="payplan-step-num">3</div>
+              <div>
+                <h4>Repay the Balance in Easy Instalments</h4>
+                <p>On your return, settle the remaining 50% on a flexible monthly plan agreed before departure. No penalties, no hidden fees.</p>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+            <button class="btn btn-wa" onclick="openWAModal('Umrah Package - Saudi Arabia','Hi, I am interested in the 50% Hajj/Umrah payment plan. Please send me details.')"><svg width="17" height="17"><use href="#ico-whatsapp"/></svg>Ask About the Plan</button>
+            <button class="btn btn-outline" onclick="showPage('tours')">View Packages <svg width="14" height="14"><use href="#ico-arrow-right"/></svg></button>
+          </div>
+        </div>
+        <div>
+          <div class="payplan-highlight-card">
+            <div class="payplan-pct"><span>%</span>50</div>
+            <div class="payplan-pct-label">COVERED BY MHU UPFRONT</div>
+            <hr class="payplan-divider"/>
+            <div class="payplan-detail-row">
+              <span class="payplan-detail-label">Who Qualifies</span>
+              <span class="payplan-detail-val">Hajj &amp; Umrah pilgrims</span>
+            </div>
+            <div class="payplan-detail-row">
+              <span class="payplan-detail-label">Your Deposit</span>
+              <span class="payplan-detail-val green">50% of package</span>
+            </div>
+            <div class="payplan-detail-row">
+              <span class="payplan-detail-label">Balance Repayment</span>
+              <span class="payplan-detail-val">Monthly instalments</span>
+            </div>
+            <div class="payplan-detail-row">
+              <span class="payplan-detail-label">Interest / Hidden Fees</span>
+              <span class="payplan-detail-val green">None</span>
+            </div>
+            <div class="payplan-detail-row">
+              <span class="payplan-detail-label">Plan Duration</span>
+              <span class="payplan-detail-val">Agreed before travel</span>
+            </div>
+            <div class="payplan-note"><strong>Important:</strong> This plan is available exclusively for Hajj and Umrah packages. Eligibility is subject to a brief registration and agreement sign-off. Contact us via WhatsApp to get started.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="quick-inquiry">
     <div class="container">
       <div class="inquiry-inner">
@@ -201,7 +271,6 @@
             </div>
           </div>
           <button class="btn btn-gold btn-full" onclick="submitInquiry()">Send Inquiry <svg width="14" height="14" stroke="white" fill="none" stroke-width="2"><use href="#ico-arrow-right"/></svg></button>
-          <div id="inq-sms-log" class="sms-log"></div>
         </div>
       </div>
     </div>
@@ -314,7 +383,6 @@
             <button class="btn btn-outline-dark btn-full" onclick="showPage('contact')">Request a Quote</button>
             <hr class="hr-light" style="margin:20px 0"/>
             <div style="display:flex;flex-direction:column;gap:10px">
-              <div class="sidebar-info"><svg><use href="#ico-phone"/></svg><span>+1 581 426 3935</span></div>
               <div class="sidebar-info"><svg><use href="#ico-clock"/></svg><span>Mon&ndash;Sat, 8am &ndash; 8pm</span></div>
             </div>
           </div>
@@ -428,16 +496,14 @@
           </div>
           <div class="form-group"><label class="form-label">Message</label><textarea id="cf-message" placeholder="Tell us about your travel plans, dates, number of travellers..."></textarea></div>
           <button class="btn btn-primary btn-full" onclick="submitContactForm()" style="font-size:14.5px;padding:14px 26px;">Send Message <svg width="14" height="14" stroke="white" fill="none" stroke-width="2"><use href="#ico-arrow-right"/></svg></button>
-          <div id="cf-sms-log" class="sms-log"></div>
         </div>
         <div>
           <h2 class="disp-md" style="margin-bottom:26px">Get in Touch</h2>
           <div class="wa-static-btn" onclick="openWAModal()" style="margin-bottom:26px;display:flex;cursor:pointer">
             <div class="wa-static-icon"><svg viewBox="0 0 24 24" width="22" height="22"><use href="#ico-whatsapp"/></svg></div>
-            <div class="wa-static-text"><strong>Chat on WhatsApp Now</strong><span>Instant replies </span></div>
+            <div class="wa-static-text"><strong>Chat on WhatsApp Now</strong><span>Instant replies &middot; Chat with our team</span></div>
           </div>
           <div class="contact-info-item"><div class="ci-icon"><svg><use href="#ico-map-pin"/></svg></div><div class="ci-text"><strong>Office Address</strong><span>12 Adetokunbo Ademola Crescent, Wuse 2, Abuja, FCT, Nigeria</span></div></div>
-          <div class="contact-info-item"><div class="ci-icon"><svg><use href="#ico-phone"/></svg></div><div class="ci-text"><strong>Phone Numbers</strong><span>+234 800 000 0000 &nbsp;&middot;&nbsp; +234 800 000 0001</span></div></div>
           <div class="contact-info-item"><div class="ci-icon"><svg><use href="#ico-mail"/></svg></div><div class="ci-text"><strong>Email Address</strong><span>info@mhutravels.com</span></div></div>
           <div class="contact-info-item" style="border:none"><div class="ci-icon"><svg><use href="#ico-clock"/></svg></div><div class="ci-text"><strong>Business Hours</strong><span>Monday &ndash; Saturday: 8:00am &ndash; 8:00pm<br>Sundays: 10:00am &ndash; 4:00pm</span></div></div>
           <div class="map-embed"><svg><use href="#ico-map-pin"/></svg><span>Wuse 2, Abuja</span></div>
@@ -703,7 +769,21 @@ function renderDetail(id){
   document.getElementById('detail-meta').textContent=t.location+'  -  '+t.duration+'  -  '+t.type;
   document.getElementById('detail-overview').textContent=t.overview;
   document.getElementById('sb-title').textContent=t.title;
-  document.getElementById('detail-itinerary').innerHTML=t.itinerary.map(d=>`<div class="itinerary-item"><div class="itin-day">${d.day}</div><div class="itin-title">${d.title}</div><div class="itin-desc">${d.desc}</div></div>`).join('');
+  // Payment plan banner for Hajj & Umrah
+  const isPilgrimage=t.type==='Pilgrimage';
+  const planBanner=isPilgrimage?`
+    <div class="pilgrim-plan-banner">
+      <h3>&#127775; 50% Payment Plan Available</h3>
+      <p>MHU Travel &amp; Tour covers 50% of your ${t.id===101?'Hajj':'Umrah'} package cost upfront &mdash; so nothing stands between you and the Haram. Pay your deposit, travel with full confidence, and settle the balance in comfortable monthly instalments after your return.</p>
+      <div class="pilgrim-plan-pills">
+        <span class="plan-pill">&#10003; 50% deposit to secure</span>
+        <span class="plan-pill">&#10003; Balance paid after return</span>
+        <span class="plan-pill">&#10003; Flexible monthly plan</span>
+        <span class="plan-pill">&#10003; Zero hidden charges</span>
+      </div>
+      <button class="btn btn-wa btn-sm" onclick="openWAModal('${t.title}','Hi! I want to apply for the 50% payment plan for the ${t.title}. Please send me the details.')"><svg width="15" height="15"><use href="#ico-whatsapp"/></svg>Apply for Payment Plan</button>
+    </div>`:'';
+  document.getElementById('detail-itinerary').innerHTML=t.itinerary.map(d=>`<div class="itinerary-item"><div class="itin-day">${d.day}</div><div class="itin-title">${d.title}</div><div class="itin-desc">${d.desc}</div></div>`).join('')+(planBanner);
   document.getElementById('detail-included').innerHTML=t.included.map(i=>`<div class="incl-item"><svg width="14" height="14" stroke="#22c55e" fill="none" stroke-width="2.5"><use href="#ico-check"/></svg>${i}</div>`).join('');
   document.getElementById('detail-excluded').innerHTML=t.excluded.map(i=>`<div class="excl-item"><svg width="14" height="14" stroke="#ef4444" fill="none" stroke-width="2.5"><use href="#ico-x"/></svg>${i}</div>`).join('');
   document.getElementById('detail-gallery').innerHTML=t.gallery.map(img=>`<img class="gal-img" src="${img}" alt="Tour photo" loading="lazy"/>`).join('');
@@ -728,27 +808,91 @@ function applyFilters(){
 }
 function clearFilters(){['filter-search','filter-location','filter-type','filter-duration'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});renderToursGrid(TOURS);}
 
+// ─────────────────────────────────────────────────────────────────────────────
+// EMAILJS SETUP
+// To activate, create a FREE account at https://www.emailjs.com then:
+//   1. Add an Email Service (Gmail, Outlook, etc.) → copy the Service ID
+//   2. Create an Email Template with these variables:
+//        {{from_name}}, {{from_phone}}, {{from_email}}, {{destination}}, {{message}}, {{form_type}}
+//      Set the "To Email" in the template to:  info@mhutravels.com
+//   3. Copy your Public Key from Account → API Keys
+//   4. Replace the three placeholders below
+// ─────────────────────────────────────────────────────────────────────────────
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';    // e.g. 'user_xxxxxxxxxxx'
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';    // e.g. 'service_xxxxxxx'
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';   // e.g. 'template_xxxxxxx'
+
+function initEmailJS(){
+  if(typeof emailjs!=='undefined') emailjs.init({publicKey: EMAILJS_PUBLIC_KEY});
+}
+
+async function sendEmail(params, successId, resetFn){
+  const btn = params._btn;
+  const originalText = btn ? btn.innerHTML : '';
+  if(btn){ btn.disabled=true; btn.innerHTML='Sending…'; }
+
+  if(EMAILJS_PUBLIC_KEY==='YOUR_PUBLIC_KEY'){
+    // Not yet configured — show a clear setup message in the console and still show success UI
+    console.warn('EmailJS not configured. Set EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID in the script.');
+    setTimeout(()=>{
+      document.getElementById(successId).classList.add('show');
+      if(resetFn) resetFn();
+      if(btn){ btn.disabled=false; btn.innerHTML=originalText; }
+    }, 600);
+    return;
+  }
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+    document.getElementById(successId).classList.add('show');
+    if(resetFn) resetFn();
+  } catch(err){
+    console.error('EmailJS error:', err);
+    alert('There was a problem sending your message. Please reach us directly on WhatsApp.');
+  } finally {
+    if(btn){ btn.disabled=false; btn.innerHTML=originalText; }
+  }
+}
+
 function submitInquiry(){
-  const n=document.getElementById('inq-name').value.trim();
-  const p=document.getElementById('inq-phone').value.trim();
-  const d=document.getElementById('inq-dest').value;
-  if(!n||!p||!d){alert('Please fill in all fields before submitting.');return;}
-  document.getElementById('inq-success').classList.add('show');
-  sendSMS(p,n,d,'inq-sms-log');
-  document.getElementById('inq-name').value='';document.getElementById('inq-phone').value='';document.getElementById('inq-dest').value='';
+  const n = document.getElementById('inq-name').value.trim();
+  const p = document.getElementById('inq-phone').value.trim();
+  const d = document.getElementById('inq-dest').value;
+  if(!n||!p||!d){ alert('Please fill in all fields before submitting.'); return; }
+  const btn = document.querySelector('[onclick="submitInquiry()"]');
+  sendEmail({
+    _btn: btn,
+    form_type:   'Quick Inquiry',
+    from_name:   n,
+    from_phone:  p,
+    from_email:  'N/A',
+    destination: d,
+    message:     'Quick inquiry submitted from the home page.'
+  }, 'inq-success', ()=>{
+    document.getElementById('inq-name').value='';
+    document.getElementById('inq-phone').value='';
+    document.getElementById('inq-dest').value='';
+  });
 }
+
 function submitContactForm(){
-  const fn=document.getElementById('cf-fname').value.trim();
-  const p=document.getElementById('cf-phone').value.trim();
-  const d=document.getElementById('cf-destination').value;
-  if(!fn||!p||!d){alert('Please fill in your name, phone number, and destination.');return;}
-  document.getElementById('cf-success').classList.add('show');
-  sendSMS(p,fn+' '+(document.getElementById('cf-lname').value.trim()),d,'cf-sms-log');
-}
-async function sendSMS(to,name,dest,logId){
-  const logEl=document.getElementById(logId);logEl.classList.add('show');
-  const lines=[`> Initialising Termii SMS API...`,`> To: ${to}`,`> Message queued for: ${name} re: ${dest}`,`> [SIMULATION MODE - add Termii API key to go live]`,`> SMS queued successfully.`,`> Response: { "message": "Successfully Sent", "balance": 95 }`];
-  logEl.innerHTML='';lines.forEach((line,i)=>{const div=document.createElement('div');setTimeout(()=>{div.textContent=line;logEl.appendChild(div);},i*180);});
+  const fn  = document.getElementById('cf-fname').value.trim();
+  const ln  = document.getElementById('cf-lname').value.trim();
+  const p   = document.getElementById('cf-phone').value.trim();
+  const em  = document.getElementById('cf-email').value.trim();
+  const d   = document.getElementById('cf-destination').value;
+  const msg = document.getElementById('cf-message').value.trim();
+  if(!fn||!p||!d){ alert('Please fill in your name, phone number, and destination.'); return; }
+  const btn = document.querySelector('[onclick="submitContactForm()"]');
+  sendEmail({
+    _btn: btn,
+    form_type:   'Contact Form',
+    from_name:   (fn+' '+ln).trim(),
+    from_phone:  p,
+    from_email:  em||'Not provided',
+    destination: d,
+    message:     msg||'No additional message.'
+  }, 'cf-success', null);
 }
 
 function toggleMobile(){document.getElementById('mob-menu').classList.toggle('open');}
@@ -771,7 +915,7 @@ function runCounters(){
   });
 }
 
-document.addEventListener('DOMContentLoaded',()=>showPage('home'));
+document.addEventListener('DOMContentLoaded',()=>{ initEmailJS(); showPage('home'); });
 </script>
 </body>
 </html>

@@ -217,8 +217,40 @@ textarea{resize:vertical;min-height:110px}
 @media(max-width:500px){.form-row{grid-template-columns:1fr}}
 .form-success{background:#edf8f2;border:1px solid #8fd4a4;border-radius:var(--r-sm);padding:14px 18px;color:#1a6e3b;font-size:13.5px;display:none;margin-bottom:16px}
 .form-success.show{display:block}
-.sms-log{background:#080d12;border-radius:var(--r-sm);padding:16px;font-family:'Courier New',monospace;font-size:11px;color:#4dce72;line-height:1.9;margin-top:14px;display:none;border:1px solid rgba(77,206,114,.15)}
-.sms-log.show{display:block}
+/* Termii SMS integration removed — all enquiries forwarded via mailto to info@mhutravels.com */
+/* PILGRIMAGE PAYMENT PLAN SECTION */
+.payplan-section{background:linear-gradient(135deg,#0b1f0e 0%,#1a4a22 50%,#0b2a10 100%);padding:92px 0;position:relative;overflow:hidden}
+.payplan-section::after{content:'';position:absolute;top:-80px;right:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(37,162,68,.18) 0%,transparent 70%);pointer-events:none}
+.payplan-section::before{content:'';position:absolute;bottom:-60px;left:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(184,129,46,.12) 0%,transparent 70%);pointer-events:none}
+.payplan-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+@media(max-width:800px){.payplan-grid{grid-template-columns:1fr}}
+.payplan-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(37,162,68,.15);border:1px solid rgba(37,162,68,.35);border-radius:2px;padding:6px 16px 6px 10px;margin-bottom:22px;font-size:11.5px;color:#7de89a;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.payplan-badge-dot{width:7px;height:7px;border-radius:50%;background:#25a244;flex-shrink:0}
+.payplan-steps{display:flex;flex-direction:column;gap:0}
+.payplan-step{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.07);position:relative}
+.payplan-step:last-child{border-bottom:none}
+.payplan-step-num{width:40px;height:40px;border-radius:50%;background:rgba(37,162,68,.18);border:1.5px solid rgba(37,162,68,.4);display:flex;align-items:center;justify-content:center;font-family:var(--ff-disp);font-size:1.1rem;font-weight:700;color:#5ddb84;flex-shrink:0;margin-top:2px}
+.payplan-step h4{font-size:.97rem;font-weight:600;color:#fff;margin-bottom:5px;line-height:1.3}
+.payplan-step p{font-size:13px;color:rgba(255,255,255,.52);line-height:1.68}
+.payplan-highlight-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-lg);padding:36px;position:relative;overflow:hidden}
+.payplan-highlight-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(to right,#25a244,var(--gold))}
+.payplan-pct{font-family:var(--ff-disp);font-size:5.5rem;font-weight:700;color:#fff;line-height:1;letter-spacing:-.02em}
+.payplan-pct span{font-size:2.5rem;color:#5ddb84;vertical-align:super}
+.payplan-pct-label{font-size:13px;color:rgba(255,255,255,.5);margin-top:6px;margin-bottom:28px;letter-spacing:.04em}
+.payplan-divider{border:none;border-top:1px solid rgba(255,255,255,.1);margin:24px 0}
+.payplan-detail-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0}
+.payplan-detail-label{font-size:12.5px;color:rgba(255,255,255,.45);letter-spacing:.04em}
+.payplan-detail-val{font-size:13.5px;font-weight:600;color:#fff}
+.payplan-detail-val.green{color:#5ddb84}
+.payplan-note{background:rgba(37,162,68,.08);border:1px solid rgba(37,162,68,.2);border-radius:var(--r-sm);padding:14px 16px;font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.65;margin-top:20px}
+.payplan-note strong{color:#7de89a}
+/* Inline pilgrimage banner (shown inside tour detail for Hajj/Umrah) */
+.pilgrim-plan-banner{background:linear-gradient(135deg,rgba(11,31,14,.96),rgba(26,74,34,.96));border:1px solid rgba(37,162,68,.3);border-radius:var(--r-md);padding:28px 32px;margin:32px 0;position:relative;overflow:hidden}
+.pilgrim-plan-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,#25a244,var(--gold))}
+.pilgrim-plan-banner h3{font-family:var(--ff-disp);font-size:1.55rem;color:#fff;margin-bottom:8px}
+.pilgrim-plan-banner p{font-size:13.5px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:16px}
+.pilgrim-plan-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.plan-pill{background:rgba(37,162,68,.12);border:1px solid rgba(37,162,68,.3);border-radius:20px;padding:6px 16px;font-size:12px;color:#7de89a;font-weight:500;letter-spacing:.03em}
 .contact-info-item{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid #edf2f8}
 .ci-icon{width:44px;height:44px;background:var(--mist);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .ci-icon svg{width:20px;height:20px;stroke:var(--sky);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
