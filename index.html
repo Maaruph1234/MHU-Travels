@@ -7,11 +7,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles.css"/>
-<!-- EmailJS SDK – sends form data directly to info@mhutravels.com with no backend -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
 </head>
 <body>
+
+<!-- ============================================================
+     SVG ICON SPRITE
+============================================================ -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
   <symbol id="ico-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
   <symbol id="ico-plane" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></symbol>
@@ -38,7 +39,9 @@
   <symbol id="ico-whatsapp" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></symbol>
 </svg>
 
-<!-- WA MODAL -->
+<!-- ============================================================
+     WHATSAPP PRE-CHAT MODAL
+============================================================ -->
 <div class="wa-modal-overlay" id="wa-modal-overlay" onclick="closeWAModal(event)">
   <div class="wa-modal" role="dialog" aria-modal="true">
     <div class="wa-modal-header">
@@ -50,7 +53,13 @@
     <div class="wa-modal-body">
       <div class="form-group"><label class="form-label" for="wam-name">Your Name</label><input type="text" id="wam-name" placeholder="e.g. Fatima Aliyu" autocomplete="name"/></div>
       <div class="form-group"><label class="form-label" for="wam-dest">Destination / Package</label>
-        <select id="wam-dest"><option value="">Select a destination</option><option>Umrah Package - Saudi Arabia</option><option>Hajj Package - Saudi Arabia</option><option>Dubai, UAE</option><option>United Kingdom</option><option>Canada</option><option>Turkey</option><option>Maldives</option><option>South Africa</option><option>Malaysia</option><option>Other / Not sure yet</option></select>
+        <select id="wam-dest">
+          <option value="">Select a destination</option>
+          <option>Umrah Package - Saudi Arabia</option><option>Hajj Package - Saudi Arabia</option>
+          <option>Dubai, UAE</option><option>United Kingdom</option><option>Canada</option>
+          <option>Turkey</option><option>Maldives</option><option>South Africa</option>
+          <option>Malaysia</option><option>Other / Not sure yet</option>
+        </select>
       </div>
       <div class="form-group"><label class="form-label" for="wam-msg">What do you need help with?</label><textarea id="wam-msg" placeholder="e.g. I want to travel in July with my family of 4. Please send package prices."></textarea></div>
       <button class="wa-send-btn" onclick="launchWhatsApp()"><svg viewBox="0 0 24 24"><use href="#ico-whatsapp"/></svg>Open WhatsApp Chat</button>
@@ -59,7 +68,7 @@
   </div>
 </div>
 
-<!-- FLOATING WA -->
+<!-- FLOATING WA BUTTON -->
 <div class="wa-float">
   <div class="wa-tooltip">Chat with us</div>
   <div class="wa-bubble" onclick="openWAModal()" role="button" tabindex="0"><svg width="28" height="28"><use href="#ico-whatsapp"/></svg></div>
@@ -67,7 +76,9 @@
 
 <div class="progress-bar" id="progress-bar"></div>
 
-<!-- NAVBAR -->
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
 <nav class="navbar" id="navbar">
   <div class="container">
     <div class="nav-inner">
@@ -95,7 +106,9 @@
   <button class="btn btn-wa" style="margin-top:20px" onclick="toggleMobile();openWAModal()">Chat on WhatsApp</button>
 </div>
 
-<!-- ===== HOME ===== -->
+<!-- ============================================================
+     HOME PAGE
+============================================================ -->
 <div id="page-home" class="page">
   <section class="hero">
     <div class="hero-bg"></div>
@@ -121,6 +134,7 @@
     </div>
   </section>
 
+  <!-- MARQUEE -->
   <div class="marquee-bar"><div class="marquee-track">
     <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-globe"/></svg>Umrah - Saudi Arabia</div>
     <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-map-pin"/></svg>Dubai, UAE</div>
@@ -134,6 +148,7 @@
     <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-plane"/></svg>Visa Assistance</div>
     <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-building"/></svg>Hotel Bookings</div>
     <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-globe"/></svg>40+ Destinations</div>
+    <!-- duplicate for seamless loop -->
     <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-globe"/></svg>Umrah - Saudi Arabia</div>
     <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-map-pin"/></svg>Dubai, UAE</div>
     <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-globe"/></svg>United Kingdom</div>
@@ -148,6 +163,7 @@
     <div class="marquee-item"><svg width="14" height="14" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-globe"/></svg>40+ Destinations</div>
   </div></div>
 
+  <!-- FEATURED DESTINATIONS -->
   <section class="section bg-white">
     <div class="container">
       <div class="text-center" style="margin-bottom:52px">
@@ -162,6 +178,7 @@
     </div>
   </section>
 
+  <!-- WHY CHOOSE US -->
   <section class="section bg-sand">
     <div class="container">
       <div class="text-center" style="margin-bottom:52px">
@@ -180,35 +197,18 @@
     </div>
   </section>
 
+  <!-- PAYMENT PLAN SECTION -->
   <section class="payplan-section">
     <div class="container">
       <div class="payplan-grid">
         <div>
           <div class="payplan-badge"><div class="payplan-badge-dot"></div>Hajj &amp; Umrah Exclusive</div>
           <h2 class="disp-lg" style="color:#fff;margin-bottom:16px">We Cover <em style="color:#5ddb84;font-style:italic">50%</em> of Your Sacred Journey</h2>
-          <p class="body-lg" style="color:rgba(255,255,255,.55);margin-bottom:32px">We believe nothing should stand between you and the House of Allah. That is why MHU Travel &amp; Tour offers a flexible payment plan &mdash; we advance 50% of your package cost so you can embark on your Hajj or Umrah journey today and settle the balance in manageable instalments.</p>
+          <p class="body-lg" style="color:rgba(255,255,255,.55);margin-bottom:32px">We believe nothing should stand between you and the House of Allah. MHU Travel &amp; Tour advances 50% of your package cost so you can embark on your Hajj or Umrah journey today and settle the balance in manageable instalments.</p>
           <div class="payplan-steps">
-            <div class="payplan-step">
-              <div class="payplan-step-num">1</div>
-              <div>
-                <h4>Register &amp; Pay Your 50% Deposit</h4>
-                <p>Secure your slot with just half the package cost. We handle the rest upfront &mdash; flights, hotel, visa, and all logistics.</p>
-              </div>
-            </div>
-            <div class="payplan-step">
-              <div class="payplan-step-num">2</div>
-              <div>
-                <h4>Travel &amp; Complete Your Pilgrimage</h4>
-                <p>Depart with full peace of mind. Your entire trip is pre-arranged and confirmed. Focus entirely on your worship.</p>
-              </div>
-            </div>
-            <div class="payplan-step">
-              <div class="payplan-step-num">3</div>
-              <div>
-                <h4>Repay the Balance in Easy Instalments</h4>
-                <p>On your return, settle the remaining 50% on a flexible monthly plan agreed before departure. No penalties, no hidden fees.</p>
-              </div>
-            </div>
+            <div class="payplan-step"><div class="payplan-step-num">1</div><div><h4>Register &amp; Pay Your 50% Deposit</h4><p>Secure your slot with just half the package cost. We handle the rest upfront &mdash; flights, hotel, visa, and all logistics.</p></div></div>
+            <div class="payplan-step"><div class="payplan-step-num">2</div><div><h4>Travel &amp; Complete Your Pilgrimage</h4><p>Depart with full peace of mind. Your entire trip is pre-arranged and confirmed. Focus entirely on your worship.</p></div></div>
+            <div class="payplan-step"><div class="payplan-step-num">3</div><div><h4>Repay the Balance in Easy Instalments</h4><p>On your return, settle the remaining 50% on a flexible monthly plan agreed before departure. No penalties, no hidden fees.</p></div></div>
           </div>
           <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
             <button class="btn btn-wa" onclick="openWAModal('Umrah Package - Saudi Arabia','Hi, I am interested in the 50% Hajj/Umrah payment plan. Please send me details.')"><svg width="17" height="17"><use href="#ico-whatsapp"/></svg>Ask About the Plan</button>
@@ -220,33 +220,24 @@
             <div class="payplan-pct"><span>%</span>50</div>
             <div class="payplan-pct-label">COVERED BY MHU UPFRONT</div>
             <hr class="payplan-divider"/>
-            <div class="payplan-detail-row">
-              <span class="payplan-detail-label">Who Qualifies</span>
-              <span class="payplan-detail-val">Hajj &amp; Umrah pilgrims</span>
-            </div>
-            <div class="payplan-detail-row">
-              <span class="payplan-detail-label">Your Deposit</span>
-              <span class="payplan-detail-val green">50% of package</span>
-            </div>
-            <div class="payplan-detail-row">
-              <span class="payplan-detail-label">Balance Repayment</span>
-              <span class="payplan-detail-val">Monthly instalments</span>
-            </div>
-            <div class="payplan-detail-row">
-              <span class="payplan-detail-label">Interest / Hidden Fees</span>
-              <span class="payplan-detail-val green">None</span>
-            </div>
-            <div class="payplan-detail-row">
-              <span class="payplan-detail-label">Plan Duration</span>
-              <span class="payplan-detail-val">Agreed before travel</span>
-            </div>
-            <div class="payplan-note"><strong>Important:</strong> This plan is available exclusively for Hajj and Umrah packages. Eligibility is subject to a brief registration and agreement sign-off. Contact us via WhatsApp to get started.</div>
+            <div class="payplan-detail-row"><span class="payplan-detail-label">Who Qualifies</span><span class="payplan-detail-val">Hajj &amp; Umrah pilgrims</span></div>
+            <div class="payplan-detail-row"><span class="payplan-detail-label">Your Deposit</span><span class="payplan-detail-val green">50% of package</span></div>
+            <div class="payplan-detail-row"><span class="payplan-detail-label">Balance Repayment</span><span class="payplan-detail-val">Monthly instalments</span></div>
+            <div class="payplan-detail-row"><span class="payplan-detail-label">Interest / Hidden Fees</span><span class="payplan-detail-val green">None</span></div>
+            <div class="payplan-detail-row"><span class="payplan-detail-label">Plan Duration</span><span class="payplan-detail-val">Agreed before travel</span></div>
+            <div class="payplan-note"><strong>Important:</strong> This plan is available exclusively for Hajj and Umrah packages. Contact us via WhatsApp to get started.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ============================================================
+       QUICK INQUIRY — Formspree → info@mhuventures.com
+       Hidden fields pass form_type, name, phone, destination.
+       Formspree sends everything to info@mhuventures.com
+       (configured in your Formspree dashboard for endpoint xgodzepn).
+  ============================================================ -->
   <section class="quick-inquiry">
     <div class="container">
       <div class="inquiry-inner">
@@ -262,20 +253,48 @@
         </div>
         <div class="inquiry-form">
           <h3 style="font-family:var(--ff-disp);font-size:1.6rem;color:#fff;margin-bottom:22px;font-weight:600">Quick Inquiry</h3>
-          <div id="inq-success" class="form-success" style="background:rgba(40,200,100,.08);border-color:rgba(40,200,100,.3);color:#6de8a2">Your inquiry has been submitted. We will be in touch shortly.</div>
-          <div class="form-group"><label class="form-label">Full Name</label><input type="text" id="inq-name" placeholder="Your full name"/></div>
-          <div class="form-row">
-            <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="inq-phone" placeholder="+234 800 000 0000"/></div>
-            <div class="form-group"><label class="form-label">Destination</label>
-              <select id="inq-dest"><option value="">Select destination</option><option>Umrah Package - Saudi Arabia</option><option>Hajj Package - Saudi Arabia</option><option>Dubai, UAE</option><option>United Kingdom</option><option>Canada</option><option>Turkey</option><option>Maldives</option><option>South Africa</option><option>Malaysia</option><option>Other</option></select>
+          <div id="inq-success" class="form-success-dark">&#10003;&nbsp; Your inquiry has been sent! We will be in touch within 2 hours.</div>
+          <div id="inq-error" class="form-error-dark">&#9888;&nbsp; Something went wrong. Please try WhatsApp instead.</div>
+
+          <!-- Formspree form — posts to info@mhuventures.com -->
+          <form id="inq-form" action="https://formspree.io/f/xgodzepn" method="POST">
+            <!-- Hidden fields so the email shows context -->
+            <input type="hidden" name="_subject" value="New Quick Inquiry – MHU Travel & Tour"/>
+            <input type="hidden" name="form_type" value="Quick Inquiry (Home Page)"/>
+            <input type="hidden" name="_next" value=""/><!-- handled by JS -->
+
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" name="name" id="inq-name" placeholder="Your full name" required/>
             </div>
-          </div>
-          <button class="btn btn-gold btn-full" onclick="submitInquiry()">Send Inquiry <svg width="14" height="14" stroke="white" fill="none" stroke-width="2"><use href="#ico-arrow-right"/></svg></button>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" name="phone" id="inq-phone" placeholder="+234 800 000 0000" required/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Destination</label>
+                <select name="destination" id="inq-dest" required>
+                  <option value="">Select destination</option>
+                  <option>Umrah Package - Saudi Arabia</option>
+                  <option>Hajj Package - Saudi Arabia</option>
+                  <option>Dubai, UAE</option><option>United Kingdom</option>
+                  <option>Canada</option><option>Turkey</option>
+                  <option>Maldives</option><option>South Africa</option>
+                  <option>Malaysia</option><option>Other</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-gold btn-full" id="inq-btn">
+              Send Inquiry <svg width="14" height="14" stroke="white" fill="none" stroke-width="2"><use href="#ico-arrow-right"/></svg>
+            </button>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ECOSYSTEM -->
   <section class="ecosystem-section">
     <div class="container">
       <div class="text-center">
@@ -310,6 +329,7 @@
     </div>
   </section>
 
+  <!-- TESTIMONIALS -->
   <section class="section bg-white">
     <div class="container">
       <div class="text-center" style="margin-bottom:52px"><span class="sec-label">Client Stories</span><h2 class="disp-lg" style="margin-bottom:14px">What Our Travellers Say</h2></div>
@@ -320,9 +340,11 @@
       </div>
     </div>
   </section>
-</div>
+</div><!-- /page-home -->
 
-<!-- ===== TOURS PAGE ===== -->
+<!-- ============================================================
+     TOURS PAGE
+============================================================ -->
 <div id="page-tours" class="page hidden">
   <div class="page-header">
     <div class="container">
@@ -349,7 +371,9 @@
   </section>
 </div>
 
-<!-- ===== TOUR DETAIL ===== -->
+<!-- ============================================================
+     TOUR DETAIL
+============================================================ -->
 <div id="page-detail" class="page hidden">
   <div class="tour-hero-section">
     <div class="tour-hero-overlay"></div>
@@ -392,11 +416,9 @@
   </section>
 </div>
 
-<!-- ===== ABOUT =====
-     FIX #1: Removed the duplicate "Our Story" section that showed the CEO photo twice.
-     The About page now has ONE founder section: "Meet Our Founder & CEO" with the team card.
-     The story text and credentials are retained but the duplicate photo panel is gone.
--->
+<!-- ============================================================
+     ABOUT PAGE
+============================================================ -->
 <div id="page-about" class="page hidden">
   <div class="about-hero-sec">
     <div class="container">
@@ -406,13 +428,12 @@
     </div>
   </div>
 
-  <!-- Our Story — text + stats only, no duplicate CEO photo -->
   <section class="section bg-white">
     <div class="container">
       <div style="max-width:780px;margin:0 auto">
         <span class="sec-label">Our Story</span>
         <h2 class="disp-lg" style="margin-bottom:20px">Born in 2025, Built for the World</h2>
-        <p class="body-md" style="margin-bottom:16px">Founded in 2025 in Abuja by Muhammad Hadi &mdash; popularly known as <strong>Dollahead</strong> &mdash; MHU Travel &amp; Tour was built from the ground up with a single obsession: making premium travel experiences accessible to every Nigerian. What started with a bold vision and a WhatsApp number has quickly grown into one of Abuja&#39;s most talked-about travel brands.</p>
+        <p class="body-md" style="margin-bottom:16px">Founded in 2025 in Abuja by Muhammad Hadi &mdash; popularly known as <strong>Dollahead</strong> &mdash; MHU Travel &amp; Tour was built with a single obsession: making premium travel experiences accessible to every Nigerian. What started with a bold vision and a WhatsApp number has quickly grown into one of Abuja&#39;s most talked-about travel brands.</p>
         <p class="body-md" style="margin-bottom:30px">We understand the local traveller&#39;s unique challenges: visa guidance, documentation, budget planning, and the assurance that someone experienced is managing every detail. Whether it&#39;s a honeymoon in the Maldives or a sacred Umrah pilgrimage, MHU handles it all.</p>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
           <div class="cred-badge"><div class="cred-num">Est.</div><div class="cred-text">2025 &middot; Abuja</div></div>
@@ -434,17 +455,16 @@
     </div>
   </section>
 
-  <!-- FIX #1 CONTINUED: Single, definitive founder section -->
   <section class="section bg-white">
     <div class="container">
       <div class="text-center" style="margin-bottom:52px"><span class="sec-label">Leadership</span><h2 class="disp-lg">Meet Our Founder &amp; CEO</h2></div>
       <div style="display:flex;justify-content:center">
         <div class="team-card">
-          <div class="team-photo"><img src="ceo.JPG" alt="Muhammad Hadi"/></div>
+          <div class="team-photo"><img src="ceo.JPG" alt="Muhammad Hadi – Founder & CEO" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,var(--ocean),var(--azure))';this.parentElement.style.display='flex';this.parentElement.style.alignItems='center';this.parentElement.style.justifyContent='center'"/></div>
           <div class="team-body">
             <h3>Muhammad Hadi</h3>
             <p class="team-role">Founder &amp; CEO &nbsp;&middot;&nbsp; <em style="color:var(--gold);font-style:normal">Dollahead</em></p>
-            <p class="body-md" style="font-size:14px">Known widely as <strong>Dollahead</strong>, Muhammad Hadi founded MHU Travel &amp; Tour in 2025 with one clear mission &mdash; to make world-class travel accessible to every Nigerian. A certified travel consultant, he brings a rare blend of hustle and industry expertise to every client relationship. From negotiating premium hotel rates to personally walking clients through visa applications, Muhammad is deeply hands-on.</p>
+            <p class="body-md" style="font-size:14px">Known widely as <strong>Dollahead</strong>, Muhammad Hadi founded MHU Travel &amp; Tour in 2025 with one clear mission &mdash; to make world-class travel accessible to every Nigerian. A certified travel consultant, he brings a rare blend of hustle and industry expertise to every client relationship.</p>
             <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:6px"><span class="tag">Visa Specialist</span><span class="tag">Hajj &amp; Umrah Expert</span><span class="tag">Founder 2025</span></div>
           </div>
         </div>
@@ -467,7 +487,10 @@
   </section>
 </div>
 
-<!-- ===== CONTACT ===== -->
+<!-- ============================================================
+     CONTACT PAGE
+     Both forms POST to Formspree → info@mhuventures.com
+============================================================ -->
 <div id="page-contact" class="page hidden">
   <div class="contact-page-hero">
     <div class="container">
@@ -479,24 +502,44 @@
   <section class="section">
     <div class="container">
       <div class="contact-grid">
+
+        <!-- Contact Form → Formspree -->
         <div class="contact-form-card">
           <h2 class="disp-md" style="margin-bottom:8px">Send Us a Message</h2>
           <p class="body-md" style="margin-bottom:26px">We will get back to you within 30 minutes on business days.</p>
-          <div id="cf-success" class="form-success">Message sent. We will contact you shortly.</div>
-          <div class="form-row">
-            <div class="form-group"><label class="form-label">First Name</label><input type="text" id="cf-fname" placeholder="First name"/></div>
-            <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="cf-lname" placeholder="Last name"/></div>
-          </div>
-          <div class="form-row">
-            <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="cf-phone" placeholder="+234 800 000 0000"/></div>
-            <div class="form-group"><label class="form-label">Email Address</label><input type="email" id="cf-email" placeholder="your@email.com"/></div>
-          </div>
-          <div class="form-group"><label class="form-label">Destination of Interest</label>
-            <select id="cf-destination"><option value="">Select a destination</option><option>Umrah Package - Saudi Arabia</option><option>Hajj Package - Saudi Arabia</option><option>Dubai, UAE</option><option>United Kingdom</option><option>Canada</option><option>Turkey</option><option>Maldives</option><option>South Africa</option><option>Malaysia</option><option>Other (specify in message)</option></select>
-          </div>
-          <div class="form-group"><label class="form-label">Message</label><textarea id="cf-message" placeholder="Tell us about your travel plans, dates, number of travellers..."></textarea></div>
-          <button class="btn btn-primary btn-full" onclick="submitContactForm()" style="font-size:14.5px;padding:14px 26px;">Send Message <svg width="14" height="14" stroke="white" fill="none" stroke-width="2"><use href="#ico-arrow-right"/></svg></button>
+          <div id="cf-success" class="form-success">&#10003;&nbsp; Message sent! We will contact you at info@mhuventures.com shortly.</div>
+          <div id="cf-error" class="form-error">&#9888;&nbsp; Something went wrong. Please reach us on WhatsApp instead.</div>
+
+          <form id="cf-form" action="https://formspree.io/f/xgodzepn" method="POST">
+            <input type="hidden" name="_subject" value="New Contact Form Submission – MHU Travel & Tour"/>
+            <input type="hidden" name="form_type" value="Contact Page Form"/>
+
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">First Name</label><input type="text" name="first_name" id="cf-fname" placeholder="First name" required/></div>
+              <div class="form-group"><label class="form-label">Last Name</label><input type="text" name="last_name" id="cf-lname" placeholder="Last name"/></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" name="phone" id="cf-phone" placeholder="+234 800 000 0000" required/></div>
+              <div class="form-group"><label class="form-label">Email Address</label><input type="email" name="email" id="cf-email" placeholder="your@email.com"/></div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Destination of Interest</label>
+              <select name="destination" id="cf-destination" required>
+                <option value="">Select a destination</option>
+                <option>Umrah Package - Saudi Arabia</option><option>Hajj Package - Saudi Arabia</option>
+                <option>Dubai, UAE</option><option>United Kingdom</option><option>Canada</option>
+                <option>Turkey</option><option>Maldives</option><option>South Africa</option>
+                <option>Malaysia</option><option>Other (specify in message)</option>
+              </select>
+            </div>
+            <div class="form-group"><label class="form-label">Message</label><textarea name="message" id="cf-message" placeholder="Tell us about your travel plans, dates, number of travellers..."></textarea></div>
+            <button type="submit" class="btn btn-primary btn-full" id="cf-btn" style="font-size:14.5px;padding:14px 26px;">
+              Send Message <svg width="14" height="14" stroke="white" fill="none" stroke-width="2"><use href="#ico-arrow-right"/></svg>
+            </button>
+          </form>
         </div>
+
+        <!-- Contact info column -->
         <div>
           <h2 class="disp-md" style="margin-bottom:26px">Get in Touch</h2>
           <div class="wa-static-btn" onclick="openWAModal()" style="margin-bottom:26px;display:flex;cursor:pointer">
@@ -504,7 +547,7 @@
             <div class="wa-static-text"><strong>Chat on WhatsApp Now</strong><span>Instant replies &middot; Chat with our team</span></div>
           </div>
           <div class="contact-info-item"><div class="ci-icon"><svg><use href="#ico-map-pin"/></svg></div><div class="ci-text"><strong>Office Address</strong><span>12 Adetokunbo Ademola Crescent, Wuse 2, Abuja, FCT, Nigeria</span></div></div>
-          <div class="contact-info-item"><div class="ci-icon"><svg><use href="#ico-mail"/></svg></div><div class="ci-text"><strong>Email Address</strong><span>info@mhutravels.com</span></div></div>
+          <div class="contact-info-item"><div class="ci-icon"><svg><use href="#ico-mail"/></svg></div><div class="ci-text"><strong>Email Address</strong><span>info@mhuventures.com</span></div></div>
           <div class="contact-info-item" style="border:none"><div class="ci-icon"><svg><use href="#ico-clock"/></svg></div><div class="ci-text"><strong>Business Hours</strong><span>Monday &ndash; Saturday: 8:00am &ndash; 8:00pm<br>Sundays: 10:00am &ndash; 4:00pm</span></div></div>
           <div class="map-embed"><svg><use href="#ico-map-pin"/></svg><span>Wuse 2, Abuja</span></div>
         </div>
@@ -513,7 +556,9 @@
   </section>
 </div>
 
-<!-- FOOTER -->
+<!-- ============================================================
+     FOOTER
+============================================================ -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
@@ -561,160 +606,88 @@
 </footer>
 
 <script>
-// =====================================================================
-// FIX #2: Hajj card image → Mecca/Kaaba aerial view
-// FIX #3: Canada card image → Niagara Falls
-// =====================================================================
+/* ============================================================
+   TOURS DATA
+============================================================ */
 const TOURS=[
-  {
-    id:100,
-    title:"Umrah Package - Sacred Journey to Makkah",
-    location:"Saudi Arabia",type:"Pilgrimage",duration:"10 days, 9 nights",durationDays:10,
-    shortDesc:"Fulfil your spiritual obligation with our fully guided Umrah package - Makkah, Madinah, visa, and all essentials handled by our team.",
-    img:"https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80",
-    badgeClass:"card-badge-umrah",
-    gallery:["https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400&q=70","https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=400&q=70","https://images.unsplash.com/photo-1519817650390-64a93db51149?w=400&q=70","https://images.unsplash.com/photo-1569360936347-5c2e0e7f04b6?w=400&q=70","https://images.unsplash.com/photo-1604881991720-f91add269bed?w=400&q=70","https://images.unsplash.com/photo-1560969184-10fe8719e047?w=400&q=70"],
-    overview:"Embark on a spiritually transformative journey to the two holiest cities in Islam. Our Umrah package is meticulously curated to ensure a seamless, focused, and spiritually enriching experience from the moment you depart Nigeria to the moment you return.",
-    itinerary:[{day:"Day 1",title:"Departure from Abuja/Lagos",desc:"Group assembly at airport. Ihram donned at Miqat. Flight to Madinah."},{day:"Day 2-4",title:"Madinah - City of the Prophet",desc:"Hotel near Masjid an-Nabawi. Five daily prayers, Ziyarah visits to Quba Mosque, Uhud Mountain, and Al-Baqi cemetery."},{day:"Day 5",title:"Travel to Makkah",desc:"Guided bus transfer. Check-in near Masjid al-Haram. Evening orientation and first Tawaf."},{day:"Day 6-8",title:"Makkah - Performance of Umrah",desc:"Tawaf, Sa'i, Taqsir/Halq. Prayers at Masjid al-Haram. Visits to Cave of Hira and Mina."},{day:"Day 9",title:"Makkah Ziyarah & Shopping",desc:"Historical site visits, Abraj Al-Bait, shopping. Farewell Tawaf."},{day:"Day 10",title:"Departure",desc:"Transfer to airport. Return flight to Nigeria."}],
-    included:["Return flights (Nigeria-Saudi Arabia)","Umrah visa processing","4-star hotel in Madinah (3 nights)","4-star hotel in Makkah (4 nights)","Air-conditioned bus","Islamic scholar guide","All transfers","Ihram garments (men)","Ziyarah tours","24/7 group support"],
-    excluded:["Personal spending money","Meals (except noted)","Travel insurance","Vaccinations","Personal shopping","Hotel upgrade (on request)"],
-    tags:["Saudi Arabia","Pilgrimage"]
-  },
-  {
-    id:101,
-    title:"Hajj Package - The Fifth Pillar",
-    location:"Saudi Arabia",type:"Pilgrimage",duration:"21 days, 20 nights",durationDays:21,
-    shortDesc:"Answer the divine call with our fully managed Hajj package - a sacred journey of a lifetime, handled with care from Nigeria to the holy lands.",
-    /* FIX #2: Changed to a proper Masjid al-Haram / Kaaba aerial image */
-    img:"https://images.unsplash.com/photo-1519817650390-64a93db51149?w=600&q=80",
-    badgeClass:"card-badge-hajj",
-    gallery:["https://images.unsplash.com/photo-1519817650390-64a93db51149?w=400&q=70","https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400&q=70","https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=400&q=70","https://images.unsplash.com/photo-1569360936347-5c2e0e7f04b6?w=400&q=70","https://images.unsplash.com/photo-1604881991720-f91add269bed?w=400&q=70","https://images.unsplash.com/photo-1560969184-10fe8719e047?w=400&q=70"],
-    overview:"The Hajj is the most profound spiritual journey a Muslim can undertake. Our Hajj package is designed to remove every worldly burden so you can focus entirely on your worship.",
-    itinerary:[{day:"Day 1-2",title:"Departure & Arrival in Madinah",desc:"Departure from Nigeria. Ihram at Miqat. Arrival in Madinah."},{day:"Day 3-7",title:"Madinah Ziyarah",desc:"Daily prayers in Masjid an-Nabawi, visits to historic Islamic sites, lectures by resident scholar."},{day:"Day 8",title:"Travel to Makkah",desc:"Bus transfer. Tawaf of Arrival, Sa'i. Orientation for Hajj rites."},{day:"Day 9-12",title:"Makkah Preparation",desc:"Prayers at Masjid al-Haram, Hajj preparation lectures."},{day:"Day 13",title:"8th Dhul Hijjah - Mina",desc:"Travel to Mina. Air-conditioned tents. Five prayers in Mina."},{day:"Day 14",title:"9th Dhul Hijjah - Day of Arafah",desc:"Stand on the plains of Arafat from Dhuhr to sunset. Proceed to Muzdalifah after Maghrib."},{day:"Day 15",title:"10th Dhul Hijjah - Eid & Jamarat",desc:"Rami al-Jamarat, Qurbani, Halq, Tawaf al-Ifadah, Sa'i."},{day:"Day 16-18",title:"Tashreeq Days",desc:"Remaining Rami at Jamarat. Rest, worship, and additional Tawaf."},{day:"Day 19-20",title:"Makkah Wrap-Up & Shopping",desc:"Farewell Tawaf, Zam Zam water collection, shopping."},{day:"Day 21",title:"Return to Nigeria",desc:"Transfer to Jeddah airport. Return home as a Hajji."}],
-    included:["Return flights","Official Hajj visa processing","Hotel in Madinah (5 nights)","Hotel in Makkah (8 nights)","Air-conditioned tents in Mina","Resident Islamic scholar","All ground transfers","Ihram garments for men","Zam Zam water (5 litres)","Qurbani arrangement","24/7 support team"],
-    excluded:["Personal spending money","Most meals","Travel insurance","Vaccinations","Personal shopping"],
-    tags:["Saudi Arabia","Pilgrimage"]
-  },
-  {
-    id:1,
-    title:"Dubai Gold & Glamour",
-    location:"Dubai",type:"Luxury",duration:"6 days, 5 nights",durationDays:6,
-    shortDesc:"Soar above the skyline, cruise the marina, and experience Burj Khalifa at dusk on this ultimate Dubai escape.",
-    img:"https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80",
-    gallery:["https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=70","https://images.unsplash.com/photo-1526495124232-a04e1849168c?w=400&q=70","https://images.unsplash.com/photo-1534008897995-27a23e859048?w=400&q=70","https://images.unsplash.com/photo-1583512603842-6b7daaac1a39?w=400&q=70","https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=400&q=70","https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&q=70"],
-    overview:"Experience Dubai like a VIP - from the dazzling heights of Burj Khalifa to the tranquil waters of the Persian Gulf.",
-    itinerary:[{day:"Day 1",title:"Arrival & City Orientation",desc:"Meet & greet at Dubai International Airport. Private transfer to 5-star hotel. Evening welcome dinner."},{day:"Day 2",title:"Burj Khalifa & Dubai Mall",desc:"Morning visit to the Burj Khalifa observation deck, afternoon at Dubai Mall."},{day:"Day 3",title:"Desert Safari & BBQ Dinner",desc:"Afternoon dune bashing, camel riding, sandboarding, and a sunset BBQ dinner under the stars."},{day:"Day 4",title:"Marina Cruise & JBR Beach",desc:"Morning yacht cruise along Dubai Marina, afternoon leisure at Jumeirah Beach Residence."},{day:"Day 5",title:"Gold Souk & Old Dubai",desc:"Half-day tour - Al Fahidi Fort, Spice Souk, Gold Souk, and Abra ride across Dubai Creek."},{day:"Day 6",title:"Departure",desc:"Leisure morning, hotel checkout, private transfer to Dubai International Airport."}],
-    included:["Return flights (economy)","5-star hotel","Airport transfers (private)","Desert safari with dinner","Burj Khalifa tickets","Daily breakfast","Tour guide","Visa assistance"],
-    excluded:["Personal shopping","Tips & gratuities","Travel insurance","Visa fees","Optional activities"],
-    tags:["Dubai","Luxury"]
-  },
-  {
-    id:2,
-    title:"Turkey Discovery Tour",
-    location:"Turkey",type:"Family",duration:"8 days, 7 nights",durationDays:8,
-    shortDesc:"Float over Cappadocia in a hot air balloon, walk ancient Ephesus ruins, and cruise the turquoise Aegean coast.",
-    img:"https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600&q=80",
-    gallery:["https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=400&q=70","https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400&q=70","https://images.unsplash.com/photo-1579431341225-6e3b45d5e3b5?w=400&q=70","https://images.unsplash.com/photo-1446822622740-c3460c8a15eb?w=400&q=70","https://images.unsplash.com/photo-1571979872688-7b20b71b0b94?w=400&q=70","https://images.unsplash.com/photo-1599975700521-60cf9eb66f23?w=400&q=70"],
-    overview:"Turkey is a mesmerising blend of East and West, ancient history and modern luxury.",
-    itinerary:[{day:"Day 1",title:"Arrival in Istanbul",desc:"Airport pickup and check-in. Evening Bosphorus dinner cruise."},{day:"Day 2",title:"Istanbul Sightseeing",desc:"Blue Mosque, Hagia Sophia, Topkapi Palace, Grand Bazaar."},{day:"Day 3",title:"Flight to Cappadocia",desc:"Morning domestic flight. Afternoon underground city tour and valley hike."},{day:"Day 4",title:"Hot Air Balloon Ride",desc:"Pre-dawn balloon flight over fairy chimneys. Open-air museum. Pottery workshop."},{day:"Day 5",title:"Drive to Antalya",desc:"Scenic drive through Taurus Mountains, waterfall visit, arrival in Antalya."},{day:"Day 6",title:"Antalya Old City & Beach",desc:"Morning in Kalei old quarter, afternoon at Konyaalta beach."},{day:"Day 7",title:"Pamukkale Cotton Terraces",desc:"Day trip to Pamukkale thermal pools and Hierapolis ruins."},{day:"Day 8",title:"Departure",desc:"Transfer to airport for departure."}],
-    included:["Return flights","Hotel (4-star)","Domestic flight (Istanbul-Cappadocia)","Hot air balloon ride","All transfers","Daily breakfast","English guide","Visa support"],
-    excluded:["International visa fees","Travel insurance","Lunch and dinner","Personal expenses"],
-    tags:["Turkey","Family"]
-  },
-  {
-    id:3,
-    title:"Maldives Honeymoon Escape",
-    location:"Maldives",type:"Honeymoon",duration:"5 days, 4 nights",durationDays:5,
-    shortDesc:"Overwater bungalows, pristine coral reefs, and the most breathtaking sunsets on earth - perfect for two.",
-    img:"https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=600&q=80",
-    gallery:["https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&q=70","https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=400&q=70","https://images.unsplash.com/photo-1540202404-a2f29016b523?w=400&q=70","https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&q=70","https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=400&q=70","https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=400&q=70"],
-    overview:"The Maldives is the world's ultimate romantic retreat. Crystal-clear lagoons, vibrant coral reefs, and the serenity of your private overwater bungalow.",
-    itinerary:[{day:"Day 1",title:"Arrival & Speedboat Transfer",desc:"Arrive at Male, welcome drink, speedboat to resort island. Sunset dinner for two."},{day:"Day 2",title:"Snorkelling & Spa",desc:"Morning guided snorkelling, afternoon couple's spa treatment, evening beach bonfire dinner."},{day:"Day 3",title:"Dolphin Cruise & Island Hopping",desc:"Morning dolphin watching cruise, afternoon local island visit, sunset cocktails on deck."},{day:"Day 4",title:"Scuba Diving & Free Day",desc:"Optional introductory scuba dive. Rest of the day at leisure."},{day:"Day 5",title:"Departure",desc:"Final morning in paradise, speedboat back to Male airport."}],
-    included:["Return flights","Overwater bungalow (4 nights)","Speedboat transfers","Breakfast & dinner daily","Snorkelling equipment","Dolphin cruise","Couple's spa (1 session)","Welcome amenities"],
-    excluded:["Visa on arrival fees","Scuba diving (optional)","Alcoholic beverages","Personal shopping","Travel insurance"],
-    tags:["Maldives","Honeymoon"]
-  },
-  {
-    id:4,
-    title:"UK Explorer - London & Beyond",
-    location:"UK",type:"Luxury",duration:"10 days, 9 nights",durationDays:10,
-    shortDesc:"Buckingham Palace, the Scottish Highlands, and the iconic English countryside - Britain at its most magnificent.",
-    img:"https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80",
-    gallery:["https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&q=70","https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=400&q=70","https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&q=70","https://images.unsplash.com/photo-1543872084-c7bd3822856f?w=400&q=70","https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=70","https://images.unsplash.com/photo-1520986606214-8b456906c813?w=400&q=70"],
-    overview:"This comprehensive UK tour takes you from the grandeur of London to the mystical Scottish Highlands and the charming Cotswolds.",
-    itinerary:[{day:"Day 1",title:"Arrival in London",desc:"Heathrow airport welcome, hotel check-in, evening Thames river walk."},{day:"Day 2",title:"Royal London",desc:"Buckingham Palace, Westminster Abbey, Houses of Parliament, Big Ben, London Eye."},{day:"Day 3",title:"Museums & Markets",desc:"British Museum, Borough Market, Tower of London, Tower Bridge."},{day:"Day 4",title:"Windsor & Oxford Day Trip",desc:"Windsor Castle tour, drive through Oxford's dreaming spires."},{day:"Day 5",title:"Travel to Edinburgh",desc:"Morning train. Arthur's Seat hike, Royal Mile walk."},{day:"Day 6",title:"Edinburgh Castle & Whisky Trail",desc:"Edinburgh Castle, Scotch Whisky Experience, Holyrood Palace."},{day:"Day 7",title:"Scottish Highlands Tour",desc:"Full-day Loch Ness and Highlands excursion."},{day:"Day 8",title:"Return to London - Cotswolds",desc:"Afternoon in the picturesque Cotswolds village."},{day:"Day 9",title:"London Shopping & Leisure",desc:"Oxford Street, Covent Garden, farewell dinner."},{day:"Day 10",title:"Departure",desc:"Transfer to Heathrow for your return flight."}],
-    included:["Return international flights","9-night hotel (4-star)","London-Edinburgh train tickets","Guided city tours","Tower of London tickets","Edinburgh Castle entry","Transfers","Visa support"],
-    excluded:["UK visa fees","Travel insurance","Most meals","Personal shopping","Tips"],
-    tags:["UK","Luxury"]
-  },
-  {
-    id:5,
-    title:"Canada Niagara & Toronto",
-    location:"Canada",type:"Family",duration:"9 days, 8 nights",durationDays:9,
-    shortDesc:"Stand at the edge of Niagara Falls, explore multicultural Toronto, and discover Canada's natural majesty.",
-    /* FIX #3: Changed to a proper Niagara Falls / Canadian landscape image */
-    img:"https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?w=600&q=80",
-    gallery:[
-      "https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?w=400&q=70",
-      "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=400&q=70",
-      "https://images.unsplash.com/photo-1609955252949-0e6562de6fa4?w=400&q=70",
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=70",
-      "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400&q=70",
-      "https://images.unsplash.com/photo-1606046604972-77cc76aee944?w=400&q=70"
-    ],
-    overview:"Canada promises one of the most diverse and breathtaking travel experiences on the planet - from Niagara Falls to Banff.",
-    itinerary:[{day:"Day 1",title:"Arrival in Toronto",desc:"International arrival, hotel check-in, evening CN Tower visit."},{day:"Day 2",title:"Toronto City Tour",desc:"Distillery District, St Lawrence Market, Harbourfront."},{day:"Day 3",title:"Niagara Falls Day Trip",desc:"Full-day Niagara - Maid of the Mist boat ride, Journey Behind the Falls."},{day:"Day 4",title:"Toronto Islands & Beaches",desc:"Ferry to Toronto Islands, cycling, picnic, skyline views."},{day:"Day 5",title:"Flight to Calgary",desc:"Domestic flight to Calgary, gateway to the Rockies."},{day:"Day 6",title:"Banff National Park",desc:"Full day - Lake Louise, Moraine Lake, Bow Falls, hot springs."},{day:"Day 7",title:"Icefields Parkway Drive",desc:"Scenic Icefields Parkway drive, Athabasca Glacier walk."},{day:"Day 8",title:"Return to Toronto",desc:"Domestic flight back, afternoon shopping, farewell dinner."},{day:"Day 9",title:"Departure",desc:"Airport transfer and international departure."}],
-    included:["International return flights","Domestic flights","8-night hotel","Niagara boat ride tickets","CN Tower entry","Banff park passes","Airport transfers","Visa guidance"],
-    excluded:["Canadian visa fees","Travel insurance","Meals (except noted)","Personal purchases"],
-    tags:["Canada","Family"]
-  },
-  {
-    id:6,
-    title:"South Africa Safari & Cape Town",
-    location:"South Africa",type:"Budget",duration:"12 days, 11 nights",durationDays:12,
-    shortDesc:"The Big Five on safari, Table Mountain at sunrise, and the spectacular Cape Peninsula in one epic trip.",
-    img:"https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=600&q=80",
-    gallery:["https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=400&q=70","https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&q=70","https://images.unsplash.com/photo-1517495306984-f84210f9daa8?w=400&q=70","https://images.unsplash.com/photo-1475113548492-b714ecdab13a?w=400&q=70","https://images.unsplash.com/photo-1593179911834-3ba00c600f85?w=400&q=70","https://images.unsplash.com/photo-1554246041-ecc0d6c98af4?w=400&q=70"],
-    overview:"South Africa is a destination like no other - unmatched wildlife, dramatic coastlines, and a rich cultural tapestry.",
-    itinerary:[{day:"Day 1",title:"Arrival in Johannesburg",desc:"OR Tambo Airport welcome, hotel check-in, Soweto township tour."},{day:"Day 2",title:"Apartheid Museum & Gold Reef City",desc:"Morning at Apartheid Museum, afternoon at Gold Reef City."},{day:"Day 3-5",title:"Kruger National Park Safari",desc:"3-day safari. Game drives morning and evening - the Big Five."},{day:"Day 6",title:"Flight to Cape Town",desc:"Domestic flight to Cape Town, V&A Waterfront evening stroll."},{day:"Day 7",title:"Table Mountain & City Bowl",desc:"Cable car up Table Mountain, Company's Garden, Bo-Kaap."},{day:"Day 8",title:"Cape Peninsula Drive",desc:"Cape Point, Boulders Beach penguins, Chapman's Peak scenic drive."},{day:"Day 9",title:"Cape Winelands",desc:"Day trip to Stellenbosch and Franschhoek wine estates."},{day:"Day 10",title:"Robben Island & Leisure",desc:"Ferry to Robben Island. Afternoon leisure on Clifton Beach."},{day:"Day 11",title:"Cape Town Free Day",desc:"Shopping at the Waterfront, farewell dinner."},{day:"Day 12",title:"Departure",desc:"Cape Town International Airport departure."}],
-    included:["Return international flights","Domestic flight (JHB-CPT)","11-night accommodation","Kruger safari (2 nights, game drives)","Table Mountain cable car","Robben Island ferry & tour","All transfers","Visa support"],
-    excluded:["South African visa fees","Travel insurance","Most meals","Personal expenses"],
-    tags:["South Africa","Budget"]
-  },
-  {
-    id:7,
-    title:"Malaysia & Kuala Lumpur",
-    location:"Malaysia",type:"Budget",duration:"7 days, 6 nights",durationDays:7,
-    shortDesc:"Petronas Twin Towers, Batu Caves, Penang street food, and Langkawi's pristine beaches - all in one week.",
-    img:"https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&q=80",
-    gallery:["https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=400&q=70","https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&q=70","https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&q=70","https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=70","https://images.unsplash.com/photo-1555993539-1732b0258235?w=400&q=70","https://images.unsplash.com/photo-1576783903527-d6cfb5d92726?w=400&q=70"],
-    overview:"Malaysia offers exceptional value - from the ultramodern skyline of Kuala Lumpur to the colonial charm of Penang and the tropical paradise of Langkawi.",
-    itinerary:[{day:"Day 1",title:"Arrival in Kuala Lumpur",desc:"KLIA airport arrival, hotel check-in, evening at Bukit Bintang."},{day:"Day 2",title:"KL City Highlights",desc:"Petronas Twin Towers, KL Tower, Merdeka Square, Central Market."},{day:"Day 3",title:"Batu Caves & Gombak",desc:"Morning at iconic Batu Caves, afternoon Chinatown."},{day:"Day 4",title:"Fly to Penang",desc:"Domestic flight to Penang. George Town street art tour, famous hawker food trail."},{day:"Day 5",title:"Penang Hill & Kek Lok Si",desc:"Penang Hill funicular, Kek Lok Si temple, Gurney Drive night market."},{day:"Day 6",title:"Langkawi Island",desc:"Ferry to Langkawi, cable car, beach afternoon."},{day:"Day 7",title:"Return & Departure",desc:"Return to KL for international departure."}],
-    included:["Return flights","Domestic flights within Malaysia","6-night hotel","Petronas Skybridge tickets","Batu Caves entry","Transfers","English-speaking guide","Visa support"],
-    excluded:["Visa fees if applicable","Travel insurance","Meals (except noted)","Personal shopping"],
-    tags:["Malaysia","Budget"]
-  },
-  {
-    id:8,
-    title:"Dubai Family Fun Package",
-    location:"Dubai",type:"Family",duration:"7 days, 6 nights",durationDays:7,
-    shortDesc:"Theme parks, waterparks, and the world's biggest mall - Dubai is a wonderland for families of all ages.",
-    img:"https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=600&q=80",
-    gallery:["https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=400&q=70","https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=70","https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=400&q=70","https://images.unsplash.com/photo-1526495124232-a04e1849168c?w=400&q=70","https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&q=70","https://images.unsplash.com/photo-1547863616-b6a7c0a7f3b2?w=400&q=70"],
-    overview:"Dubai is one of the world's greatest family destinations - theme parks, waterparks, indoor skiing and the world's largest mall all in one city.",
-    itinerary:[{day:"Day 1",title:"Arrival & Hotel",desc:"Airport welcome, family room check-in, evening at The Beach JBR."},{day:"Day 2",title:"IMG Worlds of Adventure",desc:"Full day at IMG Worlds of Adventure - the world's largest indoor theme park."},{day:"Day 3",title:"Dubai Parks & Resorts",desc:"Motiongate Dubai or Bollywood Parks."},{day:"Day 4",title:"Wild Wadi Waterpark",desc:"Full day at Wild Wadi Waterpark, evening at Dubai Mall Fountain show."},{day:"Day 5",title:"Desert Safari Family Edition",desc:"Family-friendly dune bashing, camel rides, henna painting, cultural entertainment."},{day:"Day 6",title:"Ski Dubai & Aquarium",desc:"Indoor ski slope at Mall of the Emirates, afternoon at Dubai Aquarium."},{day:"Day 7",title:"Departure",desc:"Morning leisure, hotel checkout, airport transfer."}],
-    included:["Return flights","Family hotel room (6 nights)","Theme park entry (3 parks)","Wild Wadi tickets","Desert safari","Ski Dubai passes","All transfers","Visa assistance"],
-    excluded:["Flight upgrades","Meals (breakfast only)","Travel insurance","Personal shopping"],
-    tags:["Dubai","Family"]
-  }
+  {id:100,title:"Umrah Package - Sacred Journey to Makkah",location:"Saudi Arabia",type:"Pilgrimage",duration:"10 days, 9 nights",durationDays:10,shortDesc:"Fulfil your spiritual obligation with our fully guided Umrah package - Makkah, Madinah, visa, and all essentials handled by our team.",img:"https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&q=80",badgeClass:"card-badge-umrah",gallery:["https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400&q=70","https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=400&q=70","https://images.unsplash.com/photo-1519817650390-64a93db51149?w=400&q=70","https://images.unsplash.com/photo-1569360936347-5c2e0e7f04b6?w=400&q=70","https://images.unsplash.com/photo-1604881991720-f91add269bed?w=400&q=70","https://images.unsplash.com/photo-1560969184-10fe8719e047?w=400&q=70"],overview:"Embark on a spiritually transformative journey to the two holiest cities in Islam. Our Umrah package is meticulously curated to ensure a seamless, focused, and spiritually enriching experience from the moment you depart Nigeria to the moment you return.",itinerary:[{day:"Day 1",title:"Departure from Abuja/Lagos",desc:"Group assembly at airport. Ihram donned at Miqat. Flight to Madinah."},{day:"Day 2-4",title:"Madinah - City of the Prophet",desc:"Hotel near Masjid an-Nabawi. Five daily prayers, Ziyarah visits to Quba Mosque, Uhud Mountain, and Al-Baqi cemetery."},{day:"Day 5",title:"Travel to Makkah",desc:"Guided bus transfer. Check-in near Masjid al-Haram. Evening orientation and first Tawaf."},{day:"Day 6-8",title:"Makkah - Performance of Umrah",desc:"Tawaf, Sa'i, Taqsir/Halq. Prayers at Masjid al-Haram. Visits to Cave of Hira and Mina."},{day:"Day 9",title:"Makkah Ziyarah & Shopping",desc:"Historical site visits, Abraj Al-Bait, shopping. Farewell Tawaf."},{day:"Day 10",title:"Departure",desc:"Transfer to airport. Return flight to Nigeria."}],included:["Return flights (Nigeria-Saudi Arabia)","Umrah visa processing","4-star hotel in Madinah (3 nights)","4-star hotel in Makkah (4 nights)","Air-conditioned bus","Islamic scholar guide","All transfers","Ihram garments (men)","Ziyarah tours","24/7 group support"],excluded:["Personal spending money","Meals (except noted)","Travel insurance","Vaccinations","Personal shopping","Hotel upgrade (on request)"],tags:["Saudi Arabia","Pilgrimage"]},
+  {id:101,title:"Hajj Package - The Fifth Pillar",location:"Saudi Arabia",type:"Pilgrimage",duration:"21 days, 20 nights",durationDays:21,shortDesc:"Answer the divine call with our fully managed Hajj package - a sacred journey of a lifetime, handled with care from Nigeria to the holy lands.",img:"https://images.unsplash.com/photo-1519817650390-64a93db51149?w=600&q=80",badgeClass:"card-badge-hajj",gallery:["https://images.unsplash.com/photo-1519817650390-64a93db51149?w=400&q=70","https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=400&q=70","https://images.unsplash.com/photo-1564769662533-4f00a87b4056?w=400&q=70","https://images.unsplash.com/photo-1569360936347-5c2e0e7f04b6?w=400&q=70","https://images.unsplash.com/photo-1604881991720-f91add269bed?w=400&q=70","https://images.unsplash.com/photo-1560969184-10fe8719e047?w=400&q=70"],overview:"The Hajj is the most profound spiritual journey a Muslim can undertake. Our Hajj package is designed to remove every worldly burden so you can focus entirely on your worship.",itinerary:[{day:"Day 1-2",title:"Departure & Arrival in Madinah",desc:"Departure from Nigeria. Ihram at Miqat. Arrival in Madinah."},{day:"Day 3-7",title:"Madinah Ziyarah",desc:"Daily prayers in Masjid an-Nabawi, visits to historic Islamic sites, lectures by resident scholar."},{day:"Day 8",title:"Travel to Makkah",desc:"Bus transfer. Tawaf of Arrival, Sa'i. Orientation for Hajj rites."},{day:"Day 9-12",title:"Makkah Preparation",desc:"Prayers at Masjid al-Haram, Hajj preparation lectures."},{day:"Day 13",title:"8th Dhul Hijjah - Mina",desc:"Travel to Mina. Air-conditioned tents. Five prayers in Mina."},{day:"Day 14",title:"9th Dhul Hijjah - Day of Arafah",desc:"Stand on the plains of Arafat from Dhuhr to sunset. Proceed to Muzdalifah after Maghrib."},{day:"Day 15",title:"10th Dhul Hijjah - Eid & Jamarat",desc:"Rami al-Jamarat, Qurbani, Halq, Tawaf al-Ifadah, Sa'i."},{day:"Day 16-18",title:"Tashreeq Days",desc:"Remaining Rami at Jamarat. Rest, worship, and additional Tawaf."},{day:"Day 19-20",title:"Makkah Wrap-Up & Shopping",desc:"Farewell Tawaf, Zam Zam water collection, shopping."},{day:"Day 21",title:"Return to Nigeria",desc:"Transfer to Jeddah airport. Return home as a Hajji."}],included:["Return flights","Official Hajj visa processing","Hotel in Madinah (5 nights)","Hotel in Makkah (8 nights)","Air-conditioned tents in Mina","Resident Islamic scholar","All ground transfers","Ihram garments for men","Zam Zam water (5 litres)","Qurbani arrangement","24/7 support team"],excluded:["Personal spending money","Most meals","Travel insurance","Vaccinations","Personal shopping"],tags:["Saudi Arabia","Pilgrimage"]},
+  {id:1,title:"Dubai Gold & Glamour",location:"Dubai",type:"Luxury",duration:"6 days, 5 nights",durationDays:6,shortDesc:"Soar above the skyline, cruise the marina, and experience Burj Khalifa at dusk on this ultimate Dubai escape.",img:"https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80",gallery:["https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=70","https://images.unsplash.com/photo-1526495124232-a04e1849168c?w=400&q=70","https://images.unsplash.com/photo-1534008897995-27a23e859048?w=400&q=70","https://images.unsplash.com/photo-1583512603842-6b7daaac1a39?w=400&q=70","https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=400&q=70","https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=400&q=70"],overview:"Experience Dubai like a VIP - from the dazzling heights of Burj Khalifa to the tranquil waters of the Persian Gulf.",itinerary:[{day:"Day 1",title:"Arrival & City Orientation",desc:"Meet & greet at Dubai International Airport. Private transfer to 5-star hotel. Evening welcome dinner."},{day:"Day 2",title:"Burj Khalifa & Dubai Mall",desc:"Morning visit to the Burj Khalifa observation deck, afternoon at Dubai Mall."},{day:"Day 3",title:"Desert Safari & BBQ Dinner",desc:"Afternoon dune bashing, camel riding, sandboarding, and a sunset BBQ dinner under the stars."},{day:"Day 4",title:"Marina Cruise & JBR Beach",desc:"Morning yacht cruise along Dubai Marina, afternoon leisure at Jumeirah Beach Residence."},{day:"Day 5",title:"Gold Souk & Old Dubai",desc:"Half-day tour - Al Fahidi Fort, Spice Souk, Gold Souk, and Abra ride across Dubai Creek."},{day:"Day 6",title:"Departure",desc:"Leisure morning, hotel checkout, private transfer to Dubai International Airport."}],included:["Return flights (economy)","5-star hotel","Airport transfers (private)","Desert safari with dinner","Burj Khalifa tickets","Daily breakfast","Tour guide","Visa assistance"],excluded:["Personal shopping","Tips & gratuities","Travel insurance","Visa fees","Optional activities"],tags:["Dubai","Luxury"]},
+  {id:2,title:"Turkey Discovery Tour",location:"Turkey",type:"Family",duration:"8 days, 7 nights",durationDays:8,shortDesc:"Float over Cappadocia in a hot air balloon, walk ancient Ephesus ruins, and cruise the turquoise Aegean coast.",img:"https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=600&q=80",gallery:["https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=400&q=70","https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400&q=70","https://images.unsplash.com/photo-1579431341225-6e3b45d5e3b5?w=400&q=70","https://images.unsplash.com/photo-1446822622740-c3460c8a15eb?w=400&q=70","https://images.unsplash.com/photo-1571979872688-7b20b71b0b94?w=400&q=70","https://images.unsplash.com/photo-1599975700521-60cf9eb66f23?w=400&q=70"],overview:"Turkey is a mesmerising blend of East and West, ancient history and modern luxury.",itinerary:[{day:"Day 1",title:"Arrival in Istanbul",desc:"Airport pickup and check-in. Evening Bosphorus dinner cruise."},{day:"Day 2",title:"Istanbul Sightseeing",desc:"Blue Mosque, Hagia Sophia, Topkapi Palace, Grand Bazaar."},{day:"Day 3",title:"Flight to Cappadocia",desc:"Morning domestic flight. Afternoon underground city tour and valley hike."},{day:"Day 4",title:"Hot Air Balloon Ride",desc:"Pre-dawn balloon flight over fairy chimneys. Open-air museum. Pottery workshop."},{day:"Day 5",title:"Drive to Antalya",desc:"Scenic drive through Taurus Mountains, waterfall visit, arrival in Antalya."},{day:"Day 6",title:"Antalya Old City & Beach",desc:"Morning in Kalei old quarter, afternoon at Konyaalta beach."},{day:"Day 7",title:"Pamukkale Cotton Terraces",desc:"Day trip to Pamukkale thermal pools and Hierapolis ruins."},{day:"Day 8",title:"Departure",desc:"Transfer to airport for departure."}],included:["Return flights","Hotel (4-star)","Domestic flight (Istanbul-Cappadocia)","Hot air balloon ride","All transfers","Daily breakfast","English guide","Visa support"],excluded:["International visa fees","Travel insurance","Lunch and dinner","Personal expenses"],tags:["Turkey","Family"]},
+  {id:3,title:"Maldives Honeymoon Escape",location:"Maldives",type:"Honeymoon",duration:"5 days, 4 nights",durationDays:5,shortDesc:"Overwater bungalows, pristine coral reefs, and the most breathtaking sunsets on earth - perfect for two.",img:"https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=600&q=80",gallery:["https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=400&q=70","https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=400&q=70","https://images.unsplash.com/photo-1540202404-a2f29016b523?w=400&q=70","https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&q=70","https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=400&q=70","https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=400&q=70"],overview:"The Maldives is the world's ultimate romantic retreat. Crystal-clear lagoons, vibrant coral reefs, and the serenity of your private overwater bungalow.",itinerary:[{day:"Day 1",title:"Arrival & Speedboat Transfer",desc:"Arrive at Male, welcome drink, speedboat to resort island. Sunset dinner for two."},{day:"Day 2",title:"Snorkelling & Spa",desc:"Morning guided snorkelling, afternoon couple's spa treatment, evening beach bonfire dinner."},{day:"Day 3",title:"Dolphin Cruise & Island Hopping",desc:"Morning dolphin watching cruise, afternoon local island visit, sunset cocktails on deck."},{day:"Day 4",title:"Scuba Diving & Free Day",desc:"Optional introductory scuba dive. Rest of the day at leisure."},{day:"Day 5",title:"Departure",desc:"Final morning in paradise, speedboat back to Male airport."}],included:["Return flights","Overwater bungalow (4 nights)","Speedboat transfers","Breakfast & dinner daily","Snorkelling equipment","Dolphin cruise","Couple's spa (1 session)","Welcome amenities"],excluded:["Visa on arrival fees","Scuba diving (optional)","Alcoholic beverages","Personal shopping","Travel insurance"],tags:["Maldives","Honeymoon"]},
+  {id:4,title:"UK Explorer - London & Beyond",location:"UK",type:"Luxury",duration:"10 days, 9 nights",durationDays:10,shortDesc:"Buckingham Palace, the Scottish Highlands, and the iconic English countryside - Britain at its most magnificent.",img:"https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=600&q=80",gallery:["https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&q=70","https://images.unsplash.com/photo-1486299267070-83823f5448dd?w=400&q=70","https://images.unsplash.com/photo-1529655683826-aba9b3e77383?w=400&q=70","https://images.unsplash.com/photo-1543872084-c7bd3822856f?w=400&q=70","https://images.unsplash.com/photo-1534430480872-3498386e7856?w=400&q=70","https://images.unsplash.com/photo-1520986606214-8b456906c813?w=400&q=70"],overview:"This comprehensive UK tour takes you from the grandeur of London to the mystical Scottish Highlands and the charming Cotswolds.",itinerary:[{day:"Day 1",title:"Arrival in London",desc:"Heathrow airport welcome, hotel check-in, evening Thames river walk."},{day:"Day 2",title:"Royal London",desc:"Buckingham Palace, Westminster Abbey, Houses of Parliament, Big Ben, London Eye."},{day:"Day 3",title:"Museums & Markets",desc:"British Museum, Borough Market, Tower of London, Tower Bridge."},{day:"Day 4",title:"Windsor & Oxford Day Trip",desc:"Windsor Castle tour, drive through Oxford's dreaming spires."},{day:"Day 5",title:"Travel to Edinburgh",desc:"Morning train. Arthur's Seat hike, Royal Mile walk."},{day:"Day 6",title:"Edinburgh Castle & Whisky Trail",desc:"Edinburgh Castle, Scotch Whisky Experience, Holyrood Palace."},{day:"Day 7",title:"Scottish Highlands Tour",desc:"Full-day Loch Ness and Highlands excursion."},{day:"Day 8",title:"Return to London - Cotswolds",desc:"Afternoon in the picturesque Cotswolds village."},{day:"Day 9",title:"London Shopping & Leisure",desc:"Oxford Street, Covent Garden, farewell dinner."},{day:"Day 10",title:"Departure",desc:"Transfer to Heathrow for your return flight."}],included:["Return international flights","9-night hotel (4-star)","London-Edinburgh train tickets","Guided city tours","Tower of London tickets","Edinburgh Castle entry","Transfers","Visa support"],excluded:["UK visa fees","Travel insurance","Most meals","Personal shopping","Tips"],tags:["UK","Luxury"]},
+  {id:5,title:"Canada Niagara & Toronto",location:"Canada",type:"Family",duration:"9 days, 8 nights",durationDays:9,shortDesc:"Stand at the edge of Niagara Falls, explore multicultural Toronto, and discover Canada's natural majesty.",img:"https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?w=600&q=80",gallery:["https://images.unsplash.com/photo-1503803548695-c2a7b4a5b875?w=400&q=70","https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=400&q=70","https://images.unsplash.com/photo-1609955252949-0e6562de6fa4?w=400&q=70","https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=70","https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?w=400&q=70","https://images.unsplash.com/photo-1606046604972-77cc76aee944?w=400&q=70"],overview:"Canada promises one of the most diverse and breathtaking travel experiences on the planet - from Niagara Falls to Banff.",itinerary:[{day:"Day 1",title:"Arrival in Toronto",desc:"International arrival, hotel check-in, evening CN Tower visit."},{day:"Day 2",title:"Toronto City Tour",desc:"Distillery District, St Lawrence Market, Harbourfront."},{day:"Day 3",title:"Niagara Falls Day Trip",desc:"Full-day Niagara - Maid of the Mist boat ride, Journey Behind the Falls."},{day:"Day 4",title:"Toronto Islands & Beaches",desc:"Ferry to Toronto Islands, cycling, picnic, skyline views."},{day:"Day 5",title:"Flight to Calgary",desc:"Domestic flight to Calgary, gateway to the Rockies."},{day:"Day 6",title:"Banff National Park",desc:"Full day - Lake Louise, Moraine Lake, Bow Falls, hot springs."},{day:"Day 7",title:"Icefields Parkway Drive",desc:"Scenic Icefields Parkway drive, Athabasca Glacier walk."},{day:"Day 8",title:"Return to Toronto",desc:"Domestic flight back, afternoon shopping, farewell dinner."},{day:"Day 9",title:"Departure",desc:"Airport transfer and international departure."}],included:["International return flights","Domestic flights","8-night hotel","Niagara boat ride tickets","CN Tower entry","Banff park passes","Airport transfers","Visa guidance"],excluded:["Canadian visa fees","Travel insurance","Meals (except noted)","Personal purchases"],tags:["Canada","Family"]},
+  {id:6,title:"South Africa Safari & Cape Town",location:"South Africa",type:"Budget",duration:"12 days, 11 nights",durationDays:12,shortDesc:"The Big Five on safari, Table Mountain at sunrise, and the spectacular Cape Peninsula in one epic trip.",img:"https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=600&q=80",gallery:["https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=400&q=70","https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=400&q=70","https://images.unsplash.com/photo-1517495306984-f84210f9daa8?w=400&q=70","https://images.unsplash.com/photo-1475113548492-b714ecdab13a?w=400&q=70","https://images.unsplash.com/photo-1593179911834-3ba00c600f85?w=400&q=70","https://images.unsplash.com/photo-1554246041-ecc0d6c98af4?w=400&q=70"],overview:"South Africa is a destination like no other - unmatched wildlife, dramatic coastlines, and a rich cultural tapestry.",itinerary:[{day:"Day 1",title:"Arrival in Johannesburg",desc:"OR Tambo Airport welcome, hotel check-in, Soweto township tour."},{day:"Day 2",title:"Apartheid Museum & Gold Reef City",desc:"Morning at Apartheid Museum, afternoon at Gold Reef City."},{day:"Day 3-5",title:"Kruger National Park Safari",desc:"3-day safari. Game drives morning and evening - the Big Five."},{day:"Day 6",title:"Flight to Cape Town",desc:"Domestic flight to Cape Town, V&A Waterfront evening stroll."},{day:"Day 7",title:"Table Mountain & City Bowl",desc:"Cable car up Table Mountain, Company's Garden, Bo-Kaap."},{day:"Day 8",title:"Cape Peninsula Drive",desc:"Cape Point, Boulders Beach penguins, Chapman's Peak scenic drive."},{day:"Day 9",title:"Cape Winelands",desc:"Day trip to Stellenbosch and Franschhoek wine estates."},{day:"Day 10",title:"Robben Island & Leisure",desc:"Ferry to Robben Island. Afternoon leisure on Clifton Beach."},{day:"Day 11",title:"Cape Town Free Day",desc:"Shopping at the Waterfront, farewell dinner."},{day:"Day 12",title:"Departure",desc:"Cape Town International Airport departure."}],included:["Return international flights","Domestic flight (JHB-CPT)","11-night accommodation","Kruger safari (2 nights, game drives)","Table Mountain cable car","Robben Island ferry & tour","All transfers","Visa support"],excluded:["South African visa fees","Travel insurance","Most meals","Personal expenses"],tags:["South Africa","Budget"]},
+  {id:7,title:"Malaysia & Kuala Lumpur",location:"Malaysia",type:"Budget",duration:"7 days, 6 nights",durationDays:7,shortDesc:"Petronas Twin Towers, Batu Caves, Penang street food, and Langkawi's pristine beaches - all in one week.",img:"https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&q=80",gallery:["https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=400&q=70","https://images.unsplash.com/photo-1582562124811-c09040d0a901?w=400&q=70","https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&q=70","https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&q=70","https://images.unsplash.com/photo-1555993539-1732b0258235?w=400&q=70","https://images.unsplash.com/photo-1576783903527-d6cfb5d92726?w=400&q=70"],overview:"Malaysia offers exceptional value - from the ultramodern skyline of Kuala Lumpur to the colonial charm of Penang and the tropical paradise of Langkawi.",itinerary:[{day:"Day 1",title:"Arrival in Kuala Lumpur",desc:"KLIA airport arrival, hotel check-in, evening at Bukit Bintang."},{day:"Day 2",title:"KL City Highlights",desc:"Petronas Twin Towers, KL Tower, Merdeka Square, Central Market."},{day:"Day 3",title:"Batu Caves & Gombak",desc:"Morning at iconic Batu Caves, afternoon Chinatown."},{day:"Day 4",title:"Fly to Penang",desc:"Domestic flight to Penang. George Town street art tour, famous hawker food trail."},{day:"Day 5",title:"Penang Hill & Kek Lok Si",desc:"Penang Hill funicular, Kek Lok Si temple, Gurney Drive night market."},{day:"Day 6",title:"Langkawi Island",desc:"Ferry to Langkawi, cable car, beach afternoon."},{day:"Day 7",title:"Return & Departure",desc:"Return to KL for international departure."}],included:["Return flights","Domestic flights within Malaysia","6-night hotel","Petronas Skybridge tickets","Batu Caves entry","Transfers","English-speaking guide","Visa support"],excluded:["Visa fees if applicable","Travel insurance","Meals (except noted)","Personal shopping"],tags:["Malaysia","Budget"]},
+  {id:8,title:"Dubai Family Fun Package",location:"Dubai",type:"Family",duration:"7 days, 6 nights",durationDays:7,shortDesc:"Theme parks, waterparks, and the world's biggest mall - Dubai is a wonderland for families of all ages.",img:"https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=600&q=80",gallery:["https://images.unsplash.com/photo-1578895101408-1a36b834405b?w=400&q=70","https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400&q=70","https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=400&q=70","https://images.unsplash.com/photo-1526495124232-a04e1849168c?w=400&q=70","https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&q=70","https://images.unsplash.com/photo-1547863616-b6a7c0a7f3b2?w=400&q=70"],overview:"Dubai is one of the world's greatest family destinations - theme parks, waterparks, indoor skiing and the world's largest mall all in one city.",itinerary:[{day:"Day 1",title:"Arrival & Hotel",desc:"Airport welcome, family room check-in, evening at The Beach JBR."},{day:"Day 2",title:"IMG Worlds of Adventure",desc:"Full day at IMG Worlds of Adventure - the world's largest indoor theme park."},{day:"Day 3",title:"Dubai Parks & Resorts",desc:"Motiongate Dubai or Bollywood Parks."},{day:"Day 4",title:"Wild Wadi Waterpark",desc:"Full day at Wild Wadi Waterpark, evening at Dubai Mall Fountain show."},{day:"Day 5",title:"Desert Safari Family Edition",desc:"Family-friendly dune bashing, camel rides, henna painting, cultural entertainment."},{day:"Day 6",title:"Ski Dubai & Aquarium",desc:"Indoor ski slope at Mall of the Emirates, afternoon at Dubai Aquarium."},{day:"Day 7",title:"Departure",desc:"Morning leisure, hotel checkout, airport transfer."}],included:["Return flights","Family hotel room (6 nights)","Theme park entry (3 parks)","Wild Wadi tickets","Desert safari","Ski Dubai passes","All transfers","Visa assistance"],excluded:["Flight upgrades","Meals (breakfast only)","Travel insurance","Personal shopping"],tags:["Dubai","Family"]}
 ];
 
 const WA_NUMBER='15814263935';
 let _currentTourContext=null;
 
-function openWAModal(pd,pm){
+/* ============================================================
+   FORMSPREE AJAX HELPERS
+   Both forms submit via fetch (AJAX) so the page never
+   navigates away — we show inline success / error instead.
+============================================================ */
+async function submitFormspree(formEl, successId, errorId, btnEl) {
+  const data = new FormData(formEl);
+  const originalHTML = btnEl.innerHTML;
+  btnEl.disabled = true;
+  btnEl.innerHTML = 'Sending&hellip;';
+  document.getElementById(successId).classList.remove('show');
+  document.getElementById(errorId).classList.remove('show');
+
+  try {
+    const res = await fetch(formEl.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      document.getElementById(successId).classList.add('show');
+      formEl.reset();
+    } else {
+      document.getElementById(errorId).classList.add('show');
+    }
+  } catch(e) {
+    document.getElementById(errorId).classList.add('show');
+  } finally {
+    btnEl.disabled = false;
+    btnEl.innerHTML = originalHTML;
+  }
+}
+
+/* Wire Quick Inquiry form */
+document.addEventListener('DOMContentLoaded', () => {
+  const inqForm = document.getElementById('inq-form');
+  if (inqForm) {
+    inqForm.addEventListener('submit', e => {
+      e.preventDefault();
+      submitFormspree(inqForm, 'inq-success', 'inq-error',
+                      document.getElementById('inq-btn'));
+    });
+  }
+
+  /* Wire Contact form */
+  const cfForm = document.getElementById('cf-form');
+  if (cfForm) {
+    cfForm.addEventListener('submit', e => {
+      e.preventDefault();
+      submitFormspree(cfForm, 'cf-success', 'cf-error',
+                      document.getElementById('cf-btn'));
+    });
+  }
+
+  showPage('home');
+});
+
+/* ============================================================
+   WHATSAPP MODAL
+============================================================ */
+function openWAModal(pd, pm) {
   if(pd){const s=document.getElementById('wam-dest');for(let i=0;i<s.options.length;i++){if(s.options[i].value===pd||s.options[i].text===pd){s.selectedIndex=i;break;}}}
-  if(pm)document.getElementById('wam-msg').value=pm;
+  if(pm) document.getElementById('wam-msg').value=pm;
   document.getElementById('wa-modal-overlay').classList.add('open');
   document.body.style.overflow='hidden';
   setTimeout(()=>document.getElementById('wam-name').focus(),300);
@@ -744,6 +717,9 @@ function launchWhatsApp(){
 }
 function hl(id){const el=document.getElementById(id);el.focus();el.style.borderColor='#e04040';setTimeout(()=>el.style.borderColor='',2000);}
 
+/* ============================================================
+   NAVIGATION
+============================================================ */
 function showPage(page,tourId){
   ['home','tours','detail','about','contact'].forEach(p=>document.getElementById('page-'+p).classList.add('hidden'));
   document.getElementById('page-'+page).classList.remove('hidden');
@@ -755,9 +731,12 @@ function showPage(page,tourId){
   if(page!=='home')countersRan=false;
 }
 
-function renderHomeDests(){const g=document.getElementById('home-dest-grid');if(!g)return;g.innerHTML=TOURS.slice(0,4).map(t=>card(t)).join('');}
-function renderToursGrid(tours){const g=document.getElementById('tours-grid');const nr=document.getElementById('no-results');if(!g)return;if(!tours.length){g.innerHTML='';nr.classList.remove('hidden');}else{nr.classList.add('hidden');g.innerHTML=tours.map(t=>card(t)).join('');}}
-function card(t){const bc=t.badgeClass||'';const s=t.type==='Pilgrimage';return`<div class="dest-card" onclick="showPage('detail',${t.id})" ${s?'style="border:1.5px solid rgba(37,162,68,.22);"':''}><div class="card-img-wrap"><img class="card-img" src="${t.img}" alt="${t.title}" loading="lazy"/><span class="card-badge ${bc}">${t.type}</span><div class="card-hover-overlay"><span class="card-hover-cta"><svg width="13" height="13" stroke="white" fill="none" stroke-width="2"><use href="#ico-arrow-right"/></svg>View full details</span></div></div><div class="card-body"><div class="card-meta"><svg width="11" height="11" stroke="currentColor" fill="none" stroke-width="2"><use href="#ico-map-pin"/></svg>${t.location}</div><h3>${t.title}</h3><p>${t.shortDesc}</p><div class="card-footer"><span class="card-dur"><svg width="12" height="12" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-clock"/></svg>${t.duration}</span><button class="btn btn-primary btn-sm" onclick="event.stopPropagation();showPage('detail',${t.id})">View Details</button></div></div></div>`;}
+/* ============================================================
+   RENDER
+============================================================ */
+function renderHomeDests(){const g=document.getElementById('home-dest-grid');if(!g)return;g.innerHTML=TOURS.slice(0,4).map(card).join('');}
+function renderToursGrid(tours){const g=document.getElementById('tours-grid');const nr=document.getElementById('no-results');if(!g)return;if(!tours.length){g.innerHTML='';nr.classList.remove('hidden');}else{nr.classList.add('hidden');g.innerHTML=tours.map(card).join('');}}
+function card(t){return`<div class="dest-card" onclick="showPage('detail',${t.id})" ${t.type==='Pilgrimage'?'style="border:1.5px solid rgba(37,162,68,.22);"':''}><div class="card-img-wrap"><img class="card-img" src="${t.img}" alt="${t.title}" loading="lazy"/><span class="card-badge ${t.badgeClass||''}">${t.type}</span><div class="card-hover-overlay"><span class="card-hover-cta"><svg width="13" height="13" stroke="white" fill="none" stroke-width="2"><use href="#ico-arrow-right"/></svg>View full details</span></div></div><div class="card-body"><div class="card-meta"><svg width="11" height="11" stroke="currentColor" fill="none" stroke-width="2"><use href="#ico-map-pin"/></svg>${t.location}</div><h3>${t.title}</h3><p>${t.shortDesc}</p><div class="card-footer"><span class="card-dur"><svg width="12" height="12" stroke="currentColor" fill="none" stroke-width="1.7"><use href="#ico-clock"/></svg>${t.duration}</span><button class="btn btn-primary btn-sm" onclick="event.stopPropagation();showPage('detail',${t.id})">View Details</button></div></div></div>`;}
 
 function renderDetail(id){
   const t=TOURS.find(x=>x.id===id);if(!t)return;
@@ -769,26 +748,17 @@ function renderDetail(id){
   document.getElementById('detail-meta').textContent=t.location+'  -  '+t.duration+'  -  '+t.type;
   document.getElementById('detail-overview').textContent=t.overview;
   document.getElementById('sb-title').textContent=t.title;
-  // Payment plan banner for Hajj & Umrah
   const isPilgrimage=t.type==='Pilgrimage';
-  const planBanner=isPilgrimage?`
-    <div class="pilgrim-plan-banner">
-      <h3>&#127775; 50% Payment Plan Available</h3>
-      <p>MHU Travel &amp; Tour covers 50% of your ${t.id===101?'Hajj':'Umrah'} package cost upfront &mdash; so nothing stands between you and the Haram. Pay your deposit, travel with full confidence, and settle the balance in comfortable monthly instalments after your return.</p>
-      <div class="pilgrim-plan-pills">
-        <span class="plan-pill">&#10003; 50% deposit to secure</span>
-        <span class="plan-pill">&#10003; Balance paid after return</span>
-        <span class="plan-pill">&#10003; Flexible monthly plan</span>
-        <span class="plan-pill">&#10003; Zero hidden charges</span>
-      </div>
-      <button class="btn btn-wa btn-sm" onclick="openWAModal('${t.title}','Hi! I want to apply for the 50% payment plan for the ${t.title}. Please send me the details.')"><svg width="15" height="15"><use href="#ico-whatsapp"/></svg>Apply for Payment Plan</button>
-    </div>`:'';
-  document.getElementById('detail-itinerary').innerHTML=t.itinerary.map(d=>`<div class="itinerary-item"><div class="itin-day">${d.day}</div><div class="itin-title">${d.title}</div><div class="itin-desc">${d.desc}</div></div>`).join('')+(planBanner);
+  const planBanner=isPilgrimage?`<div class="pilgrim-plan-banner"><h3>&#127775; 50% Payment Plan Available</h3><p>MHU Travel &amp; Tour covers 50% of your ${t.id===101?'Hajj':'Umrah'} package cost upfront &mdash; so nothing stands between you and the Haram. Pay your deposit, travel with full confidence, and settle the balance in comfortable monthly instalments after your return.</p><div class="pilgrim-plan-pills"><span class="plan-pill">&#10003; 50% deposit to secure</span><span class="plan-pill">&#10003; Balance paid after return</span><span class="plan-pill">&#10003; Flexible monthly plan</span><span class="plan-pill">&#10003; Zero hidden charges</span></div><button class="btn btn-wa btn-sm" onclick="openWAModal('${t.title}','Hi! I want to apply for the 50% payment plan for the ${t.title}. Please send me the details.')"><svg width="15" height="15"><use href="#ico-whatsapp"/></svg>Apply for Payment Plan</button></div>`:'';
+  document.getElementById('detail-itinerary').innerHTML=t.itinerary.map(d=>`<div class="itinerary-item"><div class="itin-day">${d.day}</div><div class="itin-title">${d.title}</div><div class="itin-desc">${d.desc}</div></div>`).join('')+planBanner;
   document.getElementById('detail-included').innerHTML=t.included.map(i=>`<div class="incl-item"><svg width="14" height="14" stroke="#22c55e" fill="none" stroke-width="2.5"><use href="#ico-check"/></svg>${i}</div>`).join('');
   document.getElementById('detail-excluded').innerHTML=t.excluded.map(i=>`<div class="excl-item"><svg width="14" height="14" stroke="#ef4444" fill="none" stroke-width="2.5"><use href="#ico-x"/></svg>${i}</div>`).join('');
   document.getElementById('detail-gallery').innerHTML=t.gallery.map(img=>`<img class="gal-img" src="${img}" alt="Tour photo" loading="lazy"/>`).join('');
 }
 
+/* ============================================================
+   FILTERS
+============================================================ */
 function applyFilters(){
   const s=document.getElementById('filter-search').value.toLowerCase();
   const l=document.getElementById('filter-location').value;
@@ -796,105 +766,17 @@ function applyFilters(){
   const d=document.getElementById('filter-duration').value;
   renderToursGrid(TOURS.filter(t=>{
     const ms=!s||t.title.toLowerCase().includes(s)||t.location.toLowerCase().includes(s)||t.shortDesc.toLowerCase().includes(s);
-    const ml=!l||t.location===l;
-    const mt=!ty||t.type===ty;
-    let md=true;
-    if(d==='1-4 Days')md=t.durationDays<=4;
-    if(d==='5-7 Days')md=t.durationDays>=5&&t.durationDays<=7;
-    if(d==='8-14 Days')md=t.durationDays>=8&&t.durationDays<=14;
-    if(d==='15+ Days')md=t.durationDays>=15;
+    const ml=!l||t.location===l;const mt=!ty||t.type===ty;let md=true;
+    if(d==='1-4 Days')md=t.durationDays<=4;if(d==='5-7 Days')md=t.durationDays>=5&&t.durationDays<=7;
+    if(d==='8-14 Days')md=t.durationDays>=8&&t.durationDays<=14;if(d==='15+ Days')md=t.durationDays>=15;
     return ms&&ml&&mt&&md;
   }));
 }
 function clearFilters(){['filter-search','filter-location','filter-type','filter-duration'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});renderToursGrid(TOURS);}
 
-// ─────────────────────────────────────────────────────────────────────────────
-// EMAILJS SETUP
-// To activate, create a FREE account at https://www.emailjs.com then:
-//   1. Add an Email Service (Gmail, Outlook, etc.) → copy the Service ID
-//   2. Create an Email Template with these variables:
-//        {{from_name}}, {{from_phone}}, {{from_email}}, {{destination}}, {{message}}, {{form_type}}
-//      Set the "To Email" in the template to:  info@mhutravels.com
-//   3. Copy your Public Key from Account → API Keys
-//   4. Replace the three placeholders below
-// ─────────────────────────────────────────────────────────────────────────────
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';    // e.g. 'user_xxxxxxxxxxx'
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';    // e.g. 'service_xxxxxxx'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';   // e.g. 'template_xxxxxxx'
-
-function initEmailJS(){
-  if(typeof emailjs!=='undefined') emailjs.init({publicKey: EMAILJS_PUBLIC_KEY});
-}
-
-async function sendEmail(params, successId, resetFn){
-  const btn = params._btn;
-  const originalText = btn ? btn.innerHTML : '';
-  if(btn){ btn.disabled=true; btn.innerHTML='Sending…'; }
-
-  if(EMAILJS_PUBLIC_KEY==='YOUR_PUBLIC_KEY'){
-    // Not yet configured — show a clear setup message in the console and still show success UI
-    console.warn('EmailJS not configured. Set EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID in the script.');
-    setTimeout(()=>{
-      document.getElementById(successId).classList.add('show');
-      if(resetFn) resetFn();
-      if(btn){ btn.disabled=false; btn.innerHTML=originalText; }
-    }, 600);
-    return;
-  }
-
-  try {
-    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
-    document.getElementById(successId).classList.add('show');
-    if(resetFn) resetFn();
-  } catch(err){
-    console.error('EmailJS error:', err);
-    alert('There was a problem sending your message. Please reach us directly on WhatsApp.');
-  } finally {
-    if(btn){ btn.disabled=false; btn.innerHTML=originalText; }
-  }
-}
-
-function submitInquiry(){
-  const n = document.getElementById('inq-name').value.trim();
-  const p = document.getElementById('inq-phone').value.trim();
-  const d = document.getElementById('inq-dest').value;
-  if(!n||!p||!d){ alert('Please fill in all fields before submitting.'); return; }
-  const btn = document.querySelector('[onclick="submitInquiry()"]');
-  sendEmail({
-    _btn: btn,
-    form_type:   'Quick Inquiry',
-    from_name:   n,
-    from_phone:  p,
-    from_email:  'N/A',
-    destination: d,
-    message:     'Quick inquiry submitted from the home page.'
-  }, 'inq-success', ()=>{
-    document.getElementById('inq-name').value='';
-    document.getElementById('inq-phone').value='';
-    document.getElementById('inq-dest').value='';
-  });
-}
-
-function submitContactForm(){
-  const fn  = document.getElementById('cf-fname').value.trim();
-  const ln  = document.getElementById('cf-lname').value.trim();
-  const p   = document.getElementById('cf-phone').value.trim();
-  const em  = document.getElementById('cf-email').value.trim();
-  const d   = document.getElementById('cf-destination').value;
-  const msg = document.getElementById('cf-message').value.trim();
-  if(!fn||!p||!d){ alert('Please fill in your name, phone number, and destination.'); return; }
-  const btn = document.querySelector('[onclick="submitContactForm()"]');
-  sendEmail({
-    _btn: btn,
-    form_type:   'Contact Form',
-    from_name:   (fn+' '+ln).trim(),
-    from_phone:  p,
-    from_email:  em||'Not provided',
-    destination: d,
-    message:     msg||'No additional message.'
-  }, 'cf-success', null);
-}
-
+/* ============================================================
+   MOBILE MENU + NAVBAR SCROLL + COUNTERS
+============================================================ */
 function toggleMobile(){document.getElementById('mob-menu').classList.toggle('open');}
 
 window.addEventListener('scroll',()=>{
@@ -902,7 +784,7 @@ window.addEventListener('scroll',()=>{
   const bar=document.getElementById('progress-bar');
   const dv=!document.getElementById('page-detail').classList.contains('hidden');
   if(dv){const dH=document.documentElement.scrollHeight-window.innerHeight;bar.style.width=(dH>0?(window.scrollY/dH)*100:0)+'%';bar.style.display='block';}
-  else{bar.style.display='none';}
+  else bar.style.display='none';
 });
 
 let countersRan=false;
@@ -914,8 +796,6 @@ function runCounters(){
     const tm=setInterval(()=>{cur=Math.min(cur+inc,d.t);el.textContent=(i===2?cur:cur.toLocaleString())+d.s;if(cur>=d.t)clearInterval(tm);},22);
   });
 }
-
-document.addEventListener('DOMContentLoaded',()=>{ initEmailJS(); showPage('home'); });
 </script>
 </body>
 </html>
