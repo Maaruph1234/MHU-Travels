@@ -30,7 +30,11 @@ export default async function handler(req, res) {
   // Build the personalised SMS message
   const dest = destination && destination !== 'Other' ? destination : 'your chosen destination';
   const message =
-    `Hello ${name}, thank you for reaching out to MHU Travel & Tour!`;
+    `Hello ${name}, thank you for reaching out to MHU Travel & Tour! ` +
+    `We have received your inquiry about ${dest}. ` +
+    `Our team will contact you within 2 hours. ` +
+    `For instant help, WhatsApp us: +1 581-426-3935. ` +
+    `– MHU Travel & Tour, Abuja.;
 
   // Termii API payload
   const payload = {
