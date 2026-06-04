@@ -39,7 +39,7 @@ export default async function handler(req, res) {
   // Termii API payload
   const payload = {
     to: sanitised,
-    from: 'MHU Travel',        // Your Termii sender ID (must be approved)
+    from: 'MHU',        //  Termii sender ID 
     sms: message,
     type: 'plain',
     channel: 'generic',
