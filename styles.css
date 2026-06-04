@@ -394,4 +394,8 @@ textarea{resize:vertical;min-height:110px}
 }
 @media(max-width:768px){
   .payplan-grid{grid-template-columns:1fr}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 936d39c (Update files with enquiry redirect)
